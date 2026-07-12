@@ -1,0 +1,69 @@
+body {
+    font-family: terminus;
+    background-color: #202020;
+    font-size: 18pt;
+}
+
+button {
+    font-family: terminus;
+    background-color: #202020;
+    font-size: 16pt;
+    color: #00ff00;
+    visibility: hidden;
+}
+
+input {
+    font-family: terminus;
+    background-color: #202020;
+    font-size: 18pt;
+    color: #ffffff;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    autofocus: true;
+    visibility: hidden;
+}
+
+.image_wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.loaded_container {
+    overflow: hidden;
+    display: inline-block;
+    animation: image-load 2s steps(50, end) forwards;
+}
+
+.img_container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 10px;
+    margin-right: 90px;
+    height: 300px;
+    visibility: hidden;
+}
+
+.terminal_header {
+    color: #00ff00;
+    text-align: left;
+    visibility: hidden;
+}
+.typewriter {
+    position: relative;
+}
+.ghost {
+    text-align: left;
+    visibility: hidden;
+    white-space: pre-line;
+}
+.terminal_content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #ffffff;
+    text-align: left;
+    display: inline-block;
+    white-space: pre-wrap;
+}

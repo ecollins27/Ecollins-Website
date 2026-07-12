@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<style>
+    @font-face {
+        font-family: terminus;
+        src: url(static/fonts/Terminus.ttf);
+    }
+</style>
+<body>
+{% import "components.html" as components %}
+    <form id="terminal_form">
+        <input type="submit" hidden>
+        <div>
+            {% for line in lines %}
+                {{ components.header(line.path, line.num) }}
+                {{ components.content(line.input, line.output, line.num) }}
+            {% endfor %}
+        </div>
+        <div>
+            <button id="about" type="button">about</button>
+            <button id="projects" type="button">projects</button>
+            <button id="cats" type="button">cats</button>
+        </div>
+        {{ components.header("/", lines | length) }}
+        {{ components.terminal_input(0) }}
+    </form>
+</body>
+<script>
+    const lines = {{ lines | tojson }};
+    const filePath = "";
+    const buttons = ["projects", "about", "cats"]
+</script>
+<script src="{{ url_for('static', filename='js/typewriter.js') }}"></script>
+</html>

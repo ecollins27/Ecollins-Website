@@ -1,0 +1,25 @@
+Over the past couple years I have amassed quite the collection of projects.  Some were made solely for the sake of learning.  Others have a far more concrete purpose.  To learn more about an individual project, visit its dedicated page.
+
+<#ff0000>CRender<>
+CRender is the latest and probably my favorite of my projects.  Its a ray tracing renderer written from scratch C++.
+
+<#ff0000>This Website!<>
+This website in and of itself was a project as my first foray into web development from this century.
+
+<#ff0000>CFormer<>
+A machine learning library written from scratch in C++ capable of constructing and training GPTs.
+
+<#ff0000>Lemmings<>
+A recreation of the 1991 game "Lemmings" by DMA Design.  This project is a remaster of one my first ever coding projects.
+
+<#ff0000>AlJbra<>
+A CAS (Computer Algebraic System) written from scratch in Java capable of evaluating and simplifying expressions algebraicly.
+
+<#ff0000>CIF Print Server<>
+My first introduction to web development.  This project hosts and pulls queued prints from a web portal and sends them to a printer using the cups library.
+
+<#ff0000>Fire Alarm Monitor<>
+My dorm has way too many fire alarms.  This site tracks them.
+
+<#ff0000>CIF Status Page<>
+A custom local website designed to serve a number of different purposes.  The project tracks system information for a wide array for servers, monitors the status of the main website, and process package requests for the organization's cluster node.

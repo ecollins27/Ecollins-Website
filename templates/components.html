@@ -1,0 +1,30 @@
+{% macro header(path, num) %}
+<span id="header_{{num}}" class="terminal_header">ecollins@ecollins-pc<span style="color: #ffffff;">:</span><span style="color:#0077ff;">{{path}}</span><span style="color:#ffffff;">$</span></span>
+{% endmacro %}
+
+{% macro content(input, output, num) %}
+<span class="typewriter">
+    <span class="ghost">{{input}}</span>
+    <span id="input_{{num}}" class="terminal_content" data-text="{{input}}"></span>
+</span>
+<div class="typewriter">
+    <span class="ghost">{{output}}</span>
+    <span id="output_{{num}}" class="terminal_content" data-text="{{output}}"></span>
+</div>
+{% endmacro %}
+
+{% macro images(images, num) %}
+    {% for image in images %}
+        <div class="image_wrapper">
+            <img class="ghost" src="{{image}}" height=300px>
+            <span id="image_{{num}}_{{loop.index0}}" class="img_container">
+                <img src="{{image}}" height=300px>
+            </span>
+        </div>
+
+    {% endfor %}
+{% endmacro %}
+
+{% macro terminal_input(num) %}
+<input type="text" id="terminal_input_{{num}}" name="textbox" autocomplete="off">
+{% endmacro %}

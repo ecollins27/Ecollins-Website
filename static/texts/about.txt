@@ -1,0 +1,17 @@
+Hi! I'm <#ffff00>Ehren Collins<>, a current Senior at the University of Rochester double majoring in Mathematics and Computer Science.  CS is my primary degree and I pursue math mostly for fun (majoring in math has been a dream of mine since middle school).  Since I have much the math background, I specialize in AI research and development.  However, I would consider myself at least semi-fluent in most fields of CS, with experience in CS theory, networking, system administration, quantum computing, app development, and web development.
+
+<#ff0000>Hobbies<>
+I spent much of my time coding for fun.  I find that there is no better way to learn a topic than to write it from scratch.  In doing so, one encounters fundamental rules and problems that are typically overlooked.  It is by thinking about and attempting to solve these problems that one gains a deeper understanding and appreciation for the topic.  AlJbra, CRender, and this website are 3 examples of such projects!
+
+I am also an avid violinist and seriously considered going to conservatory.  While I am not a professional I am still heavily involved in music (perhaps even more so than CS), taking part in a number of ensembles both at UofR and Eastman.  I have also taken up Baroque violin, a specific type of violin that reached its peak between 1600-1750.
+
+Finally, I am the president of the Computer Interest Floor (CIF), a student organization at UofR that provides a community for anyone that enjoys technology.  They have been invaluable to my college experience.  They maintain their own computer lab which operates as its own mini network, with its own DNS, DHCP, IdM, and NFS servers.  CIF even utilizes a debian mirror they host themselves!  Most of my networking, sys-admin, and hardware experience came from this organization.
+
+<#ff0000>Video Games<>
+I am an avid video game fan, primarily of 3rd person action games.  I love souls-born and souls-like games and have played every souls-born game (except DS2 of course).  Similarly, I enjoy story driven action games such as the God of War, Ghost of Tsushima, and Jedi games.  I recently finished my play through of Nine Sols which I greatly enjoyed.  If you are looking for video game recommendations, here are mine:
+
+Kerbal Space Program
+Elden Ring
+Sekiro
+Portal 2
+Ghost of Yotei

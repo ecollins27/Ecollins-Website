@@ -1,0 +1,26 @@
+ ____    __                                               <#ffff00>Ehren Rudolf Collins<>
+/\  _`\ /\ \                                              --------------------
+\ \ \L\_\ \ \___   _ __    __    ___                      <#ffff00>OS<>:  Linux Mint, Debian
+ \ \  _\L\ \  _ `\/\`'__\/'__`\/' _ `\                    <#ffff00>Location<>:  Cleveland, OH
+  \ \ \L\ \ \ \ \ \ \ \//\  __//\ \/\ \                   <#ffff00>Degrees<>:  BS Math, BS Computer Science (expected May 2027)
+   \ \____/\ \_\ \_\ \_\\ \____\ \_\ \_\                  <#ffff00>School<>:  University of Rochester
+    \/___/  \/_/\/_/\/_/ \/____/\/_/\/_/                  <#ffff00>Uptime<>:  20 years
+
+                                                          <#ffff00>Languages.Spoken<>:  English, Latin
+ ____                __          ___       ___            <#ffff00>Languages.Frontend<>:  HTML,CSS,Javascript
+/\  _`\             /\ \        /\_ \    /'___\           <#ffff00>Languages.Backend<>:  C/C++,Java,Python,Rust
+\ \ \L\ \  __  __   \_\ \    ___\//\ \  /\ \__/
+ \ \ ,  / /\ \/\ \  /'_` \  / __`\\ \ \ \ \ ,__\          <#ffff00>Hobbies<>:  Coding,Violin,Video Games
+  \ \ \\ \\ \ \_\ \/\ \L\ \/\ \L\ \\_\ \_\ \ \_/          <#ffff00>Cats<>: 2 - Edgar and Alice
+   \ \_\ \_\ \____/\ \___,_\ \____//\____\\ \_\           <#ffff00>d<>:
+    \/_/\/ /\/___/  \/__,_ /\/___/ \/____/ \/_/           d
+                                                          d
+                                                          d
+ ____            ___    ___                               d
+/\  _`\         /\_ \  /\_ \    __                        d
+\ \ \/\_\    ___\//\ \ \//\ \  /\_\    ___     ____       d
+ \ \ \/_/_  / __`\\ \ \  \ \ \ \/\ \ /' _ `\  /',__\      d
+  \ \ \L\ \/\ \L\ \\_\ \_ \_\ \_\ \ \/\ \/\ \/\__, `\     d
+   \ \____/\ \____//\____\/\____\\ \_\ \_\ \_\/\____/     <#ffff00>Email<>:  ehren.collins@gmail.com
+    \/___/  \/___/ \/____/\/____/ \/_/\/_/\/_/\/___/      <#ffff00>Github<>:  https://github.com/ecollins27
+
