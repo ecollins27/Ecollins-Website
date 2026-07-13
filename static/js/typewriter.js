@@ -5,7 +5,7 @@ const form = document.getElementById("terminal_form");
 var terminalNum = 0;
 var terminal_input = document.getElementById("terminal_input_0");
 
-const fileStructure = {"cats":{}, "about":{}, "projects":{"website":{}}};
+const fileStructure = {"cats":{"edgar-alice":{}}, "about":{}, "projects":{"website":{}}};
 function addButton(parentElement, content, path, color){
     html = "<button id=\"" + content + "\" type=\"button\" style=\"color:" + color + ";\">" + content + "</button>";
     parentElement.insertAdjacentHTML("beforeend", html);
@@ -24,10 +24,15 @@ function addButton(parentElement, content, path, color){
 }
 
 function addImage(parentElement, src, height){
-    html = "<div class=\"image_wrapper\">\n<img class=\"ghost\" src=\"" + src + "\" height=" + height + "px>\n<span id=\"" + src + "\" class=\"img_container\">\n<img src=\"" + src + "\" height=300px>\n</span>\n</div>";
+    html = "<span class=\"image_wrapper\">\n<img class=\"ghost\" src=\"" + src + "\" height=" + height + "px>\n<div id=\"" + src + "\" class=\"img_container\">\n<img src=\"" + src + "\" height=" + height + "px>\n</div>\n</span>";
     parentElement.insertAdjacentHTML("beforeend", html);
     var imageElement = document.getElementById(src);
-    imageElement.classList.add("loaded_container");
+    var styleSheet = window.document.styleSheets[0];
+    var imageName = src.split("/").pop().split(".")[0];
+    console.log("@keyframes image-load-" + imageName +" {\nfrom { height: 0px; }\nto { height: " + height + "px; }\n}");
+    styleSheet.insertRule("@keyframes image-load-" + imageName +" {\nfrom { height: 0px; }\nto { height: " + height + "px; }\n}");
+    imageElement.style.overflow = "hidden";
+    imageElement.style.animation = "image-load-" + imageName + " 2s steps(50, end) forwards";
     imageElement.style.visibility = "visible";
 }
 

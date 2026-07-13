@@ -25,22 +25,17 @@ input {
 
 .image_wrapper {
     position: relative;
-    display: inline-block;
+    display: inline-grid;
+    padding:0;
+    line-height: 0;
 }
 
-.loaded_container {
-    overflow: hidden;
-    display: inline-block;
-    animation: image-load 2s steps(50, end) forwards;
+.image_wrapper > * {
+    grid-area: 1 / 1;
 }
 
 .img_container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-left: 10px;
-    margin-right: 90px;
-    height: 300px;
+    padding: 0;
     visibility: hidden;
 }
 
@@ -56,6 +51,7 @@ input {
     text-align: left;
     visibility: hidden;
     white-space: pre-line;
+    padding: 0;
 }
 .terminal_content {
     position: absolute;

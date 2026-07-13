@@ -2,7 +2,6 @@ import argparse
 import logging
 import os
 from dataclasses import dataclass
-from PIL import Image
 import math
 
 from flask import Flask, request, redirect, url_for, render_template
@@ -54,45 +53,20 @@ def parseFile(filename: str):
 neofetch_str, neofetch_colors = parseFile("static/texts/home.txt")
 neofetch_object = {"output": neofetch_str, "colors": neofetch_colors}
 
-@app.route('/no', methods=['GET'])
-def get_no():
-    lines = []
-    output, colors = parseFile("static/texts/no.txt")
-    lines.append(Line(input="cat no.txt", output=output, colors=colors, num=0, path="/no"))
-    return render_template('index.html', neofetch=neofetch_object, lines=lines)
-
-@app.route('/projects/website', methods=['GET'])
-def get_website():
-    lines = []
-    output, colors = parseFile("static/texts/website.txt")
-    lines.append(Line(input="cat website.txt", output=output, colors=colors, num=0, path="/projects/website"))
-    return render_template('index.html', neofetch=neofetch_object, lines=lines)
-
-@app.route('/projects', methods=['GET'])
-def get_projects():
-    lines = []
-    output, colors = parseFile("static/texts/projects.txt")
-    lines.append(Line(input="cat projects.txt", output=output, num=0, colors=colors, path="/projects"))
-    return render_template('index.html', neofetch=neofetch_object, lines=lines)
-
-@app.route('/about', methods=['GET'])
-def get_about():
-    lines = []
-    output, colors = parseFile("static/texts/about.txt")
-    lines.append(Line(input="cat aboutme.txt", output=output, num=0, colors=colors, path="/about"))
-    return render_template('index.html', neofetch=neofetch_object, lines=lines)
-
-@app.route('/cats', methods=['GET'])
-def get_cats():
-    lines = []
-    output, colors = parseFile("static/texts/cats.txt")
-    lines.append(Line(input="cat cats.txt", output=output, num=0, colors=colors, path="/cats"))
+@app.route('/<path:path>', methods=['GET'])
+def get_page(path):
+    path = "/" + path
+    page = path.split("/")[-1]
+    if not os.path.exists(BASE_DIR + f"/static/texts/{page}.txt"):
+        page = '404'
+    output, colors = parseFile(f"static/texts/{page}.txt")
+    lines = [Line(input=f"cat {page}.txt", output=output, colors=colors, num=0, path=path)]
     return render_template('index.html', neofetch=neofetch_object, lines=lines)
 
 @app.route('/', methods=['GET'])
 def get_home():
-    output, colors = parseFile("static/texts/home.txt")
-    lines = [Line(input="neofetch", output=output, colors=colors, num=0, path="/")]
+    output, colors = parseFile(f"static/texts/home.txt")
+    lines = [Line(input="neofetch", output=output, colors=colors, num=0, path='/')]
     return render_template('index.html', neofetch=neofetch_object, lines=lines)
 
 

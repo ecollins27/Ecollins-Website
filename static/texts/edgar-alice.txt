@@ -1,0 +1,5 @@
+Edgar
+{i/static/images/edgar1.jpg,300}{i/static/images/edgar2.jpg,300}{i/static/images/edgar3.jpg,300}{i/static/images/edgar4.jpg,300}
+
+Alice
+{i/static/images/alice1.jpg,300}{i/static/images/alice2.jpg,300}{i/static/images/alice3.jpg,300}{i/static/images/alice4.jpg,300}

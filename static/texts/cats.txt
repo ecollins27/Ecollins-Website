@@ -1,17 +1,10 @@
 <#ff00ff>Kitties!<>
 I currently have 2 black cats, {bEdgar and Alice,edgar-alice,#ffff00}.
-{i/static/images/edgar1.jpg,200}        {i/static/images/alice1.jpg,200}
 
-
-Edgar                   Alice
+{i/static/images/edgar4.jpg,300}        {i/static/images/alice2.jpg,300}
+Edgar                    Alice
 
 Growing up, I also had 2 cats, {bHenry and Lola,henry-lola,#ffff00}
 
-{i/static/images/henry1.jpg,200}                {i/static/images/lola1.jpg,200}
-
-
-
-
-
-
-
+{i/static/images/henry1.jpg,300}                {i/static/images/lola1.jpg,300}
+Henry                    Lola
