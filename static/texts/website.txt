@@ -1,4 +1,4 @@
-<#ffff00>Website - https://github.com/ecollins27/Website.git<>
+<#ffff00>Website<> - {bGithub,https://github.com/ecollins27/Ecollins-Website.git,#0fbf3e}
 
 This website was my first experience with "modern" web development.  I did develop some basic webpages before, but they were so basic that they might as well have been from 1992.  I kid you not, my print server web portal worked on Internet Explorer 5 running in Windows 3.1 on an AST 386 without any modifications.
 
@@ -11,4 +11,7 @@ Contrary to my friend's suggestion, I entered this project without a framework. 
 Javascript manages all the animations and handles the "terminal."  Any and all commands are parsed and processed in a single Javascript file about 200 lines long.
 
 <#ff0000>Design<>
-The primary design goal was to make everything as modular as possible.  As such, the project makes liberal use Jinja templates.  To add a new webpage, copy the html template, change the buttons as desired, add the page to file architecture in the javascript file, and specify the contents in Flask.  The webpage contents, including text colors, can even be read from a txt document.
+The primary design goal was to make everything as modular as possible.  In fact, the design is so modular that every single page renders the same index.html.  Custom elements like images and buttons are specified as plain-text in txt files which are parsed and passed to an html file via a python script.  Javascript then adds the elements in real time as it animates.  The result is essentially a custom text based framework.
+
+{bhome,home,#00ff00}  {babout,about,#00ff00}  {bprojects,projects,#00ff00}  {bcats,cats,#00ff00}
+

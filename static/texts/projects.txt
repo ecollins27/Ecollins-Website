@@ -1,9 +1,9 @@
 Over the past couple years I have amassed quite the collection of projects.  Some were made solely for the sake of learning.  Others have a far more concrete purpose.  To learn more about an individual project, visit its dedicated page.
 
-<#ff0000>CRender<>
+{bCRender,crender,#ff0000}
 CRender is the latest and probably my favorite of my projects.  Its a ray tracing renderer written from scratch C++.
 
-<#ff0000>This Website!<>
+{bThis Website!,website,#ff0000}
 This website in and of itself was a project as my first foray into web development from this century.
 
 <#ff0000>CFormer<>
@@ -23,3 +23,6 @@ My dorm has way too many fire alarms.  This site tracks them.
 
 <#ff0000>CIF Status Page<>
 A custom local website designed to serve a number of different purposes.  The project tracks system information for a wide array for servers, monitors the status of the main website, and process package requests for the organization's cluster node.
+
+{bhome,home,#00ff00}  {babout,about,#00ff00}  {bcats,cats,#00ff00}
+
