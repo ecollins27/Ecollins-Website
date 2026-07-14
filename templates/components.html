@@ -8,7 +8,7 @@
     <span id="input_{{num}}" class="terminal_content" data-text="{{input}}"></span>
 </span>
 <div class="typewriter">
-    <span class="ghost">{{output}}</span>
+    <span id="ghost_output_{{num}}" class="ghost">{{output}}</span>
     <span id="output_{{num}}" class="terminal_content" data-text="{{output}}"></span>
 </div>
 {% endmacro %}
@@ -26,5 +26,5 @@
 {% endmacro %}
 
 {% macro terminal_input(num) %}
-<input type="text" id="terminal_input_{{num}}" name="textbox" autocomplete="off">
+<input type="text" id="terminal_input_{{num}}" name="textbox" autocomplete="off" size=100>
 {% endmacro %}

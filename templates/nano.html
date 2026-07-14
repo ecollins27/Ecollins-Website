@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<style>
+    @font-face {
+        font-family: terminus;
+        src: url(/static/fonts/Terminus.ttf);
+    }
+
+  .nano_header {
+    background-color: #dddddd;
+    color: #202020;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 20px;
+  }
+
+  .nano_footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    color: #dddddd;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    width: 100%;
+    height: 72px;
+  }
+
+  .footer_prompt {
+    background-color: #dddddd;
+    color: #202020;
+  }
+
+  .footer_line {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .footer_line span.footer_element {
+    display: table-cell;
+    text-align: center;
+  }
+
+  .unwritable {
+    width: fit-content;
+    margin-inline: auto;
+    background-color: #ff0000;
+    color:#ffffff;
+  }
+
+  #nano_content {
+    position: fixed;
+    top: 20px;
+    bottom: 82px;
+    color: #dddddd;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    width: 100%;
+  }
+
+</style>
+<body>
+{% import "components.html" as components %}
+  <form id="terminal_form">
+    <input type="submit" hidden>
+    <div class="nano_header" >GNU nano 7.2</div>
+
+    <div id="nano_content"></div>
+
+    <div class="nano_footer">
+      <div class="unwritable">[ File '{{file}}' is unwritable ]</div>
+      <div class="footer_line">
+        <span class="footer_element"><span class="footer_prompt">^X</span> <button id="exit" type="button" style="color:#dddddd;">Exit</button></span>
+        <span class="footer_element"><span class="footer_prompt">^T</span> <button id="terminal" type="button" style="color:#dddddd;">Exit to Terminal</button></span>
+        <span class="footer_element"><span class="footer_prompt">^K</span> Copy</span>
+        <span class="footer_element"><span class="footer_prompt">^U</span> Paste</span>
+        <span class="footer_element"><span class="footer_prompt">M-U</span> Undo</span>
+        <span class="footer_element"><span class="footer_prompt">M-Q</span> Previous</span>
+        <span class="footer_element"><span class="footer_prompt">^B</span> Back</span>
+      </div>
+      <div class="footer_line">
+        <span class="footer_element"><span class="footer_prompt">^H</span> <button id="home" type="button" style="color:#dddddd;">Home</button></span>
+        <span class="footer_element"><span class="footer_prompt">^A</span> <button id="about" type="button" style="color:#dddddd;">About</button></span>
+        <span class="footer_element"><span class="footer_prompt">^P</span> <button id="projects" type="button" style="color:#dddddd;">Projects</button></span>
+        <span class="footer_element"><span class="footer_prompt">^C</span> <button id="cats" type="button" style="color:#dddddd;">Cats</button></span>
+        <span class="footer_element"><span class="footer_prompt">M-E</span> Redo</span>
+        <span class="footer_element"><span class="footer_prompt">M-W</span> Next</span>
+        <span class="footer_element"><span class="footer_prompt">^F</span> Forward</span>
+      </div>
+    </div>
+  </form>
+</body>
+<script>
+  const content = {{ content | tojson }}
+</script>
+<script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+<script src="{{ url_for('static', filename='js/nano.js') }}"></script>
+</html>

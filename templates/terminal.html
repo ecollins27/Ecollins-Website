@@ -8,11 +8,6 @@
         font-family: terminus;
         src: url(/static/fonts/Terminus.ttf);
     }
-
-    @keyframes image-load {
-        from { height: 0px; }
-        to { height: 300px; }
-    }
 </style>
 <body>
 {% import "components.html" as components %}
@@ -24,7 +19,7 @@
                 {{ components.content(line.input, line.output, line.num) }}
             {% endfor %}
         </div>
-        {{ components.header("/", lines | length) }}
+        {{ components.header( path , lines | length) }}
         {{ components.terminal_input(0) }}
     </form>
 </body>
@@ -32,5 +27,7 @@
     const lines = {{ lines | tojson }};
     const neofetch = {{ neofetch | tojson}};
 </script>
-<script src="{{ url_for('static', filename='js/typewriter.js') }}"></script>
+<script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+<script src="{{ url_for('static', filename='js/commands.js') }}"></script>
+<script src="{{ url_for('static', filename='js/terminal.js') }}"></script>
 </html>

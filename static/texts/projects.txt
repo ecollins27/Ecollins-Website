@@ -1,28 +1,32 @@
-Over the past couple years I have amassed quite the collection of projects.  Some were made solely for the sake of learning.  Others have a far more concrete purpose.  To learn more about an individual project, visit its dedicated page.
+PROJECTS
 
-{bCRender,crender,#ff0000}
-CRender is the latest and probably my favorite of my projects.  Its a ray tracing renderer written from scratch C++.
+OVERVIEW
+        Over the past couple years I have amassed quite the collection of projects.  Some were made solely for the sake of learning.
+        Others have a far more concrete purpose.  To learn more about an individual project, visit its dedicated page.
 
-{bThis Website!,website,#ff0000}
-This website in and of itself was a project as my first foray into web development from this century.
+{bCRENDER,crender,#ffffff}
+        CRender is the latest and probably my favorite of my projects.  Its a ray tracing renderer written from scratch C++.
 
-<#ff0000>CFormer<>
-A machine learning library written from scratch in C++ capable of constructing and training GPTs.
+{bWEBSITE,website,#ffffff}
+        This website in and of itself was a project as my first foray into web development from this century.
 
-<#ff0000>Lemmings<>
-A recreation of the 1991 game "Lemmings" by DMA Design.  This project is a remaster of one my first ever coding projects.
+{bCFORMER,cformer,#ffffff}
+        A machine learning library written from scratch in C++ capable of constructing and training GPTs.
 
-<#ff0000>AlJbra<>
-A CAS (Computer Algebraic System) written from scratch in Java capable of evaluating and simplifying expressions algebraicly.
+{bLEMMINGS,lemmings,#ffffff}
+        A recreation of the 1991 game "Lemmings" by DMA Design.  This project is a remaster of one my first ever coding projects.
 
-<#ff0000>CIF Print Server<>
-My first introduction to web development.  This project hosts and pulls queued prints from a web portal and sends them to a printer using the cups library.
+{bALJBRA,aljbra,#ffffff}
+        A CAS (Computer Algebraic System) written from scratch in Java capable of evaluating and simplifying expressions algebraicly.
 
-<#ff0000>Fire Alarm Monitor<>
-My dorm has way too many fire alarms.  This site tracks them.
+{bPRINT SERVER,print-server,#ffffff}
+        My first introduction to web development.  This project hosts and pulls queued prints from a web portal and sends them to a printer using the cups library.
 
-<#ff0000>CIF Status Page<>
-A custom local website designed to serve a number of different purposes.  The project tracks system information for a wide array for servers, monitors the status of the main website, and process package requests for the organization's cluster node.
+{bFIRE ALARM MONITOR,fire-monitor,#ffffff}
+        My dorm has way too many fire alarms.  This site tracks them.
+
+{bSTATUS PAGE,status-page,#ffffff}
+        A custom local website designed to serve a number of different purposes.
+        The project tracks system information for a wide array for servers, monitors the status of the main website, and process package requests for the organization's cluster node.
 
 {bhome,home,#00ff00}  {babout,about,#00ff00}  {bcats,cats,#00ff00}
-

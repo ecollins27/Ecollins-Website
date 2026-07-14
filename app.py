@@ -9,7 +9,12 @@ app = Flask(__name__)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 @dataclass
-class Line:
+class NanoContent:
+    colors: dict
+    value: str
+
+@dataclass
+class TerminalLine:
     input: str
     output: str
     num: int
@@ -53,21 +58,48 @@ def parseFile(filename: str):
 neofetch_str, neofetch_colors = parseFile("static/texts/home.txt")
 neofetch_object = {"output": neofetch_str, "colors": neofetch_colors}
 
+@app.route("/test", methods=['GET'])
+def get_test():
+    with open(BASE_DIR + "/static/texts/genesis.txt", 'r') as f:
+        genesis = f.read()
+    return render_template('nano.html', neofetch=neofetch_object, file='text.txt', content=NanoContent(value=genesis, colors={25:"#ff0000"}))
+
 @app.route('/<path:path>', methods=['GET'])
 def get_page(path):
     path = "/" + path
     page = path.split("/")[-1]
+    display_type = ""
+    if page.endswith("-nano"):
+        display_type = "nano"
+        page = page[:-5]
+    elif page.endswith("-cat"):
+        display_type = "cat"
+        page = page[:-4]
+    elif page.endswith("-man"):
+        display_type = "man"
+        page = page[:-4]
     if not os.path.exists(BASE_DIR + f"/static/texts/{page}.txt"):
+        print(f"PAGE NOT FOUND: {page}")
         page = '404'
     output, colors = parseFile(f"static/texts/{page}.txt")
-    lines = [Line(input=f"cat {page}.txt", output=output, colors=colors, num=0, path=path)]
-    return render_template('index.html', neofetch=neofetch_object, lines=lines)
+    directory_path = f"{'/'.join(path.split('/')[:-1])}/{page}"
+    if display_type == 'cat':
+        lines = [TerminalLine(input=f"cat {page}.txt", output=output, colors=colors, num=0, path=directory_path)]
+        return render_template('terminal.html', neofetch=neofetch_object, path=directory_path, lines=lines)
+    elif display_type == 'nano':
+        content = NanoContent(value=output, colors=colors)
+        return render_template('nano.html', file=f"{directory_path}/{page}.txt", content=content)
+    elif display_type == 'man':
+        lines = [TerminalLine(input=f"man {page}", output=output, colors=colors, num=0, path=directory_path)]
+        return render_template('terminal.html', neofetch=neofetch_object, path=directory_path, lines=lines)
+    else:
+        return render_template('terminal.html', neofetch=neofetch_object, path=directory_path, lines=[])
 
 @app.route('/', methods=['GET'])
 def get_home():
     output, colors = parseFile(f"static/texts/home.txt")
-    lines = [Line(input="neofetch", output=output, colors=colors, num=0, path='/')]
-    return render_template('index.html', neofetch=neofetch_object, lines=lines)
+    lines = [TerminalLine(input="neofetch", output=output, colors=colors, num=0, path='/')]
+    return render_template('terminal.html', neofetch=neofetch_object, lines=lines)
 
 
 if __name__ == '__main__':
