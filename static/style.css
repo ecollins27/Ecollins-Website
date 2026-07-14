@@ -50,7 +50,7 @@ input {
 .ghost {
     text-align: left;
     visibility: hidden;
-    white-space: pre-line;
+    white-space: pre-wrap;
     padding: 0;
 }
 .terminal_content {

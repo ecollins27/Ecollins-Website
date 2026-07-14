@@ -1,5 +1,3 @@
-
-
            .                        .
           ,W                       ,W
          i##                      i##
@@ -15,10 +13,3 @@
            t                        t
 
 <#ff0000>Page does not exist :(
-{i/static/images/cat-meme.jpg,300}
-
-
-
-
-
-

@@ -1,7 +1,12 @@
 const animationLength = 1000;
-const filePath = window.location.pathname.substring(1);
-const pageDisplayType = {"cats": "nano", "edgar-alice":"cat", "about":"cat", "projects": "man", "website": "man"};
-const fileStructure = {"cats":{"edgar-alice":{}}, "about":{}, "projects":{"website":{}}};
+var filePath = window.location.pathname.substring(1);
+if (filePath.endsWith("-cat") || filePath.endsWith("-man")){
+    filePath = filePath.substring(0, filePath.length - 4);
+} else if (filePath.endsWith("-nano")){
+    filePath = filePath.substring(0, filePath.length - 5);
+}
+const pageDisplayType = {"cats": "nano", "edgar-alice":"cat", "about":"cat", "projects": "man", "crender":"man", "website": "man", "cformer":"man", "lemmings":"man", "aljbra":"man", "print-server":"man", "fire-monitor":"man", "status-page":"man"};
+const fileStructure = {"cats":{"edgar-alice":{}}, "about":{}, "projects":{"crender":{}, "website":{}, "cformer":{}, "lemmings":{}, "aljbra":{}, "print-server":{}, "fire-monitor":{}, "status-page":{}}};
 
 window.addEventListener("pageshow", (event) => {
     if (event.persisted) {
@@ -13,7 +18,7 @@ function goTo(page){
     if (page == "home" || page == ""){
         window.location = "/";
     } else {
-        window.location = "/" + getAbsolutePath(page, fileStructure) + "-" + pageDisplayType[page];
+        window.location = "/" + getAbsolutePathFromPage(page, fileStructure) + "-" + pageDisplayType[page];
     }
 }
 
@@ -30,49 +35,6 @@ function addImage(parentElement, src, height){
     return "<img src=\"" + src + "\" height=" + height + "px>";
 }
 
-function addButton(terminal_input, terminal_form, parentElement, content, path, color){
-    html = "<button id=\"" + content + "\" type=\"button\" style=\"color:" + color + ";\">" + content + "</button>";
-    parentElement.insertAdjacentHTML("beforeend", html);
-    var buttonElement = document.getElementById(content);
-    if (path.startsWith("http")){
-        buttonElement.addEventListener("click", function(event){
-            window.open(path, '_blank').focus();
-        });
-    } else {
-        var currentDisplayType = filePath.split('/').pop().split('-').pop();
-        console.log(currentDisplayType);
-        var displayType = pageDisplayType[path];
-        console.log(currentDisplayType);
-        buttonElement.addEventListener("click", function(event){
-            if (currentDisplayType == 'nano'){
-                window.location = getAbsolutePath(path, fileStructure) + "-" + displayType;
-            } else {
-                var text;
-                if (displayType == 'cat' || displayType == 'man' || path == "home") {
-                    var text = "cd " + getRelativePath(path);
-                } else {
-                    var text = "nano " + getRelativePath(path) + '/' + path + ".txt";
-                }
-                var [delay, char_per_tick] = calculateDelays(text.length);
-                fillTextBox(terminal_input, terminal_form, text, delay, char_per_tick, 0);
-            }
-        });
-    }
-    return html;
-}
-
-function fillTextBox(element, form, text, delay, char_per_tick, index){
-    for (let i = 0; i < char_per_tick; i++){
-        if (index >= text.length){
-            form.requestSubmit();
-            return;
-        }
-        element.value += text[index++];
-        element.dispatchEvent(new Event("input", {bubbles: true}));
-    }
-    setTimeout(fillTextBox, delay, element, form, text, delay, char_per_tick, index);
-}
-
 function calculateDelays(textLength){
     var delay = Math.floor(animationLength / textLength);
     var char_per_tick = 1;
@@ -82,7 +44,7 @@ function calculateDelays(textLength){
     return [delay, char_per_tick];
 }
 
-function getAbsolutePath(path, fileSystem){
+function getAbsolutePathFromPage(path, fileSystem){
     if (path == "home"){
         return "";
     }
@@ -91,7 +53,7 @@ function getAbsolutePath(path, fileSystem){
     }
     var p;
     for (const [key, value] of Object.entries(fileSystem)) {
-        p = getAbsolutePath(path, value);
+        p = getAbsolutePathFromPage(path, value);
         if (p != null){
             return key + "/" + p;
         }
@@ -99,8 +61,58 @@ function getAbsolutePath(path, fileSystem){
     return null;
 }
 
+function isValid(absolute){
+    var absoluteSplit = absolute.split('/');
+    var index = absoluteSplit.indexOf("");
+    while (index >= 0){
+        absoluteSplit.splice(index, 1);
+        index = absoluteSplit.indexOf("");
+    }
+    var fileSystem = fileStructure;
+    for (let i = 0; i < absoluteSplit.length; i++){
+        fileSystem = fileSystem[absoluteSplit[i]];
+        if (fileSystem == null){
+            return false;
+        }
+    }
+    return true;
+}
+
+function getDisplayType(){
+    return pageDisplayType[filePath.split('/').pop()];
+}
+
+function getAbsolutePathFromRelative(relative){
+    console.log("Relative: " + relative);
+    if (relative.startsWith('/')){
+        return relative.substring(1);
+    }
+    var absoluteSplit = filePath.split("/")
+    var index = absoluteSplit.indexOf("");
+    while (index >= 0){
+        absoluteSplit.splice(index, 1);
+        index = absoluteSplit.indexOf("");
+    }
+    var relativeSplit = relative.split("/");
+    index = relativeSplit.indexOf("");
+    while (index >= 0){
+        relativeSplit.splice(index, 1);
+        index = relativeSplit.indexOf("");
+    }
+    for (let i = 0; i < relativeSplit.length; i++){
+        if (relativeSplit[i] == '.'){
+            continue;
+        } else if (relativeSplit[i] == '..'){
+            absoluteSplit.pop();
+        } else {
+            absoluteSplit.push(relativeSplit[i]);
+        }
+    }
+    return absoluteSplit.join('/');
+}
+
 function getRelativePath(path){
-    var absolutePath = getAbsolutePath(path, fileStructure);
+    var absolutePath = getAbsolutePathFromPage(path, fileStructure);
     const absoluteSplit = absolutePath.split("/");
     const fileSplit = filePath.split("/");
     var relative = "";

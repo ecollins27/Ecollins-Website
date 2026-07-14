@@ -9,18 +9,18 @@
                                                           <#ffff00>Languages.Spoken<>:  English, Latin
  ____                __          ___       ___            <#ffff00>Languages.Frontend<>:  HTML,CSS,Javascript
 /\  _`\             /\ \        /\_ \    /'___\           <#ffff00>Languages.Backend<>:  C/C++,Java,Python,Rust
-\ \ \L\ \  __  __   \_\ \    ___\//\ \  /\ \__/
- \ \ ,  / /\ \/\ \  /'_` \  / __`\\ \ \ \ \ ,__\          <#ffff00>Favorites.Book<>:  Dune
-  \ \ \\ \\ \ \_\ \/\ \L\ \/\ \L\ \\_\ \_\ \ \_/          <#ffff00>Favorites.Movie<>:  Galaxy Quest, Prince of Egypt
-   \ \_\ \_\ \____/\ \___,_\ \____//\____\\ \_\           <#ffff00>Favorites.VideoGame<>:  Elden Ring, Ghost of Tsushima
-    \/_/\/ /\/___/  \/__,_ /\/___/ \/____/ \/_/           d
-                                                          d
-                                                          d
- ____            ___    ___                               d
-/\  _`\         /\_ \  /\_ \    __                        <#ffff00>Hobbies<>:  Coding, Violin, Video Games
-\ \ \/\_\    ___\//\ \ \//\ \  /\_\    ___     ____       <#ffff00>Obsessions<>:  Star Wars, Star Trek, Rubik's Cubes
- \ \ \/_/_  / __`\\ \ \  \ \ \ \/\ \ /' _ `\  /',__\      <#ffff00>Cats<>:  2 - Edge and Alice
-  \ \ \L\ \/\ \L\ \\_\ \_ \_\ \_\ \ \/\ \/\ \/\__, `\
+\ \ \L\ \  __  __   \_\ \    ___\//\ \  /\ \__/           <#ffff00>Languages.Other<>:  Lisp, JASM Bytecode
+ \ \ ,  / /\ \/\ \  /'_` \  / __`\\ \ \ \ \ ,__\
+  \ \ \\ \\ \ \_\ \/\ \L\ \/\ \L\ \\_\ \_\ \ \_/          <#ffff00>Favorites.Book<>:  Dune
+   \ \_\ \_\ \____/\ \___,_\ \____//\____\\ \_\           <#ffff00>Favorites.Movie<>:  Galaxy Quest, Prince of Egypt
+    \/_/\/ /\/___/  \/__,_ /\/___/ \/____/ \/_/           <#ffff00>Favorites.VideoGame<>:  Elden Ring, Ghost of Tsushima
+                                                          <#ffff00>Favorites.Music<>:  Stravinsky's "The Firebird"
+                                                          
+ ____            ___    ___                               <#ffff00>Hobbies<>:  Coding, Violin, Video Games
+/\  _`\         /\_ \  /\_ \    __                        <#ffff00>Interests<>:  Mathematics, Rubik's Cubes
+\ \ \/\_\    ___\//\ \ \//\ \  /\_\    ___     ____       <#ffff00>Obsessions<>:  Star Wars, Star Trek,
+ \ \ \/_/_  / __`\\ \ \  \ \ \ \/\ \ /' _ `\  /',__\
+  \ \ \L\ \/\ \L\ \\_\ \_ \_\ \_\ \ \/\ \/\ \/\__, `\     <#ffff00>LinkedIn<>:  https://www.linkedin.com/in/ehren-collins-a67413238/
    \ \____/\ \____//\____\/\____\\ \_\ \_\ \_\/\____/     <#ffff00>Email<>:  ehren.collins@gmail.com
     \/___/  \/___/ \/____/\/____/ \/_/\/_/\/_/\/___/      <#ffff00>Github<>:  https://github.com/ecollins27
 

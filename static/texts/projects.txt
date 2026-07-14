@@ -28,5 +28,4 @@ OVERVIEW
 {bSTATUS PAGE,status-page,#ffffff}
         A custom local website designed to serve a number of different purposes.
         The project tracks system information for a wide array for servers, monitors the status of the main website, and process package requests for the organization's cluster node.
-
 {bhome,home,#00ff00}  {babout,about,#00ff00}  {bcats,cats,#00ff00}

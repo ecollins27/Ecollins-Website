@@ -1,3 +1,20 @@
+function addButton(parentElement, content, path, color){
+    html = "<button id=\"" + content + "\" type=\"button\" style=\"color:" + color + ";\">" + content + "</button>";
+    parentElement.insertAdjacentHTML("beforeend", html);
+    var buttonElement = document.getElementById(content);
+    if (path.startsWith("http")){
+        buttonElement.addEventListener("click", function(event){
+            window.open(path, '_blank').focus();
+        });
+    } else {
+        var displayType = pageDisplayType[path];
+        buttonElement.addEventListener("click", function(event){
+            window.location = getAbsolutePathFromPage(path, fileStructure) + "-" + displayType;
+        });
+    }
+    return html;
+}
+
 function fillContent(element, text, colors, delay, char_per_tick, index){
     if (index < text.length) {
         var color;
@@ -13,7 +30,7 @@ function fillContent(element, text, colors, delay, char_per_tick, index){
                 elementType = text[index + 1];
                 index = close;
                 if (elementType == 'b'){
-                    addButton(null, null, element, data[0], data[1], data[2]);
+                    addButton(element, data[0], data[1], data[2]);
                 } else if (elementType == 'i'){
                     addImage(element, data[0],data[1]);
                 }
@@ -33,7 +50,7 @@ document.getElementById("exit").addEventListener("click", function(event) {
 });
 
 document.getElementById("terminal").addEventListener("click", function(event) {
-    window.location = '/' + filePath.substring(0, filePath.length - 5);
+    window.location = '/' + filePath;
 });
 
 var element = document.getElementById("nano_content")

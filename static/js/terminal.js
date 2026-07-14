@@ -1,13 +1,46 @@
 var numLines = lines.length;
-const form = document.getElementById("terminal_form");
-var terminalNum = 0;
-var terminal_input = document.getElementById("terminal_input_0");
+
+function addButton(parentElement, content, path, color){
+    html = "<button id=\"" + content + "\" type=\"button\" style=\"color:" + color + ";\">" + content + "</button>";
+    parentElement.insertAdjacentHTML("beforeend", html);
+    var buttonElement = document.getElementById(content);
+    if (path.startsWith("http")){
+        buttonElement.addEventListener("click", function(event){
+            window.open(path, '_blank').focus();
+        });
+    } else {
+        var displayType = pageDisplayType[path];
+        buttonElement.addEventListener("click", function(event){
+            var text;
+            if (displayType == 'cat' || displayType == 'man' || path == "home") {
+                text = "cd " + getRelativePath(path);
+            } else {
+                text = "nano " + getRelativePath(path) + '/' + path + ".txt";
+            }
+            var [delay, char_per_tick] = calculateDelays(text.length);
+            fillTextBox(terminal_input, text, delay, char_per_tick, 0);
+        });
+    }
+    return html;
+}
+
+function fillTextBox(element, text, delay, char_per_tick, index){
+    for (let i = 0; i < char_per_tick; i++){
+        if (index >= text.length){
+            terminal_form.requestSubmit();
+            return;
+        }
+        element.value += text[index++];
+        element.dispatchEvent(new Event("input", {bubbles: true}));
+    }
+    setTimeout(fillTextBox, delay, element, text, delay, char_per_tick, index);
+}
 
 function getNextHTML(commandOutput, num, path){
     commandOutput = commandOutput.replaceAll("\"", "&quot;");
-    html = "<div class=\"typewriter\">\n<span class=\"ghost\">" + commandOutput + "</span>\n<span id=\"output_" + numLines + "\" class=\"terminal_content\" data-text=\"" + commandOutput +"\"></span>\n</div>\n";
+    html = "<div class=\"typewriter\">\n<span id=\"ghost_output_" + numLines + "\" class=\"ghost\">" + commandOutput + "</span>\n<span id=\"output_" + numLines + "\" class=\"terminal_content\" data-text=\"" + commandOutput +"\"></span>\n</div>\n";
     html += "<span id=\"header_" + (num + 1) + "\" class=\"terminal_header\">root@ehrencollins.org<span style=\"color: #ffffff;\">:</span><span style=\"color:#0077ff;\">/" + path + "</span><span style=\"color:#ffffff;\">$</span></span>\n"
-    html += "<input type=\"text\" id=\"terminal_input_" + terminalNum + "\" name=\"textbox\" autocomplete=\"off\">";
+    html += "<input type=\"text\" id=\"terminal_input_" + terminalNum + "\" name=\"textbox\" autocomplete=\"off\" size=100>";
     return html;
 }
 
@@ -88,11 +121,15 @@ function type(element, ghost, text, colors, delay, char_per_tick, index, num, in
                 elementType = text[index + 1];
                 index = close;
                 if (elementType == 'b'){
-                    var html = addButton(terminal_input, terminal_form, element, data[0], data[1], data[2]);
-                    ghost.innerHTML = ghost.innerHTML.replace('{b' + data.join(',') + "}", html);
+                    var html = addButton(element, data[0], data[1], data[2]);
+                    if (ghost != null){
+                        ghost.innerHTML = ghost.innerHTML.replace('{b' + data.join(',') + "}", html);
+                    }
                 } else if (elementType == 'i'){
                     var html = addImage(element, data[0],data[1]);
-                    ghost.innerHTML = ghost.innerHTML.replace('{i' + data.join(',') + "}", html);
+                    if (ghost != null){
+                        ghost.innerHTML = ghost.innerHTML.replace('{i' + data.join(',') + "}", html);
+                    }
                 }
             } else if (color != null){
                 element.insertAdjacentHTML("beforeend", "<span style=\"color:" + color + ";\">" + character + "</span>");
@@ -111,7 +148,7 @@ function type(element, ghost, text, colors, delay, char_per_tick, index, num, in
     }
 }
 
-form.addEventListener("submit", function(event) {
+terminal_form.addEventListener("submit", function(event) {
     event.preventDefault();
 
     const command = terminal_input.value;
