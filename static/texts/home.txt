@@ -25,4 +25,3 @@
     \/___/  \/___/ \/____/\/____/ \/_/\/_/\/_/\/___/      <#ffff00>Github<>:  https://github.com/ecollins27
 
 {babout,about,#00ff00}  {bprojects,projects,#00ff00}  {bcats,cats,#00ff00}
-

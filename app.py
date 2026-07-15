@@ -63,7 +63,7 @@ def get_all_pages():
     all_pages = {}
     for file in os.listdir(BASE_DIR + "/static/texts"):
         value, colors = parseFile(f"static/texts/{file}")
-        all_pages[file[:-4]] = {"value":value, "colors":colors}
+        all_pages[file[:-4]] = NanoContent(value=value, colors=colors)
     return all_pages
 
 all_pages = get_all_pages()
@@ -94,16 +94,16 @@ def get_page(path):
     lookup = all_pages[page]
     directory_path = f"{'/'.join(path.split('/')[:-1])}/{page}"
     if display_type == 'cat':
-        lines = [TerminalLine(input=f"cat {page}.txt", output=lookup['value'], colors=lookup['colors'], num=0, path=directory_path)]
-        return render_template('terminal.html', neofetch=neofetch_object, all_texts=all_pages, path=directory_path, lines=lines)
+        lines = [TerminalLine(input=f"cat {page}.txt", output=lookup.value, colors=lookup.colors, num=0, path=directory_path)]
+        return render_template('terminal.html', neofetch=neofetch_object, all_pages=all_pages, path=directory_path, lines=lines)
     elif display_type == 'nano':
-        content = NanoContent(value=lookup['value'], colors=lookup['colors'])
+        content = NanoContent(value=lookup.value, colors=lookup.colors)
         return render_template('nano.html', file=f"{directory_path}/{page}.txt", content=content)
     elif display_type == 'man':
-        lines = [TerminalLine(input=f"man {page}", output=lookup['value'], colors=lookup['colors'], num=0, path=directory_path)]
-        return render_template('terminal.html', neofetch=neofetch_object, all_texts=all_pages, path=directory_path, lines=lines)
+        lines = [TerminalLine(input=f"man {page}", output=lookup.value, colors=lookup.colors, num=0, path=directory_path)]
+        return render_template('terminal.html', neofetch=neofetch_object, all_pages=all_pages, path=directory_path, lines=lines)
     else:
-        return render_template('terminal.html', neofetch=neofetch_object, all_texts=all_pages, path=directory_path, lines=[])
+        return render_template('terminal.html', neofetch=neofetch_object, all_pages=all_pages, path=directory_path, lines=[])
 
 @app.route('/', methods=['GET'])
 def get_home():
