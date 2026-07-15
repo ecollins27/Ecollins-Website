@@ -1,21 +1,17 @@
-<#ffff00>CRENDER<>
+<#ffff00>Printer Server<>
 
 GITHUB
         {bGithub,https://github.com/ecollins27/CRender.git,#0fbf3e} - https://github.com/ecollins27/CRender.git
 
 DESCRIPTION
-        CRender is a ray tracing renderer written from scratch in C++. Accessible both as a C++ library and as a command line interface,
-        CRender fully supports the .obj file format and any number of transparent and reflective materials.
+        The print-server is a custom fork of Koushikphy's online web printer (code linked in the Github README) designed for the Computer Interest Floor.
+        The project interacts with an external IdM server using the python_freeipa library to authenticate users and remotely send prints via the cups library.
 
 INSPIRATION
         Developing a renderer has been a long standing goal of mine, dating back to high school.
 
 DEVELOPMENT
-        As with many of my projects, the goal of CRender
-
-Javascript manages all the animations and handles the "terminal."  Any and all commands are parsed and processed in a single Javascript file about 200 lines long.
-
-DESIGN
-    The primary design goal was to make everything as modular as possible.  In fact, the design is so modular that every single page renders the same index.html.  Custom elements like images and buttons are specified as plain-text in txt files which are parsed and passed to an html file via a python script.  Javascript then adds the elements in real time as it animates.  The result is essentially a custom text based framework.
+        This project marked my first introduction to Flask and web development in general.  As such this project provided a good lesson in how websites are structured and hosted
+        as well as how one can host their own website, a skill I have obviously utilized.
 
 {bhome,home,#00ff00}  {babout,about,#00ff00}  {bprojects,projects,#00ff00}  {bcats,cats,#00ff00}

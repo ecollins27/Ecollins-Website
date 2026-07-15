@@ -1,21 +1,17 @@
-<#ffff00>CRENDER<>
-
-GITHUB
-        {bGithub,https://github.com/ecollins27/CRender.git,#0fbf3e} - https://github.com/ecollins27/CRender.git
+<#ffff00>Status Page<>
 
 DESCRIPTION
-        CRender is a ray tracing renderer written from scratch in C++. Accessible both as a C++ library and as a command line interface,
-        CRender fully supports the .obj file format and any number of transparent and reflective materials.
+        The status page is a custom flask application written for the Computer Interest Floor, designed to monitor any number of servers and their tasks.
+        The page is capable of tracking CPU, memory, and disk usage as well as individual systemd service statuses, website status, and user NFS share disk space.
 
 INSPIRATION
-        Developing a renderer has been a long standing goal of mine, dating back to high school.
-
-DEVELOPMENT
-        As with many of my projects, the goal of CRender
-
-Javascript manages all the animations and handles the "terminal."  Any and all commands are parsed and processed in a single Javascript file about 200 lines long.
+        During the fall semester of my junior year, CIF began decommissioning and modernizing much of its network infrastructure.
+        It became immediately apparent that the organization required a centralized location for viewing and summarizing network infrastructure.
 
 DESIGN
-    The primary design goal was to make everything as modular as possible.  In fact, the design is so modular that every single page renders the same index.html.  Custom elements like images and buttons are specified as plain-text in txt files which are parsed and passed to an html file via a python script.  Javascript then adds the elements in real time as it animates.  The result is essentially a custom text based framework.
+    The status page consists of two parts - a central server hosting the website and an agent running on the client machines.
+    The agent sends small packets via the Python requests library.  These packets contain information on cpu, memory, and disk usage; operating system, the status of system services, etc.
+    If a client is hosting an nfs share, the project is also capable of receiving and displaying breakdowns of NFS share disk usage.  These packets are all sent to a central server
+    running the bulk of the project.  Here, the packets are parsed and displayed, determining if each server is active, inactive, or active without an agent.
 
 {bhome,home,#00ff00}  {babout,about,#00ff00}  {bprojects,projects,#00ff00}  {bcats,cats,#00ff00}
