@@ -126,7 +126,7 @@ function type(element, ghost, text, colors, delay, char_per_tick, index, num, in
                         ghost.innerHTML = ghost.innerHTML.replace('{b' + data.join(',') + "}", html);
                     }
                 } else if (elementType == 'i'){
-                    var html = addImage(element, data[0],data[1]);
+                    var html = addImage(element, data[0], data[1], data.slice(2).join(','));
                     if (ghost != null){
                         ghost.innerHTML = ghost.innerHTML.replace('{i' + data.join(',') + "}", html);
                     }

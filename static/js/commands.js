@@ -37,7 +37,7 @@ function executeLs(commandSplit){
         absolutePath = filePath;
     }
     if (!isValid(absolutePath)){
-        return ["" + absolutePath + " does not exist", path, false];
+        return ["/" + absolutePath + " does not exist", {}, path, false];
     }
     fileSystem = fileStructure;
     var directoryName = "";
@@ -48,7 +48,7 @@ function executeLs(commandSplit){
             directoryName = fileSplit[i];
         }
         if (fileSystem == null){
-            return ["directory " + fileSplit[i] + " does not exist", path, false];
+            return ["directory " + fileSplit[i] + " does not exist", {}, path, false];
         }
     }
     console.log("Absolute: " + absolutePath);

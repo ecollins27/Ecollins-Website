@@ -32,7 +32,7 @@ function fillContent(element, text, colors, delay, char_per_tick, index){
                 if (elementType == 'b'){
                     addButton(element, data[0], data[1], data[2]);
                 } else if (elementType == 'i'){
-                    addImage(element, data[0],data[1]);
+                    addImage(element, data[0], data[1], data.slice(2).join(','));
                 }
             } else if (color != null){
                 element.insertAdjacentHTML("beforeend", "<span style=\"color:" + color + ";\">" + character + "</span>");

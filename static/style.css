@@ -30,8 +30,15 @@ input {
     line-height: 0;
 }
 
-.image_wrapper > * {
+.image_wrapper > :not(span) {
     grid-area: 1 / 1;
+}
+
+.image_caption {
+    line-height: 1.2;
+    width: 0;
+    min-width: 100%;
+    margin-top: 10px;
 }
 
 .img_container {

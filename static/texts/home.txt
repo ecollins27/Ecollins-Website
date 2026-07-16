@@ -6,10 +6,10 @@
    \ \____/\ \_\ \_\ \_\\ \____\ \_\ \_\                  <#ffff00>School<>:  University of Rochester
     \/___/  \/_/\/_/\/_/ \/____/\/_/\/_/                  <#ffff00>Uptime<>:  20 years
 
-                                                          <#ffff00>Languages.Spoken<>:  English, Latin
+                                                          <#ffff00>Languages.General<>:  English, Latin
  ____                __          ___       ___            <#ffff00>Languages.Frontend<>:  HTML,CSS,Javascript
 /\  _`\             /\ \        /\_ \    /'___\           <#ffff00>Languages.Backend<>:  C/C++,Java,Python,Rust
-\ \ \L\ \  __  __   \_\ \    ___\//\ \  /\ \__/           <#ffff00>Languages.Other<>:  Lisp, JASM Bytecode
+\ \ \L\ \  __  __   \_\ \    ___\//\ \  /\ \__/           <#ffff00>Languages.Other<>:  Power Automate, Lisp, JASM Bytecode
  \ \ ,  / /\ \/\ \  /'_` \  / __`\\ \ \ \ \ ,__\
   \ \ \\ \\ \ \_\ \/\ \L\ \/\ \L\ \\_\ \_\ \ \_/          <#ffff00>Favorites.Book<>:  Dune
    \ \_\ \_\ \____/\ \___,_\ \____//\____\\ \_\           <#ffff00>Favorites.Movie<>:  Galaxy Quest, Prince of Egypt
@@ -24,4 +24,4 @@
    \ \____/\ \____//\____\/\____\\ \_\ \_\ \_\/\____/     <#ffff00>Email<>:  ehren.collins@gmail.com
     \/___/  \/___/ \/____/\/____/ \/_/\/_/\/_/\/___/      <#ffff00>Github<>:  https://github.com/ecollins27
 
-{babout,about,#00ff00}  {bprojects,projects,#00ff00}  {bcats,cats,#00ff00}
+{babout,about,#00ff00}  {bprojects,projects,#00ff00}  {bcats,cats,#00ff00}  {bhosting,hosting,#ffffff}  {bdebian,debian,#ffffff}

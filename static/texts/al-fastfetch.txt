@@ -1,0 +1,19 @@
+        _,met$$$$$gg.          <#d70a53>al.ehrencollins.org<>
+     ,g$$$$$$$$$$$$$$$P.       -------------------
+   ,g$$P""       """Y$$.".     <#d70a53>OS<>: Debian GNU/Linux 13 (trixie) x86_64
+  ,$$P'              `$$$.     <#d70a53>Host<>: D5468AT-ABA ALONPAV (1331211RE101EXPLO0)
+',$$P       ,ggs.     `$$b:    <#d70a53>Kernel<>: Linux 6.12.86+deb13-amd64
+`d$$'     ,$P"'   <#d70a53>.<>    $$$     <#d70a53>Uptime<>: 3 days, 5 hours, 10 mins
+ $$P      d$'     <#d70a53>,<>    $$P     <#d70a53>Packages<>: 375 (dpkg)
+ $$:      $$.   <#d70a53>-<>    ,d$$'     <#d70a53>Shell<>: bash 5.2.37
+ $$;      Y$b._   _,d$P'       <#d70a53>Display (SB242Y H1)<>: 1920x1080 @ 60 Hz in 24" [External]
+ Y$$.    <#d70a53>`.<>`"Y$$$$P"'          <#d70a53>Terminal<>: /dev/pts/0
+ `$$b      <#d70a53>"-.__<>               <#d70a53>CPU<>: AMD Athlon(tm) 64 X2 Dual Core 5200+ (2) @ 2.70 GHz
+  `Y$$b                        <#d70a53>GPU<>: NVIDIA GeForce 6150SE nForce 430 [Discrete]
+   `Y$$.                       <#d70a53>Memory<>: 388.97 MiB / 1.80 GiB (21%)
+     `$$b.                     <#d70a53>Swap<>: 0 B / 1.93 GiB (0%)
+       `Y$$b.                  <#d70a53>Disk (/)<>: 1.25 GiB / 455.47 GiB (0%) - ext4
+         `"Y$b._               <#d70a53>Local IP (enp0s7)<>: 127.0.0.1/32
+             `""""             <#d70a53>Locale<>: en_US.UTF-8
+
+{bhome,home,#00ff00}  {babout,about,#00ff00}  {bprojects,projects,#00ff00}  {bcats,cats,#00ff00}

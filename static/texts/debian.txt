@@ -1,0 +1,14 @@
+
+This page is dedicated exclusively to praising the Debian operating system.  Debian slander will NOT be tolerated!
+
+As you might have guessed, Debian is my favorite operating system.  CIF uses it for nearly all server applications.  In fact, they have their own {bDebian mirror,http://debian.cif.rochester.edu/,#d70a53}.  Go check it out!  I run it on my laptop and I would run it on my PC but unfortunately its kernel slightly too stale for my GPU and frankly Debian sid scares me :(
+
+Debian just works.  It may not be the flashiest distro at there, but it sure as hell is reliable.  When Arch starts boot looping after an update and RHEL's SELinux betrays you for the last time, Debian is there for you, as it always has been and always will.  Debian is eternal.
+
+Furthermore, Debian is efficient.  All Linux distros pride themselves on being slim, some more than others.  Arch achieves this by discarding "non-essential" services, leaving much to be done (and potentially broken) by the user.  On the other side, some OSes incredibly easy to use yet will basically eat any and all RAM you can throw at it.  There seems to be a very obvious memory efficiency - user accessibility tradeoff.  Yet Debian manages the best of both worlds, with low memory usage and dare I say intuitive operation as far as Linux distros go.  This website's host is running Debian and uses no more than 350 Mb at any given time.
+
+If operating systems were vehicles, Windows would be an 18 wheeler: heavy, unwieldy yet prolific and essential for many applications.  ArchLinux would be one of those drag racers whose engines must be rebuilt every race: Incredibly fast and efficient yet unreliable in the long term.  And Debian would be an old tractor - the bare bones of what is necessary with no bells or whistles, yet powerful and reliable.
+
+Glory be to Debian!
+
+{i/static/images/debian.jpeg,500,}

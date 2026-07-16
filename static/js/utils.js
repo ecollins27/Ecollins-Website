@@ -5,8 +5,8 @@ if (filePath.endsWith("-cat") || filePath.endsWith("-man")){
 } else if (filePath.endsWith("-nano")){
     filePath = filePath.substring(0, filePath.length - 5);
 }
-const pageDisplayType = {"cats": "nano", "edgar-alice":"cat", "about":"cat", "projects": "man", "crender":"man", "website": "man", "cformer":"man", "lemmings":"man", "aljbra":"man", "print-server":"man", "fire-monitor":"man", "status-page":"man"};
-const fileStructure = {"cats":{"edgar-alice":{}}, "about":{}, "projects":{"crender":{}, "website":{}, "cformer":{}, "lemmings":{}, "aljbra":{}, "print-server":{}, "fire-monitor":{}, "status-page":{}}};
+const pageDisplayType = {"cats": "nano", "edgar-alice":"nano", "henry-lola":"nano", "about":"cat", "projects": "man", "crender":"man", "website": "man", "cformer":"man", "lemmings":"man", "aljbra":"man", "hosting":"cat", "debian":"nano"};
+const fileStructure = {"debian":{}, "hosting":{}, "cats":{"edgar-alice":{}, "henry-lola":{}}, "about":{}, "projects":{"crender":{}, "website":{}, "cformer":{}, "lemmings":{}, "aljbra":{}}};
 
 window.addEventListener("pageshow", (event) => {
     if (event.persisted) {
@@ -22,8 +22,8 @@ function goTo(page){
     }
 }
 
-function addImage(parentElement, src, height){
-    html = "<span class=\"image_wrapper\">\n<img class=\"ghost\" src=\"" + src + "\" height=" + height + "px>\n<div id=\"" + src + "\" class=\"img_container\">\n<img src=\"" + src + "\" height=" + height + "px>\n</div>\n</span>";
+function addImage(parentElement, src, height, caption){
+    html = "<span class=\"image_wrapper\">\n<img class=\"ghost\" src=\"" + src + "\" height=" + height + "px>\n<div id=\"" + src + "\" class=\"img_container\">\n<img src=\"" + src + "\" height=" + height + "px>\n</div>\n<span class=\"image_caption\">" + caption + "</span></span>";
     parentElement.insertAdjacentHTML("beforeend", html);
     var imageElement = document.getElementById(src);
     var styleSheet = window.document.styleSheets[0];
@@ -32,7 +32,7 @@ function addImage(parentElement, src, height){
     imageElement.style.overflow = "hidden";
     imageElement.style.animation = "image-load-" + imageName + " 2s steps(50, end) forwards";
     imageElement.style.visibility = "visible";
-    return "<img src=\"" + src + "\" height=" + height + "px>";
+    return html;
 }
 
 function calculateDelays(textLength){

@@ -73,6 +73,14 @@ def get_test():
         genesis = f.read()
     return render_template('nano.html', neofetch=neofetch_object, file='text.txt', content=NanoContent(value=genesis, colors={25:"#ff0000"}))
 
+@app.route("/hosting-cat", methods=['GET'])
+def get_hosting():
+    text = all_pages['hosting']
+    fastfetch = all_pages['al-fastfetch']
+    lines = [TerminalLine(input="cat hosting.txt", output=text.value, colors=text.colors, num=0, path='/hosting')]
+    lines.append(TerminalLine(input="ssh root@al fastfetch", output=fastfetch.value, colors=fastfetch.colors, num=1, path='/hosting'))
+    return render_template('terminal.html', neofetch=neofetch_object, all_pages=all_pages, path='/hosting', lines=lines)
+
 @app.route('/<path:path>', methods=['GET'])
 def get_page(path):
     path = "/" + path

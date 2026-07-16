@@ -1,24 +1,34 @@
-<#ffff00>WEBSITE<>
+<#00ff00>
+     ##### /    ##   ###                /
+  ######  /  #####    ###             #/                   #
+ /#   /  /     #####   ###            ##                  ###     #
+/    /  ##     # ##      ##           ##                   #     ##
+    /  ###     #         ##           ##                         ##
+   ##   ##     #         ##    /##    ## /###     /###   ###   ######## /##
+   ##   ##     #         ##   / ###   ##/ ###  / / #### / ### ######## / ###
+   ##   ##     #         ##  /   ###  ##   ###/ ##  ###/   ##    ##   /   ###
+   ##   ##     #         ## ##    ### ##    ## ####        ##    ##  ##    ###
+   ##   ##     #         ## ########  ##    ##   ###       ##    ##  ########
+    ##  ##     #         ## #######   ##    ##     ###     ##    ##  #######
+     ## #      #         /  ##        ##    ##       ###   ##    ##  ##
+      ###      /##      /   ####    / ##    /#  /###  ##   ##    ##  ####    /
+       #######/ #######/     ######/   ####/   / #### /    ### / ##   ######/
+         ####     ####        #####     ###       ###/      ##/   ##   #####   <>
 
-GITHUB
-        {bGithub,https://github.com/ecollins27/Ecollins-Website.git,#0fbf3e} - https://github.com/ecollins27/Ecollins-Website.git
+{bGITHUB,https://github.com/ecollins27/Ecollins-Website,#ffff00} - https://github.com/ecollins27/Ecollins-Website
 
-DESCRIPTION
-        This website was my first experience with "modern" web development.  I did develop some basic webpages before, but they were so basic that they might as well have been from 1992.
-        I kid you not, my print server web portal worked on Internet Explorer 5 running in Windows 3.1 on an AST 386 without any modifications.
+<#ffff00>DESCRIPTION<>
+        This website was my first experience with "modern" web development.  I did develop some basic webpages before, but they were so basic that they might as well have been from 1992.  I kid you not, my print server web portal worked on Internet Explorer 5 running in Windows 3.1 on an AST 386 without any modifications.
 
-INSPIRATION
-        The idea of a terminal based webpage was actually one that my student organization CIF proposed in the past.  Yet due to time constraints and maintenance, it wasn't pursued.
-        In the summer of 2026, I finally acquired a second computer that could host a website, an idea I had been entertaining for a while.
-        The computer is far from perfect as it was meant for Windows XP and has a whopping 2GB of functional RAM.  It serves its purpose fine though.
+<#ffff00>INSPIRATION<>
+        The idea of a terminal based webpage was actually one that my student organization CIF proposed in the past.  Yet due to time constraints and maintenance, it wasn't pursued.  In the summer of 2026, I finally acquired a second computer that could host a website, an idea I had been entertaining for a while.
 
-DEVELOPMENT
-        Contrary to my friend's suggestion, I entered this project without a framework.  The entire thing is a conglomeration of HTML, CSS, Javascript, and Python; all written by hand by me.
-        The project utilizes Flask, a Python library for controlling and rendering HTML using Jinja.  Flask is a library I have used in the past.  While the Python portion of the project is not doing terribly much at the moment, the Python availability provides some flexibility in case there are future features I wouldn't be comfortable doing in Javascript.
+<#ffff00>DEVELOPMENT<>
+        Contrary to my friend's suggestion, I entered this project without a framework.  The entire thing is a conglomeration of HTML, CSS, Javascript, and Python; all written by hand by me.  The project utilizes Flask, a Python library for controlling and rendering HTML using Jinja.  Flask is a library I have used in the past.  While the Python portion of the project is not doing terribly much at the moment, the Python availability provides some flexibility in case there are future features I wouldn't be comfortable doing in Javascript.
 
-Javascript manages all the animations and handles the "terminal."  Any and all commands are parsed and processed in a single Javascript file about 200 lines long.
+        Javascript manages all the animations and handles the "terminal."  Any and all commands are parsed and processed in a single Javascript file about 200 lines long.
 
-DESIGN
+<#ffff00>DESIGN<>
     The primary design goal was to make everything as modular as possible.  In fact, the design is so modular that every single page renders the same index.html.  Custom elements like images and buttons are specified as plain-text in txt files which are parsed and passed to an html file via a python script.  Javascript then adds the elements in real time as it animates.  The result is essentially a custom text based framework.
 
 {bhome,home,#00ff00}  {babout,about,#00ff00}  {bprojects,projects,#00ff00}  {bcats,cats,#00ff00}

@@ -1,21 +1,21 @@
-<#ffff00>CRENDER<>
+<#00ffff>
+  /$$$$$$  /$$$$$$$                            /$$
+ /$$__  $$| $$__  $$                          | $$
+| $$  \__/| $$  \ $$  /$$$$$$  /$$$$$$$   /$$$$$$$  /$$$$$$   /$$$$$$
+| $$      | $$$$$$$/ /$$__  $$| $$__  $$ /$$__  $$ /$$__  $$ /$$__  $$
+| $$      | $$__  $$| $$$$$$$$| $$  \ $$| $$  | $$| $$$$$$$$| $$  \__/
+| $$    $$| $$  \ $$| $$_____/| $$  | $$| $$  | $$| $$_____/| $$
+|  $$$$$$/| $$  | $$|  $$$$$$$| $$  | $$|  $$$$$$$|  $$$$$$$| $$
+ \______/ |__/  |__/ \_______/|__/  |__/ \_______/ \_______/|__/      <>
 
-GITHUB
-        {bGithub,https://github.com/ecollins27/CRender.git,#0fbf3e} - https://github.com/ecollins27/CRender.git
+{bGITHUB,https://github.com/ecollins27/CRender,#0fbf3e} - https://github.com/ecollins27/CRender
 
 DESCRIPTION
-        CRender is a ray tracing renderer written from scratch in C++. Accessible both as a C++ library and as a command line interface,
-        CRender fully supports the .obj file format and any number of transparent and reflective materials.
+        CRender is a ray tracing renderer written from scratch in C++. Accessible both as a C++ library and as a command line interface, CRender fully supports the .obj file format and any number of transparent and reflective materials.
+        Like many of my other projects, it started out with the goal of learning how graphics rendering worked.  However, it quickly became my favorite project.  There is something so inherently satisfying about creating a project whose output becomes more and more realistic over time.
+        The project is still ongoing and there is a lot to be done.  Stay tuned!
 
-INSPIRATION
-        Developing a renderer has been a long standing goal of mine, dating back to high school.
-
-DEVELOPMENT
-        As with many of my projects, the goal of CRender
-
-Javascript manages all the animations and handles the "terminal."  Any and all commands are parsed and processed in a single Javascript file about 200 lines long.
-
-DESIGN
-    The primary design goal was to make everything as modular as possible.  In fact, the design is so modular that every single page renders the same index.html.  Custom elements like images and buttons are specified as plain-text in txt files which are parsed and passed to an html file via a python script.  Javascript then adds the elements in real time as it animates.  The result is essentially a custom text based framework.
+PICTURES:
+        {i/static/images/crender1.png,300,}        {i/static/images/crender2.png,300,}
 
 {bhome,home,#00ff00}  {babout,about,#00ff00}  {bprojects,projects,#00ff00}  {bcats,cats,#00ff00}

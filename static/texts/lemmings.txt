@@ -1,21 +1,18 @@
-<#ffff00>CRENDER<>
+<#009128>
+ __    ____  __  __  __  __  ____  _  _  ___  ___
+(  )  ( ___)(  \/  )(  \/  )(_  _)( \( )/ __)/ __)
+ )(__  )__)  )    (  )    (  _)(_  )  (( (_-.\__ \
+(____)(____)(_/\/\_)(_/\/\_)(____)(_)\_)\___/(___/<>
 
-GITHUB
-        {bGithub,https://github.com/ecollins27/CRender.git,#0fbf3e} - https://github.com/ecollins27/CRender.git
+{bGITHUB,https://github.com/ecollins27/Lemmings,#ffff00} - https://github.com/ecollins27/Lemmings
 
-DESCRIPTION
-        CRender is a ray tracing renderer written from scratch in C++. Accessible both as a C++ library and as a command line interface,
-        CRender fully supports the .obj file format and any number of transparent and reflective materials.
+<#ffff00>DESCRIPTION<>
+        A recreation of the 1991 game "Lemmings" with some creative liberties.
 
-INSPIRATION
-        Developing a renderer has been a long standing goal of mine, dating back to high school.
+<#ffff00>INSPIRATION<>
+        One of my first ever coding projects was an attempted recreating of Lemmings!  Of course, having maybe 3 months of experience in Java, the project was a mess: slow, confusing, and undocumented.  However, I loved the idea and wanted to come back to it, birthing this project 3 years later!
 
-DEVELOPMENT
-        As with many of my projects, the goal of CRender
-
-Javascript manages all the animations and handles the "terminal."  Any and all commands are parsed and processed in a single Javascript file about 200 lines long.
-
-DESIGN
-    The primary design goal was to make everything as modular as possible.  In fact, the design is so modular that every single page renders the same index.html.  Custom elements like images and buttons are specified as plain-text in txt files which are parsed and passed to an html file via a python script.  Javascript then adds the elements in real time as it animates.  The result is essentially a custom text based framework.
+<#ffff00>PICTURES<>
+        {i/static/images/lemmings1.txt,300,}
 
 {bhome,home,#00ff00}  {babout,about,#00ff00}  {bprojects,projects,#00ff00}  {bcats,cats,#00ff00}

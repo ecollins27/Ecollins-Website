@@ -1,7 +1,5 @@
-Edgar
-{i/static/images/edgar1.jpg,300}{i/static/images/edgar2.jpg,300}{i/static/images/edgar3.jpg,300}{i/static/images/edgar4.jpg,300}
+<#ffff00>Edgar and Alice<>
 
-Alice
-{i/static/images/alice1.jpg,300}{i/static/images/alice2.jpg,300}{i/static/images/alice3.jpg,300}{i/static/images/alice4.jpg,300}
+{i/static/images/edgar1.jpg,300,}    {i/static/images/alice1.jpg,300,Alice looking down on high}    {i/static/images/edgar-alice-poe.jpeg,300,Edgar,Alice, and their sister Poe}    {i/static/images/alice3.jpg,300,}
 
-{bhome,home,#00ff00}  {babout,about,#00ff00}  {bprojects,projects,#00ff00}  {bcats,cats,#00ff00}
+{i/static/images/edgar3.jpg,300,Edgar sunbathing}       {i/static/images/alice2.jpg,300,}    {i/static/images/edgar2.jpg,300,}    {i/static/images/alice4.jpg,300,Alice in her box}
