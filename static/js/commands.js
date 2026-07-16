@@ -117,7 +117,13 @@ function executeCommand(command){
     var colors = {};
     var path = filePath;
     var end;
-    if (commandSplit[0] == "cd"){
+    console.log(commandSplit);
+    if (commandSplit[0] == "sudo"){
+        commandSplit = commandSplit.slice(1);
+    }
+    if (commandSplit.length == 0) {
+        commandOutput = "";
+    } else if (commandSplit[0] == "cd"){
         [commandOutput, path, end] = executeCd(commandSplit);
         if (end){
             return;
@@ -144,7 +150,29 @@ function executeCommand(command){
         window.location = "/no-nano";
         return;
     } else if (commandSplit[0] == "shutdown"){
-        close();
+        window.location = "/crash";
+        return;
+    } else if (commandSplit[0] == "rm"){
+        var r = false, f = false;
+        var rootDir = false;
+        for (let i = 1; i < commandSplit.length; i++){
+            if (commandSplit[i].startsWith("-")){
+                r = r || commandSplit[i].includes("r");
+                f = f || commandSplit[i].includes("f");
+            } else if (commandSplit[i].endsWith("*") && getAbsolutePathFromRelative(commandSplit[i].substring(0, commandSplit[i].length - 1)) == ""){
+                rootDir = true;
+            } else if (commandSplit[i] == "/*" || getAbsolutePathFromRelative(commandSplit[i]) == ""){
+                rootDir = true;
+            }
+        }
+        if (r && f && rootDir){
+            window.location = "/crash";
+            return;
+        } else {
+            commandOutput = "Unable to delete write-protected files";
+        }
+    } else if (commandSplit[0] == "ipa-server-install" && commandSplit.length > 1 && commandSplit[1] == "--uninstall") {
+        window.location = "/crash";
         return;
     } else {
         commandOutput = commandSplit[0] + ": command not found";

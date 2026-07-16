@@ -73,6 +73,10 @@ def get_test():
         genesis = f.read()
     return render_template('nano.html', neofetch=neofetch_object, file='text.txt', content=NanoContent(value=genesis, colors={25:"#ff0000"}))
 
+@app.route("/crash", methods=['GET'])
+def crash():
+    pass
+
 @app.route("/hosting-cat", methods=['GET'])
 def get_hosting():
     text = all_pages['hosting']
@@ -96,7 +100,7 @@ def get_page(path):
         display_type = "man"
         page = page[:-4]
     if not os.path.exists(BASE_DIR + f"/static/texts/{page}.txt"):
-        print(f"PAGE NOT FOUND: {page}")
+        path = '/'
         page = '404'
         display_type = random.sample(['cat', 'nano', 'man'], 1)[0]
     lookup = all_pages[page]
