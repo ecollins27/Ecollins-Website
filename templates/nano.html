@@ -98,6 +98,6 @@
 <script>
   const content = {{ content | tojson }}
 </script>
-<script src="{{ url_for('static', filename='js/utils.js') }}"></script>
-<script src="{{ url_for('static', filename='js/nano.js') }}"></script>
+<script src="{{ url_for('static', filename='js/utils.js') }}" type="module"></script>
+<script src="{{ url_for('static', filename='js/nano.js') }}" type="module"></script>
 </html>

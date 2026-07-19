@@ -25,10 +25,10 @@
 </body>
 <script>
     const lines = {{ lines | tojson }};
-    const neofetch = {{ neofetch | tojson}};
+    var numLines = lines.length;
     const all_pages = {{ all_pages | tojson }};
 </script>
-<script src="{{ url_for('static', filename='js/utils.js') }}"></script>
-<script src="{{ url_for('static', filename='js/commands.js') }}"></script>
-<script src="{{ url_for('static', filename='js/terminal.js') }}"></script>
+<script src="{{ url_for('static', filename='js/utils.js') }}" type="module"></script>
+<script src="{{ url_for('static', filename='js/commands.js') }}" type="module"></script>
+<script src="{{ url_for('static', filename='js/terminal.js') }}" type="module"></script>
 </html>

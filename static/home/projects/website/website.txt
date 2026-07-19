@@ -31,4 +31,4 @@
 <#ffff00>DESIGN<>
     The primary design goal was to make everything as modular as possible.  In fact, the design is so modular that every single page renders the same index.html.  Custom elements like images and buttons are specified as plain-text in txt files which are parsed and passed to an html file via a python script.  Javascript then adds the elements in real time as it animates.  The result is essentially a custom text based framework.
 
-{bhome,home,#00ff00}  {babout,about,#00ff00}  {bprojects,projects,#00ff00}  {bcats,cats,#00ff00}
+{bhome,/,#00ff00}  {babout,/about/about.txt-cat,#00ff00}  {bprojects,/projects/projects.txt-man,#00ff00}  {bcats,/cats/cats.txt-nano,#00ff00}

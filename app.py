@@ -56,70 +56,87 @@ def parseFile(filename: str):
             data = data[1:]
     return output, colors
 
-neofetch_str, neofetch_colors = parseFile("static/texts/home.txt")
+neofetch_str, neofetch_colors = parseFile("static/home/home.txt")
 neofetch_object = {"output": neofetch_str, "colors": neofetch_colors}
 
-def get_all_pages():
-    all_pages = {}
-    for file in os.listdir(BASE_DIR + "/static/texts"):
-        value, colors = parseFile(f"static/texts/{file}")
-        all_pages[file[:-4]] = NanoContent(value=value, colors=colors)
+all_pages = {}
+def get_all_pages(dir_path):
+    for file in os.listdir(f"{BASE_DIR}/{dir_path}"):
+        if (os.path.isdir(f"{BASE_DIR}/{dir_path}/{file}")):
+            get_all_pages(f"{dir_path}/{file}")
+        elif file.endswith('.txt'):
+            value, colors = parseFile(f"{dir_path}/{file}")
+            all_pages[f"{dir_path[11:]}/{file}"] = NanoContent(value=value, colors=colors)
     return all_pages
 
-all_pages = get_all_pages()
-@app.route("/test", methods=['GET'])
-def get_test():
-    with open(BASE_DIR + "/static/texts/genesis.txt", 'r') as f:
-        genesis = f.read()
-    return render_template('nano.html', neofetch=neofetch_object, file='text.txt', content=NanoContent(value=genesis, colors={25:"#ff0000"}))
+def generateManifest(dir_path) -> str:
+    string = "{"
+    for file in os.listdir(f"{BASE_DIR}/{dir_path}"):
+        if os.path.isdir(f"{BASE_DIR}/{dir_path}/{file}"):
+            string += "\"" + file + "\": " + generateManifest(f"{dir_path}/{file}")
+        else:
+            string += "\"" + file + "\": {}"
+        string += ","
+    return string[:-1] + "}"
+
+with open(f"{BASE_DIR}/static/manifest.json", 'w') as f:
+    f.write(generateManifest("static/home"))
+get_all_pages("static/home")
 
 @app.route("/crash", methods=['GET'])
 def crash():
     pass
 
-@app.route("/hosting-cat", methods=['GET'])
+@app.route("/hosting/hosting.txt-cat", methods=['GET'])
 def get_hosting():
-    text = all_pages['hosting']
-    fastfetch = all_pages['al-fastfetch']
+    text = all_pages['/hosting/hosting.txt']
+    fastfetch = all_pages['/hosting/al-fastfetch.txt']
     lines = [TerminalLine(input="cat hosting.txt", output=text.value, colors=text.colors, num=0, path='/hosting')]
     lines.append(TerminalLine(input="ssh root@al fastfetch", output=fastfetch.value, colors=fastfetch.colors, num=1, path='/hosting'))
     return render_template('terminal.html', neofetch=neofetch_object, all_pages=all_pages, path='/hosting', lines=lines)
 
 @app.route('/<path:path>', methods=['GET'])
 def get_page(path):
-    path = "/" + path
-    page = path.split("/")[-1]
     display_type = ""
-    if page.endswith("-nano"):
+    isFile = False
+    if path.endswith("-nano"):
         display_type = "nano"
-        page = page[:-5]
-    elif page.endswith("-cat"):
+        path = path[:-5]
+        isFile = True
+    elif path.endswith("-cat"):
         display_type = "cat"
-        page = page[:-4]
-    elif page.endswith("-man"):
+        path = path[:-4]
+        isFile = True
+    elif path.endswith("-man"):
         display_type = "man"
-        page = page[:-4]
-    if not os.path.exists(BASE_DIR + f"/static/texts/{page}.txt"):
-        path = '/'
-        page = '404'
+        path = path[:-4]
+        isFile = True
+    if not os.path.exists(BASE_DIR + f"/static/home/{path}"):
+        print(f"{BASE_DIR}/static/home/{path} does not exist")
         display_type = random.sample(['cat', 'nano', 'man'], 1)[0]
-    lookup = all_pages[page]
-    directory_path = f"{'/'.join(path.split('/')[:-1])}/{page}"
-    if display_type == 'cat':
-        lines = [TerminalLine(input=f"cat {page}.txt", output=lookup.value, colors=lookup.colors, num=0, path=directory_path)]
-        return render_template('terminal.html', neofetch=neofetch_object, all_pages=all_pages, path=directory_path, lines=lines)
-    elif display_type == 'nano':
-        content = NanoContent(value=lookup.value, colors=lookup.colors)
-        return render_template('nano.html', file=f"{directory_path}/{page}.txt", content=content)
-    elif display_type == 'man':
-        lines = [TerminalLine(input=f"man {page}", output=lookup.value, colors=lookup.colors, num=0, path=directory_path)]
-        return render_template('terminal.html', neofetch=neofetch_object, all_pages=all_pages, path=directory_path, lines=lines)
+        path = f".misc/404.txt"
+        isFile = True
+    path = '/' + path
+    if isFile:
+        directory_path = '/'.join(path.split('/')[:-1])
+        page = path.split("/")[-1]
+        lookup = all_pages[path]
+        if display_type == 'cat':
+            lines = [TerminalLine(input=f"cat {page}", output=lookup.value, colors=lookup.colors, num=0, path=directory_path)]
+            return render_template('terminal.html', all_pages=all_pages, path=directory_path, lines=lines)
+        elif display_type == 'nano':
+            return render_template('nano.html', file=path, content=lookup)
+        elif display_type == 'man':
+            lines = [TerminalLine(input=f"man {page[:-4]}", output=lookup.value, colors=lookup.colors, num=0, path=directory_path)]
+            return render_template('terminal.html', all_pages=all_pages, path=directory_path, lines=lines)
+        else:
+            return
     else:
-        return render_template('terminal.html', neofetch=neofetch_object, all_pages=all_pages, path=directory_path, lines=[])
+        return render_template('terminal.html', all_pages=all_pages, path=path, lines=[])
 
 @app.route('/', methods=['GET'])
 def get_home():
-    output, colors = parseFile(f"static/texts/home.txt")
+    output, colors = parseFile(f"static/home/home.txt")
     lines = [TerminalLine(input="neofetch", output=output, colors=colors, num=0, path='/')]
     return render_template('terminal.html', neofetch=neofetch_object, all_pages=all_pages, lines=lines)
 

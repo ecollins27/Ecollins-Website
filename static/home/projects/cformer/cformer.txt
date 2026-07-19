@@ -21,4 +21,4 @@
         The project has gone through a number of redesigns.  Today, each neural network is treated as a doubly linked-list that forward and backward propagates to its neighbors.  Originally, the complex gradient calculations required in back-propagation were hard coded into each layer, making larger more complicated layers difficult to implement.
         Today, the project utilizes and auto-differentiation calculator I also wrote myself.  The calculator tracks matrix calculations via a wrapper class called MatrixNode and constructs the sequence of matrix operations required to calculate the gradient from the output to each input.  It was quite task to implement but has been a godsend!
 
-{bhome,home,#00ff00}  {babout,about,#00ff00}  {bprojects,projects,#00ff00}  {bcats,cats,#00ff00}
+{bhome,/,#00ff00}  {babout,/about/about.txt-cat,#00ff00}  {bprojects,/projects/projects.txt-man,#00ff00}  {bcats,/cats/cats.txt-nano,#00ff00}

@@ -3,4 +3,4 @@ Ever wonder what this website is hosted on?  Nothing but the greatest of computi
 
 Meet al, an HP Pavilion I bought off my neighbor for $40 along side a 2TB external SSD and some floppy disks.  It originally ran Windows Vista, has a whopping 2 cores running at 2.7 GHz, and 2 glorious gigabytes of DDR2 RAM.  God himself couldn't ask for a better server!
 
-{i/static/images/al1.jpg,500,}      {i/static/images/al2.jpg,500,}
+{ial1.jpg,500,}      {ial2.jpg,500,}

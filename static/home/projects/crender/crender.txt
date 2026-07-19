@@ -16,6 +16,6 @@ DESCRIPTION
         The project is still ongoing and there is a lot to be done.  Stay tuned!
 
 PICTURES:
-        {i/static/images/crender1.png,300,}        {i/static/images/crender2.png,300,}
+        {icrender1.png,300,}        {icrender2.png,300,}
 
-{bhome,home,#00ff00}  {babout,about,#00ff00}  {bprojects,projects,#00ff00}  {bcats,cats,#00ff00}
+{bhome,/,#00ff00}  {babout,/about/about.txt-cat,#00ff00}  {bprojects,/projects/projects.txt-man,#00ff00}  {bcats,/cats/cats.txt-nano,#00ff00}

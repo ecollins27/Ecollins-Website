@@ -24,4 +24,4 @@
    \ \____/\ \____//\____\/\____\\ \_\ \_\ \_\/\____/     <#ffff00>Email<>:  ehren.collins@gmail.com
     \/___/  \/___/ \/____/\/____/ \/_/\/_/\/_/\/___/      <#ffff00>Github<>:  https://github.com/ecollins27
 
-{babout,about,#00ff00}  {bprojects,projects,#00ff00}  {bcats,cats,#00ff00}  {bhosting,hosting,#ffffff}  {bdebian,debian,#ffffff}
+{babout,about/about.txt-cat,#00ff00}  {bprojects,projects/projects.txt-man,#00ff00}  {bcats,cats/cats.txt-nano,#00ff00}  {bhosting,hosting/hosting.txt-cat,#ffffff}  {bdebian,debian/debian.txt-nano,#ffffff}

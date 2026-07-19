@@ -1,12 +1,10 @@
 const animationLength = 1000;
-var filePath = window.location.pathname.substring(1);
-if (filePath.endsWith("-cat") || filePath.endsWith("-man")){
-    filePath = filePath.substring(0, filePath.length - 4);
-} else if (filePath.endsWith("-nano")){
-    filePath = filePath.substring(0, filePath.length - 5);
+export var filePath = window.location.pathname.substring(1);
+if (filePath.endsWith("-cat") || filePath.endsWith("-man") || filePath.endsWith("-nano")){
+    filePath = filePath.split('/').slice(0, -1).join('/');
 }
-const pageDisplayType = {"cats": "nano", "edgar-alice":"nano", "henry-lola":"nano", "about":"cat", "projects": "man", "crender":"man", "website": "man", "cformer":"man", "lemmings":"man", "aljbra":"man", "hosting":"cat", "debian":"nano"};
-const fileStructure = {"debian":{}, "hosting":{}, "cats":{"edgar-alice":{}, "henry-lola":{}}, "about":{}, "projects":{"crender":{}, "website":{}, "cformer":{}, "lemmings":{}, "aljbra":{}}};
+export const manifest = await getContents("/static/manifest.json");
+export const fileStructure = JSON.parse(manifest);
 
 window.addEventListener("pageshow", (event) => {
     if (event.persisted) {
@@ -14,16 +12,17 @@ window.addEventListener("pageshow", (event) => {
     }
 });
 
-function goTo(page){
-    if (page == "home" || page == ""){
-        window.location = "/";
-    } else {
-        window.location = "/" + getAbsolutePathFromPage(page, fileStructure) + "-" + pageDisplayType[page];
+export async function getContents(path){
+    const response = await fetch(path);
+    if (!response.ok) {
+        throw new Error('Filed to load ${path}');
     }
+    return await response.text();
 }
 
-function addImage(parentElement, src, height, caption){
-    html = "<span class=\"image_wrapper\">\n<img class=\"ghost\" src=\"" + src + "\" height=" + height + "px>\n<div id=\"" + src + "\" class=\"img_container\">\n<img src=\"" + src + "\" height=" + height + "px>\n</div>\n<span class=\"image_caption\">" + caption + "</span></span>";
+export function addImage(parentElement, src, height, caption){
+    var absoluteSrc = getAbsolutePath(src);
+    var html = "<span class=\"image_wrapper\">\n<img class=\"ghost\" src=\"/static/home/" + absoluteSrc + "\" height=" + height + "px>\n<div id=\"" + src + "\" class=\"img_container\">\n<img src=\"/static/home/" + absoluteSrc + "\" height=" + height + "px>\n</div>\n<span class=\"image_caption\">" + caption + "</span></span>";
     parentElement.insertAdjacentHTML("beforeend", html);
     var imageElement = document.getElementById(src);
     var styleSheet = window.document.styleSheets[0];
@@ -35,7 +34,7 @@ function addImage(parentElement, src, height, caption){
     return html;
 }
 
-function calculateDelays(textLength){
+export function calculateDelays(textLength){
     var delay = Math.floor(animationLength / textLength);
     var char_per_tick = 1;
     if (delay == 0){
@@ -44,24 +43,7 @@ function calculateDelays(textLength){
     return [delay, char_per_tick];
 }
 
-function getAbsolutePathFromPage(path, fileSystem){
-    if (path == "home"){
-        return "";
-    }
-    if (fileSystem[path] != null){
-        return path;
-    }
-    var p;
-    for (const [key, value] of Object.entries(fileSystem)) {
-        p = getAbsolutePathFromPage(path, value);
-        if (p != null){
-            return key + "/" + p;
-        }
-    }
-    return null;
-}
-
-function isValid(absolute){
+export function isValid(absolute){
     var absoluteSplit = absolute.split('/');
     var index = absoluteSplit.indexOf("");
     while (index >= 0){
@@ -78,12 +60,18 @@ function isValid(absolute){
     return true;
 }
 
-function getDisplayType(){
-    return pageDisplayType[filePath.split('/').pop()];
+export function isFile(absolutePath){
+    var fileSystem = fileStructure;
+    var absoluteSplit = absolutePath.split("/");
+    for (let i = 0; i < absoluteSplit.length; i++){
+        if (absoluteSplit[i] != ""){
+            fileSystem = fileSystem[absoluteSplit[i]];
+        }
+    }
+    return Object.keys(fileSystem).length == 0;
 }
 
-function getAbsolutePathFromRelative(relative){
-    console.log("Relative: " + relative);
+export function getAbsolutePath(relative){
     if (relative.startsWith('/')){
         return relative.substring(1);
     }
@@ -111,8 +99,8 @@ function getAbsolutePathFromRelative(relative){
     return absoluteSplit.join('/');
 }
 
-function getRelativePath(path){
-    var absolutePath = getAbsolutePathFromPage(path, fileStructure);
+export function getRelativePath(path){
+    var absolutePath = getAbsolutePath(path);
     const absoluteSplit = absolutePath.split("/");
     const fileSplit = filePath.split("/");
     var relative = "";

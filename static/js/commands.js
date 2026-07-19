@@ -1,20 +1,32 @@
-var terminal_input = document.getElementById("terminal_input_0");
-const terminal_form = document.getElementById("terminal_form");
+import * as utils from "./utils.js"
+
+export var terminal_input = document.getElementById("terminal_input_0");
+export const terminal_form = document.getElementById("terminal_form");
 var terminalNum = 0;
+var defaultDisplayType = "";
+
+export function setDefaultDisplayType(dt){
+    defaultDisplayType = dt;
+}
 
 function executeCd(commandSplit){
     var commandOutput;
-    var path = filePath;
-    var absolutePath = getAbsolutePathFromRelative(commandSplit[1]);
-    if (!isValid(absolutePath)){
-        commandOutput = "No such directory /" + absolutePath;
+    var path = utils.filePath;
+    var absolutePath = utils.getAbsolutePath(commandSplit[1]);
+    if (!utils.isValid(absolutePath)){
+        commandOutput = "Directory /" + absolutePath + " does not exist";
     } else {
-        var displayType = pageDisplayType[absolutePath.split('/').pop()];
+        var displayType = defaultDisplayType;
+        defaultDisplayType = "";
         if (absolutePath == ""){
             window.location = "/";
             return [commandOutput, path, true];
         } else {
-            window.location = '/' + absolutePath + "-" + displayType;
+            if (displayType == ""){
+                window.location = '/' + absolutePath;
+            } else {
+                window.location = '/' + absolutePath + "/" + absolutePath.split('/').pop() + ".txt-" + displayType;
+            }
             return [commandOutput, path, true];
         }
     }
@@ -23,7 +35,7 @@ function executeCd(commandSplit){
 
 function executeLs(commandSplit){
     var commandOutput;
-    var path = filePath;
+    var path = utils.filePath;
     var absolutePath;
     if (commandSplit.length > 1){
         var argumentSplit = commandSplit[1].split('/');
@@ -31,15 +43,15 @@ function executeLs(commandSplit){
             argumentSplit.splice(0, 1);
             absolutePath = argumentSplit.join('/');
         } else {
-            absolutePath = getAbsolutePathFromRelative(argumentSplit.join('/'));
+            absolutePath = utils.getAbsolutePath(argumentSplit.join('/'));
         }
     } else {
-        absolutePath = filePath;
+        absolutePath = utils.filePath;
     }
-    if (!isValid(absolutePath)){
-        return ["/" + absolutePath + " does not exist", {}, path, false];
+    if (!utils.isValid(absolutePath)){
+        return ["Directory /" + absolutePath + " does not exist", {}, path, false];
     }
-    fileSystem = fileStructure;
+    var fileSystem = utils.fileStructure;
     var directoryName = "";
     const fileSplit = absolutePath.split('/');
     for (let i = 0; i < fileSplit.length; i++){
@@ -51,39 +63,41 @@ function executeLs(commandSplit){
             return ["directory " + fileSplit[i] + " does not exist", {}, path, false];
         }
     }
-    console.log("Absolute: " + absolutePath);
+    console.log(fileSystem);
     commandOutput = "";
-    colors = {};
+    var colors = {};
     for (const [key, value] of Object.entries(fileSystem)){
-        for (let i = commandOutput.length; i < commandOutput.length + key.length; i++){
-            colors[i] = "#0398fc";
+        if (!utils.isFile(absolutePath + "/" + key)){
+            for (let i = commandOutput.length; i < commandOutput.length + key.length; i++){
+                colors[i] = "#0398fc";
+            }
         }
         commandOutput += key + "  ";
-    }
-    if (directoryName != "" && pageDisplayType[directoryName] != "man"){
-        commandOutput += directoryName + ".txt";
     }
     return [commandOutput, colors, path, false];
 }
 
+function getNextHTML(commandOutput, num, path){
+    commandOutput = commandOutput.replaceAll("\"", "&quot;");
+    var html = "<div class=\"typewriter\">\n<span id=\"ghost_output_" + numLines + "\" class=\"ghost\">" + commandOutput + "</span>\n<span id=\"output_" + numLines + "\" class=\"terminal_content\" data-text=\"" + commandOutput +"\"></span>\n</div>\n";
+    html += "<span id=\"header_" + (num + 1) + "\" class=\"terminal_header\">root@ehrencollins.org<span style=\"color: #ffffff;\">:</span><span style=\"color:#0077ff;\">/" + path + "</span><span style=\"color:#ffffff;\">$</span></span>\n"
+    html += "<input type=\"text\" id=\"terminal_input_" + terminalNum + "\" name=\"textbox\" autocomplete=\"off\" size=100>";
+    return html;
+}
+
 function executeNano(commandSplit){
     var commandOutput;
-    var path;
+    var path = utils.filePath;
     if (commandSplit.length != 2){
         commandOutput = "command nano requires exactly 1 argument";
     } else {
-        var argument = commandSplit[1];
-        var argumentSplit = argument.split('/');
-        var file = argumentSplit.pop();
-        var absolutePath = getAbsolutePathFromRelative(argumentSplit.join('/'))
-        if (!isValid(absolutePath)){
-            return ["Directory " + absolutePath + " does not exist", path, false];
+        var absolutePath = utils.getAbsolutePath(commandSplit[1]);
+        if (!utils.isValid(absolutePath)){
+            return ["File /" + absolutePath + " does not exist", path, false];
+        } else if (!utils.isFile(absolutePath)){
+            return [absolutePath + " is not a file", path, false];
         }
         var directory = absolutePath.split('/').pop();
-        console.log("Directory: /" + directory);
-        if (file != directory + ".txt" || (pageDisplayType[directory] != 'nano' && pageDisplayType[directory] != 'cat')){
-            return ["File /" + absolutePath + (absolutePath == ""? "":"/") + file + " does not exist", path, false];
-        }
         window.location = "/" + absolutePath + "-nano";
         return [commandOutput, path, true];
     }
@@ -91,33 +105,29 @@ function executeNano(commandSplit){
 }
 
 function executeCat(commandSplit){
-    var path = filePath;
+    var path = utils.filePath;
     if (commandSplit.length > 2){
-        return ["command cat requires exactly 1 argument", path, false];
+        return ["command cat requires exactly 1 argument", {}, path, false];
     }
-    var argumentSplit = commandSplit[1].split('/');
-    var file = argumentSplit.pop();
-    var absolutePath = getAbsolutePathFromRelative(argumentSplit.join('/'));
-    if (!isValid(absolutePath)) {
-        return ["Directory /" + absolutePath + " does not exist", path, false]
+    var absolutePath = utils.getAbsolutePath(commandSplit[1]);
+    if (!utils.isValid(absolutePath)) {
+        return ["File /" + absolutePath + " does not exist", {}, path, false];
     }
-    var directory = argumentSplit.pop();
-    if (file != directory + ".txt" || (pageDisplayType[directory] != "nano" && pageDisplayType[directory] != "cat")){
-        return ["File /" + absolutePath + (absolutePath == ""? "":"/") + file + " does not exist", path, false];
+    if (!absolutePath.endsWith(".txt")){
+        return ["File /" + absolutePath + " is not a text file", {}, path, false];
     }
-    return [all_pages[directory].value, all_pages[directory].colors, path, false]
+    return [all_pages["/" + absolutePath].value, all_pages["/" + absolutePath].colors, path, false];
 }
 
-function executeCommand(command){
+export function executeCommand(command){
     var commandSplit = command.split(" ");
     terminal_input.readOnly = true;
     terminal_input.disabled = true;
     terminalNum++;
     var commandOutput;
     var colors = {};
-    var path = filePath;
+    var path = utils.filePath;
     var end;
-    console.log(commandSplit);
     if (commandSplit[0] == "sudo"){
         commandSplit = commandSplit.slice(1);
     }
@@ -126,12 +136,12 @@ function executeCommand(command){
     } else if (commandSplit[0] == "cd"){
         [commandOutput, path, end] = executeCd(commandSplit);
         if (end){
-            return;
+            return null;
         }
     } else if (commandSplit[0] == 'ls'){
         [commandOutput, colors, path, end] = executeLs(commandSplit);
         if (end){
-            return;
+            return null;
         }
     } else if (commandSplit[0] == "neofetch") {
         commandOutput = neofetch["output"];
@@ -139,15 +149,15 @@ function executeCommand(command){
     } else if (commandSplit[0] == "cat"){
         [commandOutput, colors, path, end] = executeCat(commandSplit);
         if (end){
-            return;
+            return null;
         }
     } else if (commandSplit[0] == 'nano'){
         [commandOutput, path, end] = executeNano(commandSplit);
         if (end){
-            return;
+            return null;
         }
     } else if (commandSplit[0] == "vim" || commandSplit[0] == "vi"){
-        window.location = "/no-nano";
+        window.location = "/.misc/no.txt-nano";
         return;
     } else if (commandSplit[0] == "shutdown"){
         window.location = "/crash";
@@ -159,28 +169,24 @@ function executeCommand(command){
             if (commandSplit[i].startsWith("-")){
                 r = r || commandSplit[i].includes("r");
                 f = f || commandSplit[i].includes("f");
-            } else if (commandSplit[i].endsWith("*") && getAbsolutePathFromRelative(commandSplit[i].substring(0, commandSplit[i].length - 1)) == ""){
+            } else if (commandSplit[i].endsWith("*") && utils.getAbsolutePath(commandSplit[i].substring(0, commandSplit[i].length - 1)) == ""){
                 rootDir = true;
-            } else if (commandSplit[i] == "/*" || getAbsolutePathFromRelative(commandSplit[i]) == ""){
+            } else if (utils.getAbsolutePath(commandSplit[i]) == ""){
                 rootDir = true;
             }
         }
         if (r && f && rootDir){
-            window.location = "/crash";
-            return;
+            window.open("https://youtu.be/dQw4w9WgXcQ?si=maR8kMgFagLHrhra", '_blank').focus();
+            commandOutput = "Nice try ;)";
         } else {
             commandOutput = "Unable to delete write-protected files";
         }
-    } else if (commandSplit[0] == "ipa-server-install" && commandSplit.length > 1 && commandSplit[1] == "--uninstall") {
-        window.location = "/crash";
-        return;
     } else {
         commandOutput = commandSplit[0] + ": command not found";
     }
-    console.log(path);
     terminalNum++;
     terminal_form.insertAdjacentHTML("beforeend", getNextHTML(commandOutput, numLines, path));
     terminal_input = document.getElementById("terminal_input_" + terminalNum);
     numLines++;
-    nextAnimation(numLines - 1, false, colors);
+    return colors;
 }

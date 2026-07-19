@@ -11,4 +11,4 @@ If operating systems were vehicles, Windows would be an 18 wheeler: heavy, unwie
 
 Glory be to Debian!
 
-{i/static/images/debian.jpeg,500,}
+{idebian.jpeg,400,}
