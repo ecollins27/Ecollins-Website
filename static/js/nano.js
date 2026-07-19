@@ -11,7 +11,7 @@ function addButton(parentElement, content, path, color){
     } else {
         var absolutePath = utils.getAbsolutePath(path);
         buttonElement.addEventListener("click", function(event){
-            window.location = absolutePath + "-" + displayType;
+            window.location = "/" + absolutePath;
         });
     }
     return html;
