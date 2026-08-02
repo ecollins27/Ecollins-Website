@@ -17,16 +17,15 @@ function addButton(parentElement, content, path, color){
     return html;
 }
 
-function fillContent(element, text, colors, delay, char_per_tick, index){
+function fillContent(element, text, current_color, delay, char_per_tick, index, pretty){
     if (index < text.length) {
-        var color;
+        var color = current_color;
         for (let i = 0; i < char_per_tick; i++){
             if (index >= text.length){
                 break;
             }
-            color = colors[index];
             var character = text[index];
-            if (character == '{'){
+            if (character == '{' && pretty){
                 close = text.indexOf("}", index + 2);
                 var data = text.substring(index + 2, close).split(",");
                 var elementType = text[index + 1];
@@ -35,6 +34,12 @@ function fillContent(element, text, colors, delay, char_per_tick, index){
                     addButton(element, data[0], data[1], data[2]);
                 } else if (elementType == 'i'){
                     utils.addImage(element, data[0], data[1], data.slice(2).join(','));
+                } else if (elementType == 'c'){
+                    if (data[0] == current_color){
+                        color = null;
+                    } else {
+                        color = data[0];
+                    }
                 }
             } else if (color != null){
                 element.insertAdjacentHTML("beforeend", "<span style=\"color:" + color + ";\">" + character + "</span>");
@@ -43,7 +48,7 @@ function fillContent(element, text, colors, delay, char_per_tick, index){
             }
             index++;
         }
-        setTimeout(fillContent, delay, element, text, colors, delay, char_per_tick, index);
+        setTimeout(fillContent, delay, element, text, color, delay, char_per_tick, index, pretty);
     }
 }
 
@@ -56,22 +61,22 @@ document.getElementById("terminal").addEventListener("click", function(event) {
 });
 
 document.getElementById("home").addEventListener("click", function(event){
-    window.location = "/";
+    window.location = "/root";
 });
 
 document.getElementById("about").addEventListener("click", function(event) {
-    window.location = "/about/about.txt-cat";
+    window.location = "/root/about/about.txt-cat";
 });
 
 document.getElementById("projects").addEventListener("click", function(event) {
-    window.location = "/projects/projects.txt-man";
+    window.location = "/root/projects/projects.txt-man";
 });
 
 document.getElementById("cats").addEventListener("click", function(event) {
-    window.location = "/cats/cats.txt-nano";
+    window.location = "/root/cats/cats.txt-nano";
 });
 
 var element = document.getElementById("nano_content")
 var text = content.value;
 var [delay, char_per_tick] = utils.calculateDelays(text.length);
-setTimeout(fillContent, 100, element, text, content.colors, delay, char_per_tick, 0)
+setTimeout(fillContent, 100, element, text, null, delay, char_per_tick, 0, content.pretty_render)

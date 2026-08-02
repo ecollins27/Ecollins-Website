@@ -80,7 +80,7 @@ function parsePath(path){
 function onComplete(){
 }
 
-function nextAnimation(num, input, colors=null){
+function nextAnimation(num, input){
     var element;
     var ghost;
     if (input){
@@ -102,20 +102,29 @@ function nextAnimation(num, input, colors=null){
         ghost = document.getElementById("ghost_output_" + num);
     }
     var text = element.dataset.text;
+    var pretty = true;
+    if (!input){
+        if (text.startsWith("True") || text.startsWith("true")){
+            pretty = true;
+            text = text.substring(5);
+        } else if (text.startsWith("False") || text.startsWith("false")) {
+            pretty = false;
+            text = text.substring(6);
+        }
+    }
     var [delay, char_per_tick] = utils.calculateDelays(text.length);
-    setTimeout(type, 100, element, ghost, text, num < lines.length? lines[num].colors:colors, delay, char_per_tick, 0, num, input)
+    setTimeout(type, 100, element, ghost, text, null, delay, char_per_tick, 0, num, input, pretty);
 }
 
-function type(element, ghost, text, colors, delay, char_per_tick, index, num, input) {
+function type(element, ghost, text, current_color, delay, char_per_tick, index, num, input, pretty) {
     if (index < text.length) {
-        var color;
+        var color = current_color;
         for (let i = 0; i < char_per_tick; i++){
             if (index >= text.length){
                 break;
             }
-            color = !input? colors[index]:null;
             var character = text[index];
-            if (character == '{'){
+            if (character == '{' && pretty){
                 close = text.indexOf("}", index + 2);
                 var data = text.substring(index + 2, close).split(",");
                 var elementType = text[index + 1];
@@ -130,6 +139,12 @@ function type(element, ghost, text, colors, delay, char_per_tick, index, num, in
                     if (ghost != null){
                         ghost.innerHTML = ghost.innerHTML.replace('{i' + data.join(',') + "}", html);
                     }
+                } else if (elementType == 'c'){
+                    if (data[0] == current_color){
+                        color = null;
+                    } else {
+                        color = data[0];
+                    }
                 }
             } else if (color != null){
                 element.insertAdjacentHTML("beforeend", "<span style=\"color:" + color + ";\">" + character + "</span>");
@@ -138,7 +153,7 @@ function type(element, ghost, text, colors, delay, char_per_tick, index, num, in
             }
             index++;
         }
-        setTimeout(type, delay, element, ghost, text, colors, delay, char_per_tick, index, num, input);
+        setTimeout(type, delay, element, ghost, text, color, delay, char_per_tick, index, num, input, pretty);
     } else {
         if (input){
             nextAnimation(num, !input);
@@ -152,9 +167,9 @@ commands.terminal_form.addEventListener("submit", function(event) {
     event.preventDefault();
 
     const command = commands.terminal_input.value;
-    var colors = commands.executeCommand(command);
-    if (colors != null){
-        nextAnimation(numLines - 1, false, colors);
+    var animate = commands.executeCommand(command);
+    if (animate){
+        nextAnimation(numLines - 1, false);
     }
 });
 

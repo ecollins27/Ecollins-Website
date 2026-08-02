@@ -16,7 +16,7 @@
         <div>
             {% for line in lines %}
                 {{ components.header(line.path, line.num) }}
-                {{ components.content(line.input, line.output, line.num) }}
+                {{ components.content(line.input, line.output, line.num, line.pretty_render) }}
             {% endfor %}
         </div>
         {{ components.header( path , lines | length) }}

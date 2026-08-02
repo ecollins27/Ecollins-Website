@@ -1,0 +1,5 @@
+{c#ffff00}Edgar and Alice{c#ffff00}
+
+{iedgar1.jpg,300,}    {ialice1.jpg,300,Alice looking down on high}    {iedgar-alice-poe.jpeg,300,Edgar,Alice, and their sister Poe}    {ialice3.jpg,300,}
+
+{iedgar3.jpg,300,Edgar sunbathing}       {ialice2.jpg,300,}    {iedgar2.jpg,300,}    {ialice4.jpg,300,Alice in her box}

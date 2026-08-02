@@ -1,0 +1,21 @@
+{c#00ffff}
+  /$$$$$$  /$$$$$$$                            /$$
+ /$$__  $$| $$__  $$                          | $$
+| $$  \__/| $$  \ $$  /$$$$$$  /$$$$$$$   /$$$$$$$  /$$$$$$   /$$$$$$
+| $$      | $$$$$$$/ /$$__  $$| $$__  $$ /$$__  $$ /$$__  $$ /$$__  $$
+| $$      | $$__  $$| $$$$$$$$| $$  \ $$| $$  | $$| $$$$$$$$| $$  \__/
+| $$    $$| $$  \ $$| $$_____/| $$  | $$| $$  | $$| $$_____/| $$
+|  $$$$$$/| $$  | $$|  $$$$$$$| $$  | $$|  $$$$$$$|  $$$$$$$| $$
+ \______/ |__/  |__/ \_______/|__/  |__/ \_______/ \_______/|__/      {c#00ffff}
+
+{bGITHUB,https://github.com/ecollins27/CRender,#0fbf3e} - https://github.com/ecollins27/CRender
+
+DESCRIPTION
+        CRender is a ray tracing renderer written from scratch in C++. Accessible both as a C++ library and as a command line interface, CRender fully supports the .obj file format and any number of transparent and reflective materials.
+        Like many of my other projects, it started out with the goal of learning how graphics rendering worked.  However, it quickly became my favorite project.  There is something so inherently satisfying about creating a project whose output becomes more and more realistic over time.
+        The project is still ongoing and there is a lot to be done.  Stay tuned!
+
+PICTURES:
+        {icrender1.png,300,}        {icrender2.png,300,}
+
+{bhome,/,#00ff00}  {babout,../../about/about.txt-cat,#00ff00}  {bprojects,../projects.txt-man,#00ff00}  {bcats,../../cats/cats.txt-nano,#00ff00}

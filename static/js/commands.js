@@ -4,6 +4,7 @@ export var terminal_input = document.getElementById("terminal_input_0");
 export const terminal_form = document.getElementById("terminal_form");
 var terminalNum = 0;
 var defaultDisplayType = "";
+var text_extensions = [".txt", ".css", ".html", ".js", ".raw", ".py", ".wsgi"];
 
 export function setDefaultDisplayType(dt){
     defaultDisplayType = dt;
@@ -49,7 +50,7 @@ function executeLs(commandSplit){
         absolutePath = utils.filePath;
     }
     if (!utils.isValid(absolutePath)){
-        return ["Directory /" + absolutePath + " does not exist", {}, path, false];
+        return ["Directory /" + absolutePath + " does not exist", path, false];
     }
     var fileSystem = utils.fileStructure;
     var directoryName = "";
@@ -60,21 +61,21 @@ function executeLs(commandSplit){
             directoryName = fileSplit[i];
         }
         if (fileSystem == null){
-            return ["directory " + fileSplit[i] + " does not exist", {}, path, false];
+            return ["directory " + fileSplit[i] + " does not exist", path, false];
         }
     }
     console.log(fileSystem);
     commandOutput = "";
-    var colors = {};
     for (const [key, value] of Object.entries(fileSystem)){
         if (!utils.isFile(absolutePath + "/" + key)){
-            for (let i = commandOutput.length; i < commandOutput.length + key.length; i++){
-                colors[i] = "#0398fc";
-            }
+            commandOutput += "{c#0398fc}";
         }
         commandOutput += key + "  ";
+        if (!utils.isFile(absolutePath + "/" + key)){
+            commandOutput += "{c#0398fc}";
+        }
     }
-    return [commandOutput, colors, path, false];
+    return [commandOutput, path, false];
 }
 
 function getNextHTML(commandOutput, num, path){
@@ -97,6 +98,15 @@ function executeNano(commandSplit){
         } else if (!utils.isFile(absolutePath)){
             return [absolutePath + " is not a file", path, false];
         }
+        var text_file = false;
+        for (let i = 0; i < text_extensions.length; i++){
+            if (absolutePath.endsWith(text_extensions[i])){
+                text_file = true;
+            }
+        }
+        if (!text_file){
+            return ["File /" + absolutePath + " is not a text file", path, false];
+        }
         var directory = absolutePath.split('/').pop();
         window.location = "/" + absolutePath + "-nano";
         return [commandOutput, path, true];
@@ -107,16 +117,23 @@ function executeNano(commandSplit){
 function executeCat(commandSplit){
     var path = utils.filePath;
     if (commandSplit.length > 2){
-        return ["command cat requires exactly 1 argument", {}, path, false];
+        return ["command cat requires exactly 1 argument", path, false];
     }
     var absolutePath = utils.getAbsolutePath(commandSplit[1]);
     if (!utils.isValid(absolutePath)) {
-        return ["File /" + absolutePath + " does not exist", {}, path, false];
+        return ["File /" + absolutePath + " does not exist", path, false];
     }
-    if (!absolutePath.endsWith(".txt")){
-        return ["File /" + absolutePath + " is not a text file", {}, path, false];
+    var text_file = false;
+    for (let i = 0; i < text_extensions.length; i++){
+        if (absolutePath.endsWith(text_extensions[i])){
+            text_file = true;
+        }
     }
-    return [all_pages["/" + absolutePath].value, all_pages["/" + absolutePath].colors, path, false];
+    if (!text_file){
+        return ["File /" + absolutePath + " is not a text file", path, false];
+    }
+    console.log("Pretty render: " + all_pages["/" + absolutePath].pretty_render);
+    return [all_pages["/" + absolutePath].pretty_render + "-" + all_pages["/" + absolutePath].value, path, false];
 }
 
 export function executeCommand(command){
@@ -125,7 +142,6 @@ export function executeCommand(command){
     terminal_input.disabled = true;
     terminalNum++;
     var commandOutput;
-    var colors = {};
     var path = utils.filePath;
     var end;
     if (commandSplit[0] == "sudo"){
@@ -139,15 +155,14 @@ export function executeCommand(command){
             return null;
         }
     } else if (commandSplit[0] == 'ls'){
-        [commandOutput, colors, path, end] = executeLs(commandSplit);
+        [commandOutput, path, end] = executeLs(commandSplit);
         if (end){
             return null;
         }
     } else if (commandSplit[0] == "neofetch") {
         commandOutput = neofetch["output"];
-        colors = neofetch["colors"];
     } else if (commandSplit[0] == "cat"){
-        [commandOutput, colors, path, end] = executeCat(commandSplit);
+        [commandOutput, path, end] = executeCat(commandSplit);
         if (end){
             return null;
         }
@@ -188,5 +203,5 @@ export function executeCommand(command){
     terminal_form.insertAdjacentHTML("beforeend", getNextHTML(commandOutput, numLines, path));
     terminal_input = document.getElementById("terminal_input_" + terminalNum);
     numLines++;
-    return colors;
+    return true;
 }

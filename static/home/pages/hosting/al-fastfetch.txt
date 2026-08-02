@@ -1,0 +1,19 @@
+        _,met$$$$$gg.          {c#d70a53}al.ehrencollins.org{c#d70a53}
+     ,g$$$$$$$$$$$$$$$P.       -------------------
+   ,g$$P""       """Y$$.".     {c#d70a53}OS{c#d70a53}: Debian GNU/Linux 13 (trixie) x86_64
+  ,$$P'              `$$$.     {c#d70a53}Host{c#d70a53}: D5468AT-ABA ALONPAV (1331211RE101EXPLO0)
+',$$P       ,ggs.     `$$b:    {c#d70a53}Kernel{c#d70a53}: Linux 6.12.86+deb13-amd64
+`d$$'     ,$P"'   {c#d70a53}.{c#d70a53}    $$$     {c#d70a53}Uptime{c#d70a53}: 3 days, 5 hours, 10 mins
+ $$P      d$'     {c#d70a53},{c#d70a53}    $$P     {c#d70a53}Packages{c#d70a53}: 375 (dpkg)
+ $$:      $$.   {c#d70a53}-{c#d70a53}    ,d$$'     {c#d70a53}Shell{c#d70a53}: bash 5.2.37
+ $$;      Y$b._   _,d$P'       {c#d70a53}Display (SB242Y H1){c#d70a53}: 1920x1080 @ 60 Hz in 24" [External]
+ Y$$.    {c#d70a53}`.{c#d70a53}`"Y$$$$P"'          {c#d70a53}Terminal{c#d70a53}: /dev/pts/0
+ `$$b      {c#d70a53}"-.__{c#d70a53}               {c#d70a53}CPU{c#d70a53}: AMD Athlon(tm) 64 X2 Dual Core 5200+ (2) @ 2.70 GHz
+  `Y$$b                        {c#d70a53}GPU{c#d70a53}: NVIDIA GeForce 6150SE nForce 430 [Discrete]
+   `Y$$.                       {c#d70a53}Memory{c#d70a53}: 388.97 MiB / 1.80 GiB (21%)
+     `$$b.                     {c#d70a53}Swap{c#d70a53}: 0 B / 1.93 GiB (0%)
+       `Y$$b.                  {c#d70a53}Disk (/){c#d70a53}: 1.25 GiB / 455.47 GiB (0%) - ext4
+         `"Y$b._               {c#d70a53}Local IP (enp0s7){c#d70a53}: 127.0.0.1/32
+             `""""             {c#d70a53}Locale{c#d70a53}: en_US.UTF-8
+
+{bhome,/,#00ff00}  {babout,../about/about.txt-cat,#00ff00}  {bprojects,../projects/projects.txt-man,#00ff00}  {bcats,../cats/cats.txt-nano,#00ff00}

@@ -1,6 +1,6 @@
 
 
-<#ff0000>NNNNNNNN        NNNNNNNN     OOOOOOOOO
+{c#ff0000}NNNNNNNN        NNNNNNNN     OOOOOOOOO
 N:::::::N       N::::::N   OO:::::::::OO
 N::::::::N      N::::::N OO:::::::::::::OO
 N:::::::::N     N::::::NO:::::::OOO:::::::O
@@ -15,5 +15,5 @@ N::::::N     N:::::::::NO::::::O   O::::::O
 N::::::N      N::::::::NO:::::::OOO:::::::O
 N::::::N       N:::::::N OO:::::::::::::OO
 N::::::N        N::::::N   OO:::::::::OO
-NNNNNNNN         NNNNNNN     OOOOOOOOO     <>
+NNNNNNNN         NNNNNNN     OOOOOOOOO
 

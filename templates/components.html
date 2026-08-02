@@ -2,14 +2,14 @@
 <span id="header_{{num}}" class="terminal_header">root@ehrencollins.org<span style="color: #ffffff;">:</span><span style="color:#0077ff;">{{path}}</span><span style="color:#ffffff;">$</span></span>
 {% endmacro %}
 
-{% macro content(input, output, num) %}
+{% macro content(input, output, num, pretty) %}
 <span class="typewriter">
     <span class="ghost">{{input}}</span>
     <span id="input_{{num}}" class="terminal_content" data-text="{{input}}"></span>
 </span>
 <div class="typewriter">
     <span id="ghost_output_{{num}}" class="ghost">{{output}}</span>
-    <span id="output_{{num}}" class="terminal_content" data-text="{{output}}"></span>
+    <span id="output_{{num}}" class="terminal_content" data-text="{{pretty}}-{{output}}"></span>
 </div>
 {% endmacro %}
 

@@ -1,0 +1,18 @@
+{c#009128}
+ __    ____  __  __  __  __  ____  _  _  ___  ___
+(  )  ( ___)(  \/  )(  \/  )(_  _)( \( )/ __)/ __)
+ )(__  )__)  )    (  )    (  _)(_  )  (( (_-.\__ \
+(____)(____)(_/\/\_)(_/\/\_)(____)(_)\_)\___/(___/{c#009128}
+
+{bGITHUB,https://github.com/ecollins27/Lemmings,#ffff00} - https://github.com/ecollins27/Lemmings
+
+{c#ffff00}DESCRIPTION{c#ffff00}
+        A recreation of the 1991 game "Lemmings" with some creative liberties.
+
+{c#ffff00}INSPIRATION{c#ffff00}
+        One of my first ever coding projects was an attempted recreating of Lemmings!  Of course, having maybe 3 months of experience in Java, the project was a mess: slow, confusing, and undocumented.  However, I loved the idea and wanted to come back to it, birthing this project 3 years later!
+
+{c#ffff00}PICTURES{c#ffff00}
+        {i/static/images/lemmings1.txt,300,}
+
+{bhome,/,#00ff00}  {babout,../../about/about.txt-cat,#00ff00}  {bprojects,../projects.txt-man,#00ff00}  {bcats,../../cats/cats.txt-nano,#00ff00}

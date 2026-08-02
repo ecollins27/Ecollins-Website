@@ -1,5 +1,0 @@
-<#ffff00>Edgar and Alice<>
-
-{ilola3.jpg,300,By far my favorite picture of Lola}    {ihenry3.jpg,300,Henry watching Olympic skating}    {ilola1.jpg,300,}    {igrendel1.jpg,300,My parent's cat Grendel}
-
-{ilola2.jpg,300,}    {ihenry2.jpg,300,}   {ilola4.jpg,300,}

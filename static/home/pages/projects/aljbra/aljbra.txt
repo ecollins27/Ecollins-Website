@@ -1,0 +1,5 @@
+{c#ffff00}ALJBRA{c#ffff00}
+
+{bGITHUB,https://github.com/ecollins27/AlJbra,#ffff00} - https://github.com/ecollins27/AlJbra
+
+{bhome,/,#00ff00}  {babout,../about/about.txt-cat,#00ff00}  {bprojects,../projects.txt-man,#00ff00}  {bcats,../../cats/cats.txt-nano,#00ff00}

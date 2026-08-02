@@ -1,27 +1,27 @@
- ____    __                                               <#ffff00>Ehren Rudolf Collins<>
+ ____    __                                               {c#ffff00}Ehren Rudolf Collins{c#ffff00}
 /\  _`\ /\ \                                              --------------------
-\ \ \L\_\ \ \___   _ __    __    ___                      <#ffff00>OS<>:  Linux Mint, Debian
- \ \  _\L\ \  _ `\/\`'__\/'__`\/' _ `\                    <#ffff00>Location<>:  Cleveland, OH
-  \ \ \L\ \ \ \ \ \ \ \//\  __//\ \/\ \                   <#ffff00>Degrees<>:  BS Math, BS Computer Science (expected May 2027)
-   \ \____/\ \_\ \_\ \_\\ \____\ \_\ \_\                  <#ffff00>School<>:  University of Rochester
-    \/___/  \/_/\/_/\/_/ \/____/\/_/\/_/                  <#ffff00>Uptime<>:  20 years
+\ \ \L\_\ \ \___   _ __    __    ___                      {c#ffff00}OS{c#ffff00}:  Linux Mint, Debian
+ \ \  _\L\ \  _ `\/\`'__\/'__`\/' _ `\                    {c#ffff00}Location{c#ffff00}:  Cleveland, OH
+  \ \ \L\ \ \ \ \ \ \ \//\  __//\ \/\ \                   {c#ffff00}Degrees{c#ffff00}:  BS Math, BS Computer Science (expected May 2027)
+   \ \____/\ \_\ \_\ \_\\ \____\ \_\ \_\                  {c#ffff00}School{c#ffff00}:  University of Rochester
+    \/___/  \/_/\/_/\/_/ \/____/\/_/\/_/                  {c#ffff00}Uptime{c#ffff00}:  20 years
 
-                                                          <#ffff00>Languages.General<>:  English, Latin
- ____                __          ___       ___            <#ffff00>Languages.Frontend<>:  HTML,CSS,Javascript
-/\  _`\             /\ \        /\_ \    /'___\           <#ffff00>Languages.Backend<>:  C/C++,Java,Python,Rust
-\ \ \L\ \  __  __   \_\ \    ___\//\ \  /\ \__/           <#ffff00>Languages.Other<>:  Power Automate, Lisp, JASM Bytecode
+                                                          {c#ffff00}Languages.General{c#ffff00}:  English, Latin
+ ____                __          ___       ___            {c#ffff00}Languages.Frontend{c#ffff00}:  HTML,CSS,Javascript
+/\  _`\             /\ \        /\_ \    /'___\           {c#ffff00}Languages.Backend{c#ffff00}:  C/C++,Java,Python,Rust
+\ \ \L\ \  __  __   \_\ \    ___\//\ \  /\ \__/           {c#ffff00}Languages.Other{c#ffff00}:  Power Automate, Lisp, JASM Bytecode
  \ \ ,  / /\ \/\ \  /'_` \  / __`\\ \ \ \ \ ,__\
-  \ \ \\ \\ \ \_\ \/\ \L\ \/\ \L\ \\_\ \_\ \ \_/          <#ffff00>Favorites.Book<>:  Dune
-   \ \_\ \_\ \____/\ \___,_\ \____//\____\\ \_\           <#ffff00>Favorites.Movie<>:  Galaxy Quest, Prince of Egypt
-    \/_/\/ /\/___/  \/__,_ /\/___/ \/____/ \/_/           <#ffff00>Favorites.VideoGame<>:  Elden Ring, Ghost of Tsushima
-                                                          <#ffff00>Favorites.Music<>:  Stravinsky's "The Firebird"
+  \ \ \\ \\ \ \_\ \/\ \L\ \/\ \L\ \\_\ \_\ \ \_/          {c#ffff00}Favorites.Book{c#ffff00}:  Dune
+   \ \_\ \_\ \____/\ \___,_\ \____//\____\\ \_\           {c#ffff00}Favorites.Movie{c#ffff00}:  Galaxy Quest, Prince of Egypt
+    \/_/\/ /\/___/  \/__,_ /\/___/ \/____/ \/_/           {c#ffff00}Favorites.VideoGame{c#ffff00}:  Elden Ring, Ghost of Tsushima
+                                                          {c#ffff00}Favorites.Music{c#ffff00}:  Stravinsky's "The Firebird"
                                                           
- ____            ___    ___                               <#ffff00>Hobbies<>:  Coding, Violin, Video Games
-/\  _`\         /\_ \  /\_ \    __                        <#ffff00>Interests<>:  Mathematics, Rubik's Cubes
-\ \ \/\_\    ___\//\ \ \//\ \  /\_\    ___     ____       <#ffff00>Obsessions<>:  Star Wars, Star Trek,
+ ____            ___    ___                               {c#ffff00}Hobbies{c#ffff00}:  Coding, Violin, Video Games
+/\  _`\         /\_ \  /\_ \    __                        {c#ffff00}Interests{c#ffff00}:  Mathematics, Rubik's Cubes
+\ \ \/\_\    ___\//\ \ \//\ \  /\_\    ___     ____       {c#ffff00}Obsessions{c#ffff00}:  Star Wars, Star Trek,
  \ \ \/_/_  / __`\\ \ \  \ \ \ \/\ \ /' _ `\  /',__\
-  \ \ \L\ \/\ \L\ \\_\ \_ \_\ \_\ \ \/\ \/\ \/\__, `\     <#ffff00>LinkedIn<>:  https://www.linkedin.com/in/ehren-collins-a67413238/
-   \ \____/\ \____//\____\/\____\\ \_\ \_\ \_\/\____/     <#ffff00>Email<>:  ehren.collins@gmail.com
-    \/___/  \/___/ \/____/\/____/ \/_/\/_/\/_/\/___/      <#ffff00>Github<>:  https://github.com/ecollins27
+  \ \ \L\ \/\ \L\ \\_\ \_ \_\ \_\ \ \/\ \/\ \/\__, `\     {c#ffff00}LinkedIn{c#ffff00}:  https://www.linkedin.com/in/ehren-collins-a67413238/
+   \ \____/\ \____//\____\/\____\\ \_\ \_\ \_\/\____/     {c#ffff00}Email{c#ffff00}:  ehren.collins@gmail.com
+    \/___/  \/___/ \/____/\/____/ \/_/\/_/\/_/\/___/      {c#ffff00}Github{c#ffff00}:  https://github.com/ecollins27
 
-{babout,about/about.txt-cat,#00ff00}  {bprojects,projects/projects.txt-man,#00ff00}  {bcats,cats/cats.txt-nano,#00ff00}  {bhosting,hosting/hosting.txt-cat,#ffffff}  {bdebian,debian/debian.txt-nano,#ffffff}
+{babout,pages/about/about.txt-cat,#00ff00}  {bprojects,pages/projects/projects.txt-man,#00ff00}  {bcats,pages/cats/cats.txt-nano,#00ff00}  {bhosting,pages/hosting/hosting.txt-cat,#ffffff}  {bdebian,pages/debian/debian.txt-nano,#ffffff}
