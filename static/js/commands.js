@@ -14,7 +14,7 @@ function executeCd(commandSplit){
     var commandOutput;
     var path = utils.filePath;
     var absolutePath = utils.getAbsolutePath(commandSplit[1]);
-    if (!utils.isValid(absolutePath)){
+    if (!utils.isValid(absolutePath) || utils.isFile(absolutePath)){
         commandOutput = "Directory /" + absolutePath + " does not exist";
     } else {
         var displayType = defaultDisplayType;
@@ -132,8 +132,10 @@ function executeCat(commandSplit){
     if (!text_file){
         return ["File /" + absolutePath + " is not a text file", path, false];
     }
-    console.log("Pretty render: " + all_pages["/" + absolutePath].pretty_render);
-    return [all_pages["/" + absolutePath].pretty_render + "-" + all_pages["/" + absolutePath].value, path, false];
+    const text = all_pages["/" + absolutePath].pretty_render + "-" + all_pages["/" + absolutePath].value
+    const div = document.createElement("div");
+    div.textContent = text;
+    return [div.innerHTML, path, false];
 }
 
 export function executeCommand(command){
@@ -160,7 +162,16 @@ export function executeCommand(command){
             return null;
         }
     } else if (commandSplit[0] == "neofetch") {
-        commandOutput = neofetch["output"];
+        commandOutput = all_pages["/home.txt"].value;
+    } else if (commandSplit[0] == "home"){
+        [commandOutput, path, end] = executeCd(["cd","/"]);
+        if (end){
+            return null;
+        }
+    } else if (commandSplit[0] == "visitors") {
+        commandOutput = "{c#ffff00}" + visits + "{c#ffff00} people have visited this website!";
+    } else if (commandSplit[0] == "help") {
+        commandOutput = "This website simulates a Linux kernel.  Basic commands such as cd, ls, cat, nano, and neofetch are all the valid commands and operate as intended.\n\nThe following custom commands are also included:\n\n{c#ffff00}home{c#ffff00} - returns to the home page\n{c#ffff00}visitors{c#ffff00} - displays the number of visits to the site's homepage\n\nNaturally, the kernel contains a number of easter eggs.  How many can you find?";
     } else if (commandSplit[0] == "cat"){
         [commandOutput, path, end] = executeCat(commandSplit);
         if (end){

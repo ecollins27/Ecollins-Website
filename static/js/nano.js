@@ -61,19 +61,19 @@ document.getElementById("terminal").addEventListener("click", function(event) {
 });
 
 document.getElementById("home").addEventListener("click", function(event){
-    window.location = "/root";
+    window.location = "/";
 });
 
 document.getElementById("about").addEventListener("click", function(event) {
-    window.location = "/root/about/about.txt-cat";
+    window.location = "/pages/about/about.txt-cat";
 });
 
 document.getElementById("projects").addEventListener("click", function(event) {
-    window.location = "/root/projects/projects.txt-man";
+    window.location = "/pages/projects/projects.txt-man";
 });
 
 document.getElementById("cats").addEventListener("click", function(event) {
-    window.location = "/root/cats/cats.txt-nano";
+    window.location = "/pages/cats/cats.txt-nano";
 });
 
 var element = document.getElementById("nano_content")

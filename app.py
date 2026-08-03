@@ -33,6 +33,21 @@ class TerminalLine:
         self.path = path
         self.pretty_render = pretty_render
 
+def increment_counter():
+    while os.path.exists('visits.lock'):
+        pass
+    with open('visits.lock', 'w') as f:
+        f.write('lock')
+    with open('visits.txt', 'r') as f:
+        visits = int(f.read())
+    with open('visits.txt', 'w') as f:
+        f.write(str(visits + 1))
+    os.remove('visits.lock')
+
+def get_visits():
+    with open('visits.txt', 'r') as f:
+        return int(f.read())
+
 def parseFile(filename: str):
     filename = BASE_DIR + "/" + filename
     with open(filename, 'r') as f:
@@ -77,12 +92,13 @@ def get_hosting():
     fastfetch = all_pages['/pages/hosting/al-fastfetch.txt']
     lines = [TerminalLine(input="cat hosting.txt", output=text.value, num=0, path='/pages/hosting')]
     lines.append(TerminalLine(input="ssh pages@al fastfetch", output=fastfetch.value, num=1, path='/pages/hosting'))
-    return render_template('terminal.html', neofetch=neofetch_object, all_pages=all_pages, path='/pages/hosting', lines=lines)
+    return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path='/pages/hosting', lines=lines)
 
 @app.route('/<path:path>', methods=['GET'])
 def get_page(path):
     display_type = ""
     isFile = False
+    exit_code = 200
     if path.endswith("-nano"):
         display_type = "nano"
         path = path[:-5]
@@ -100,6 +116,7 @@ def get_page(path):
         display_type = random.sample(['cat', 'nano', 'man'], 1)[0]
         path = f".misc/404.txt"
         isFile = True
+        exit_code = 404
     path = '/' + path
     if isFile:
         directory_path = '/'.join(path.split('/')[:-1])
@@ -107,22 +124,23 @@ def get_page(path):
         lookup = all_pages[path]
         if display_type == 'cat':
             lines = [TerminalLine(input=f"cat {page}", output=lookup.value, num=0, path=directory_path, pretty_render=lookup.pretty_render)]
-            return render_template('terminal.html', all_pages=all_pages, path=directory_path, lines=lines)
+            return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=directory_path, lines=lines), exit_code
         elif display_type == 'nano':
-            return render_template('nano.html', file=path, content=lookup)
+            return render_template('nano.html', visits=get_visits(), file=path, content=lookup), exit_code
         elif display_type == 'man':
             lines = [TerminalLine(input=f"man {page[:-4]}", output=lookup.value, num=0, path=directory_path, pretty_render=lookup.pretty_render)]
-            return render_template('terminal.html', all_pages=all_pages, path=directory_path, lines=lines)
+            return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=directory_path, lines=lines), exit_code
         else:
             return
     else:
-        return render_template('terminal.html', all_pages=all_pages, path=path, lines=[])
+        return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=path, lines=[]), exit_code
 
 @app.route('/', methods=['GET'])
 def get_home():
     output = parseFile(f"static/home/home.txt")
     lines = [TerminalLine(input="neofetch", output=output, num=0, path='/')]
-    return render_template('terminal.html', neofetch=neofetch_object, path='/', all_pages=all_pages, lines=lines)
+    increment_counter()
+    return render_template('terminal.html', visits=get_visits(), path='/', all_pages=all_pages, lines=lines), 200
 # stockholm
 
 

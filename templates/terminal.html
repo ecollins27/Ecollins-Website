@@ -27,6 +27,7 @@
     const lines = {{ lines | tojson }};
     var numLines = lines.length;
     const all_pages = {{ all_pages | tojson }};
+    const visits = {{visits}}
 </script>
 <script src="{{ url_for('static', filename='js/utils.js') }}" type="module"></script>
 <script src="{{ url_for('static', filename='js/commands.js') }}" type="module"></script>
