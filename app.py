@@ -34,18 +34,18 @@ class TerminalLine:
         self.pretty_render = pretty_render
 
 def increment_counter():
-    while os.path.exists('visits.lock'):
+    while os.path.exists(f'{BASE_DIR}/visits.lock'):
         pass
-    with open('visits.lock', 'w') as f:
+    with open(f'{BASE_DIR}/visits.lock', 'w') as f:
         f.write('lock')
-    with open('visits.txt', 'r') as f:
+    with open(f'{BASE_DIR}/visits.txt', 'r') as f:
         visits = int(f.read())
-    with open('visits.txt', 'w') as f:
+    with open(f'{BASE_DIR}/visits.txt', 'w') as f:
         f.write(str(visits + 1))
-    os.remove('visits.lock')
+    os.remove(f'{BASE_DIR}/visits.lock')
 
 def get_visits():
-    with open('visits.txt', 'r') as f:
+    with open(f'{BASE_DIR}/visits.txt', 'r') as f:
         return int(f.read())
 
 def parseFile(filename: str):
