@@ -34,6 +34,14 @@ export function addImage(parentElement, src, height, caption){
     return html;
 }
 
+export function addVideo(parentElement, width, height, src){
+    var absoluteSrc = getAbsolutePath(src);
+    var html = "<video width=\"" + width + "\" height=\"" + height + "\" autoplay><source src=\"/static/home/" + absoluteSrc + "\" type=\"video/" + src.split(".").pop() + "\"></video>";
+    parentElement.insertAdjacentHTML("beforeend", html);
+    var ghost = "<img width=\"" + width + "\" height=\"" + height + "\">";
+    return ghost;
+}
+
 export function calculateDelays(textLength){
     var delay = Math.floor(animationLength / textLength);
     var char_per_tick = 1;
@@ -102,7 +110,17 @@ export function getAbsolutePath(relative){
 export function getRelativePath(path){
     var absolutePath = getAbsolutePath(path);
     const absoluteSplit = absolutePath.split("/");
+    var index = absoluteSplit.indexOf("");
+    while (index >= 0){
+        absoluteSplit.splice(index, 1);
+        index = absoluteSplit.indexOf("");
+    }
     const fileSplit = filePath.split("/");
+    index = fileSplit.indexOf("");
+    while (index >= 0){
+        fileSplit.splice(index, 1);
+        index = fileSplit.indexOf("");
+    }
     var relative = "";
     var index = fileSplit.length - 1;
     while (index >= 0 && (index >= absoluteSplit.length || (absoluteSplit[index] != fileSplit[index]))){

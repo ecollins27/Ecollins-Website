@@ -24,11 +24,21 @@
         The idea of a terminal based webpage was actually one that my student organization CIF proposed in the past.  Yet due to time constraints and maintenance, it wasn't pursued.  In the summer of 2026, I finally acquired a second computer that could host a website, an idea I had been entertaining for a while.
 
 {c#ffff00}DEVELOPMENT{c#ffff00}
-        Contrary to my friend's suggestion, I entered this project without a framework.  The entire thing is a conglomeration of HTML, CSS, Javascript, and Python; all written by hand by me.  The project utilizes Flask, a Python library for controlling and rendering HTML using Jinja.  Flask is a library I have used in the past.  While the Python portion of the project is not doing terribly much at the moment, the Python availability provides some flexibility in case there are future features I wouldn't be comfortable doing in Javascript.
+        Contrary to my friend's suggestion, I entered this project without a framework.  The entire thing is a conglomeration of HTML, CSS, Javascript, and Python; all written by hand by me.  The project utilizes Flask, a Python library for controlling and rendering HTML using Jinja, and one I have used in the past.
 
-        Javascript manages all the animations and handles the "terminal."  Any and all commands are parsed and processed in a single Javascript file about 200 lines long.
+        The Python code maintains a manifest of the simulated file system and parses and handles page logic.  Javascript is responsible for every animation on the website, including generating text and loading images.  It also handles all of the command logic, determining if a command is valid and what it should do in command.js.
 
 {c#ffff00}DESIGN{c#ffff00}
-    The primary design goal was to make everything as modular as possible.  In fact, the design is so modular that every single page renders the same index.html.  Custom elements like images and buttons are specified as plain-text in txt files which are parsed and passed to an html file via a python script.  Javascript then adds the elements in real time as it animates.  The result is essentially a custom text based framework.
+    The primary design goal was to make everything as modular as possible.  The entire thing is designed around a file tree which, by its nature, contains many nodes.  As such, the goal was to create a system where adding, removing, and shuffling around pages is as simple as possible.
+
+    To accomplish this, not a single page is hard coded.  Everything from the home page, the cat pictures, to the 404 page use one of two HTML templates depending on whether it uses the terminal or nano screens.  These templates, in conjunction with their equivalent Javascript files, are designed to take in and parse a generic content input which it receives from Python Flask.  This content is stored in what I label as ".raw" files: text files that use a custom syntax to notate the location of buttons and images as well text colors.  The raw text for each page is available and can be viewed on my website with cat or nano in each page's dedicated directory.
+
+    To summarize, the standard flow from URL to HTML rendering is as follows:
+        - Flask receives a path, for example /pages/cats/cats.txt-nano.  It first determines what kind of page it is.  All of the pages with viewable content (with the exception of the home page) are text files in the file tree ending with the display type, either nano, cat, or man.  Otherwise, the page simply represents an empty terminal located at that directory.
+        - Flask pulls the relevant raw content data and based on the display type, returns a rendered HTML template.  If the display type is cat, man, or if the page has no content, the terminal.html template is used which takes in an array of "TerminalLine" objects which contain simulated commands and their outputs.  The nano.html template operates similarly, yet only takes a simple string of text as an input.
+        - In both instances, text is stored as a data-text, initially hiding everything but the terminal header.  From here, Javascript takes over, displaying characters one at a time and parsing the raw text into colors, buttons, and images.
+        - Finally, Javascript appends a form text submission box which acts as the interactive portion of the terminal.
+
+    The entire thing is incredibly dynamic.  If it's a text file, it can be displayed multiple ways simply by changing the ending of the url.  If you find this website vaguely interesting, I recommend you play around with various different urls as there are a lot of combinations that a standard user would not normally see (https://ehrencollins.org/.misc/genesis.txt-nano is one of them).
 
 {bhome,/,#00ff00}  {babout,../../about/about.txt-cat,#00ff00}  {bprojects,../projects.txt-man,#00ff00}  {bcats,../../cats/cats.txt-nano,#00ff00}

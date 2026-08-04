@@ -139,7 +139,15 @@ function type(element, ghost, text, current_color, delay, char_per_tick, index, 
                     if (ghost != null){
                         ghost.innerHTML = ghost.innerHTML.replace('{i' + data.join(',') + "}", html);
                     }
+                } else if (elementType == 'v'){
+                    var html = utils.addVideo(element, data[0], data[1], data[2]);
+                    if (ghost != null){
+                        ghost.innerHTML = ghost.innerHTML.replace('{v' + data.join(',') + "}", html);
+                    }
                 } else if (elementType == 'c'){
+                    if (ghost != null){
+                        ghost.innerHTML = ghost.innerHTML.replace('c' + data.join(',' + "}", ""));
+                    }
                     if (data[0] == current_color){
                         color = null;
                     } else {

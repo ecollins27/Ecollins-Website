@@ -202,8 +202,8 @@ export function executeCommand(command){
             }
         }
         if (r && f && rootDir){
-            window.open("https://youtu.be/dQw4w9WgXcQ?si=maR8kMgFagLHrhra", '_blank').focus();
-            commandOutput = "Nice try ;)";
+//            window.open("https://youtu.be/dQw4w9WgXcQ?si=maR8kMgFagLHrhra", '_blank').focus();
+            commandOutput = "{v640,480,/.misc/Rick-Astley-Never-Gonna-Give-You.mp4}\nNice try ;)";
         } else {
             commandOutput = "Unable to delete write-protected files";
         }
