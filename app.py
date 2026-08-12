@@ -59,6 +59,8 @@ neofetch_object = {"output": neofetch_str}
 all_pages = {}
 pretty_extensions = ['.txt']
 text_extensions = [".txt", ".css", ".html", ".js", ".raw", ".py", ".wsgi"]
+text_display_types = ["cat", "nano", "man"]
+executable_extensions = [".bin", ".sh"]
 def get_all_pages(dir_path):
     for file in os.listdir(f"{BASE_DIR}/{dir_path}"):
         if (os.path.isdir(f"{BASE_DIR}/{dir_path}/{file}")):
@@ -94,46 +96,50 @@ def get_hosting():
     lines.append(TerminalLine(input="ssh pages@al fastfetch", output=fastfetch.value, num=1, path='/pages/hosting'))
     return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path='/pages/hosting', lines=lines)
 
+def render_text_file(path, exit_code=200):
+    display_type = ""
+    for dt in text_display_types:
+        if path.endswith(f"-{dt}"):
+            display_type = dt
+            path = path[:-(len(dt) + 1)]
+    path = '/' + path
+    directory_path = '/'.join(path.split('/')[:-1])
+    page = path.split("/")[-1]
+    lookup = all_pages[path]
+    if display_type == 'cat':
+        lines = [TerminalLine(input=f"cat {page}", output=lookup.value, num=0, path=directory_path, pretty_render=lookup.pretty_render)]
+        return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=directory_path,lines=lines), exit_code
+    elif display_type == 'nano':
+        return render_template('nano.html', visits=get_visits(), file=path, content=lookup), exit_code
+    elif display_type == 'man':
+        lines = [TerminalLine(input=f"man {'.'.join(page.split('.')[:-1])}", output=lookup.value, num=0, path=directory_path,pretty_render=lookup.pretty_render)]
+        return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=directory_path,lines=lines), exit_code
+    else:
+        display_type = random.sample(['cat', 'nano', 'man'], 1)[0]
+        return render_text_file(f'.misc/404.txt-{display_type}', exit_code=404)
+
+def render_directory(path):
+    path = '/' + path
+    return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=path, lines=[]), 200
+
+def render_executable(path):
+    if path == 'usr/bin/snake':
+        return render_template('snake.html'), 200
+    return None
+
 @app.route('/<path:path>', methods=['GET'])
 def get_page(path):
-    display_type = ""
-    isFile = False
-    exit_code = 200
-    if path.endswith("-nano"):
-        display_type = "nano"
-        path = path[:-5]
-        isFile = True
-    elif path.endswith("-cat"):
-        display_type = "cat"
-        path = path[:-4]
-        isFile = True
-    elif path.endswith("-man"):
-        display_type = "man"
-        path = path[:-4]
-        isFile = True
-    if not os.path.exists(BASE_DIR + f"/static/home/{path}"):
-        print(f"{BASE_DIR}/static/pages/{path} does not exist")
+    if not os.path.exists(BASE_DIR + f"/static/home/{path}") and not os.path.exists(BASE_DIR + "/static/home/" + '/'.join(path.split('-')[:-1])):
+        print(f"File {path} does not exist")
         display_type = random.sample(['cat', 'nano', 'man'], 1)[0]
-        path = f".misc/404.txt"
-        isFile = True
-        exit_code = 404
-    path = '/' + path
-    if isFile:
-        directory_path = '/'.join(path.split('/')[:-1])
-        page = path.split("/")[-1]
-        lookup = all_pages[path]
-        if display_type == 'cat':
-            lines = [TerminalLine(input=f"cat {page}", output=lookup.value, num=0, path=directory_path, pretty_render=lookup.pretty_render)]
-            return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=directory_path, lines=lines), exit_code
-        elif display_type == 'nano':
-            return render_template('nano.html', visits=get_visits(), file=path, content=lookup), exit_code
-        elif display_type == 'man':
-            lines = [TerminalLine(input=f"man {page[:-4]}", output=lookup.value, num=0, path=directory_path, pretty_render=lookup.pretty_render)]
-            return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=directory_path, lines=lines), exit_code
-        else:
-            return
+        return render_text_file(f'.misc/404.txt-{display_type}', exit_code=404)
+    if any([path.endswith(f"-{display_type}") for display_type in text_display_types]):
+        return render_text_file(path)
+    elif any([path.endswith(extension) for extension in executable_extensions]) or os.path.isfile(BASE_DIR + f'/static/home/{path}'):
+        return render_executable(path)
     else:
-        return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=path, lines=[]), exit_code
+        return render_directory(path)
+
 
 @app.route('/', methods=['GET'])
 def get_home():
