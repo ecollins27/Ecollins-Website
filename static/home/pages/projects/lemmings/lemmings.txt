@@ -15,4 +15,4 @@
 {c#ffff00}PICTURES{c#ffff00}
         {i/static/images/lemmings1.txt,300,}
 
-{bhome,/,#00ff00}  {babout,../../about/about.txt-cat,#00ff00}  {bprojects,../projects.txt-man,#00ff00}  {bcats,../../cats/cats.txt-nano,#00ff00}
+{bhome,/,#00ff00}  {babout,../../about/about.txt?display_type=cat,#00ff00}  {bprojects,../projects.txt?display_type=man,#00ff00}  {bcats,../../cats/cats.txt?display_type=nano,#00ff00}

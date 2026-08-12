@@ -16,4 +16,4 @@
          `"Y$b._               {c#d70a53}Local IP (enp0s7){c#d70a53}: 127.0.0.1/32
              `""""             {c#d70a53}Locale{c#d70a53}: en_US.UTF-8
 
-{bhome,/,#00ff00}  {babout,../about/about.txt-cat,#00ff00}  {bprojects,../projects/projects.txt-man,#00ff00}  {bcats,../cats/cats.txt-nano,#00ff00}
+{bhome,/,#00ff00}  {babout,../about/about.txt?display_type=cat,#00ff00}  {bprojects,../projects/projects.txt?display_type=man,#00ff00}  {bcats,../cats/cats.txt?display_type=nano,#00ff00}

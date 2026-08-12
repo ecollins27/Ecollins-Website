@@ -24,4 +24,4 @@
    \ \____/\ \____//\____\/\____\\ \_\ \_\ \_\/\____/     {c#ffff00}Email{c#ffff00}:  ehren.collins@gmail.com
     \/___/  \/___/ \/____/\/____/ \/_/\/_/\/_/\/___/      {c#ffff00}Github{c#ffff00}:  https://github.com/ecollins27
 
-{babout,/pages/about/about.txt-cat,#00ff00}  {bprojects,/pages/projects/projects.txt-man,#00ff00}  {bcats,/pages/cats/cats.txt-nano,#00ff00}  {bhosting,/pages/hosting/hosting.txt-cat,#ffffff}  {bdebian,/pages/debian/debian.txt-nano,#ffffff}
+{babout,/pages/about/about.txt?display_type=cat,#00ff00}  {bprojects,/pages/projects/projects.txt?display_type=man,#00ff00}  {bcats,/pages/cats/cats.txt?display_type=nano,#00ff00}  {bhosting,/pages/hosting/hosting.txt?display_type=cat,#ffffff}  {bdebian,/pages/debian/debian.txt?display_type=nano,#ffffff}

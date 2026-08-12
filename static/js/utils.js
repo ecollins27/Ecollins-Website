@@ -1,16 +1,28 @@
 const animationLength = 1000;
-export var filePath = window.location.pathname.substring(1);
-if (filePath.endsWith("-cat") || filePath.endsWith("-man") || filePath.endsWith("-nano")){
-    filePath = filePath.split('/').slice(0, -1).join('/');
-}
 export const manifest = await getContents("/static/manifest.json");
 export const fileStructure = JSON.parse(manifest);
+export var filePath = window.location.pathname.substring(1);
+console.log(filePath);
+if (isFile(filePath)){
+    filePath = filePath.split('/').slice(0, -1).join('/');
+}
 
 window.addEventListener("pageshow", (event) => {
     if (event.persisted) {
         window.location.reload();
     }
 });
+
+export function getParams(url){
+    var params = {};
+    var paramString = url.split("?").pop();
+    var paramSplit = paramString.split('&');
+    for (let i = 0; i < paramSplit.length; i++){
+        var spl = paramSplit[i].split('=');
+        params[spl[0]] = spl[1];
+    }
+    return params;
+}
 
 export async function getContents(path){
     const response = await fetch(path);

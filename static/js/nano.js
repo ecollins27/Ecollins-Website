@@ -65,15 +65,15 @@ document.getElementById("home").addEventListener("click", function(event){
 });
 
 document.getElementById("about").addEventListener("click", function(event) {
-    window.location = "/pages/about/about.txt-cat";
+    window.location = "/pages/about/about.txt?display_type=cat";
 });
 
 document.getElementById("projects").addEventListener("click", function(event) {
-    window.location = "/pages/projects/projects.txt-man";
+    window.location = "/pages/projects/projects.txt?display_type=man";
 });
 
 document.getElementById("cats").addEventListener("click", function(event) {
-    window.location = "/pages/cats/cats.txt-nano";
+    window.location = "/pages/cats/cats.txt?display_type=nano";
 });
 
 var element = document.getElementById("nano_content")

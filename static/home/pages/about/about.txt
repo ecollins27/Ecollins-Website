@@ -10,4 +10,4 @@ Finally, I am the president of the Computer Interest Floor (CIF), a student orga
 {c#ff0000}Video Games{c#ff0000}
 I am an avid video game fan, primarily of 3rd person action games.  I love souls-born and souls-like games and have played every souls-born game (except DS2 of course).  Similarly, I enjoy story driven action games such as the God of War, Ghost of Tsushima, and Jedi games.  I recently finished my play through of Nine Sols which I greatly enjoyed.
 
-{bhome,/,#00ff00}  {bprojects,../projects/projects.txt-man,#00ff00}  {bcats,../cats/cats.txt-nano,#00ff00}
+{bhome,/,#00ff00}  {bprojects,../projects/projects.txt?display_type=man,#00ff00}  {bcats,../cats/cats.txt?display_type=nano,#00ff00}

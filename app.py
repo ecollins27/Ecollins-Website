@@ -88,7 +88,7 @@ get_all_pages("static/home")
 def crash():
     pass
 
-@app.route("/pages/hosting/hosting.txt-cat", methods=['GET'])
+@app.route("/pages/hosting/hosting.txt", methods=['GET'])
 def get_hosting():
     text = all_pages['/pages/hosting/hosting.txt']
     fastfetch = all_pages['/pages/hosting/al-fastfetch.txt']
@@ -96,12 +96,7 @@ def get_hosting():
     lines.append(TerminalLine(input="ssh pages@al fastfetch", output=fastfetch.value, num=1, path='/pages/hosting'))
     return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path='/pages/hosting', lines=lines)
 
-def render_text_file(path, exit_code=200):
-    display_type = ""
-    for dt in text_display_types:
-        if path.endswith(f"-{dt}"):
-            display_type = dt
-            path = path[:-(len(dt) + 1)]
+def render_text_file(path, display_type, exit_code=200):
     path = '/' + path
     directory_path = '/'.join(path.split('/')[:-1])
     page = path.split("/")[-1]
@@ -115,26 +110,25 @@ def render_text_file(path, exit_code=200):
         lines = [TerminalLine(input=f"man {'.'.join(page.split('.')[:-1])}", output=lookup.value, num=0, path=directory_path,pretty_render=lookup.pretty_render)]
         return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=directory_path,lines=lines), exit_code
     else:
-        display_type = random.sample(['cat', 'nano', 'man'], 1)[0]
-        return render_text_file(f'.misc/404.txt-{display_type}', exit_code=404)
+        display_type = random.sample(text_display_types, 1)[0]
+        return render_text_file('.misc/404.txt',display_type, exit_code=404)
 
 def render_directory(path):
     path = '/' + path
     return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=path, lines=[]), 200
 
 def render_executable(path):
-    if path == 'usr/bin/snake':
-        return render_template('snake.html'), 200
-    return None
+    with open(f'{BASE_DIR}/static/home/{path}', 'r') as f:
+        return render_template(f.read())
 
 @app.route('/<path:path>', methods=['GET'])
 def get_page(path):
-    if not os.path.exists(BASE_DIR + f"/static/home/{path}") and not os.path.exists(BASE_DIR + "/static/home/" + '/'.join(path.split('-')[:-1])):
+    if not os.path.exists(BASE_DIR + f"/static/home/{path}"):
         print(f"File {path} does not exist")
-        display_type = random.sample(['cat', 'nano', 'man'], 1)[0]
-        return render_text_file(f'.misc/404.txt-{display_type}', exit_code=404)
-    if any([path.endswith(f"-{display_type}") for display_type in text_display_types]):
-        return render_text_file(path)
+        display_type = random.sample(text_display_types, 1)[0]
+        return render_text_file('.misc/404.txt', display_type, exit_code=404)
+    if any([path.endswith(extension) for extension in text_extensions]):
+        return render_text_file(path, request.args.get('display_type', default='cat'))
     elif any([path.endswith(extension) for extension in executable_extensions]) or os.path.isfile(BASE_DIR + f'/static/home/{path}'):
         return render_executable(path)
     else:
@@ -154,4 +148,9 @@ if __name__ == '__main__':
     # from waitress import serve
     # serve(app,host='0.0.0.0',port=8080)
     # gunicorn -w 4 'web_printer:app' -b '0.0.0.0:8080'
+    if not os.path.exists(BASE_DIR + "/visits.txt"):
+        with open('visits.txt', 'w') as f:
+            f.write("0")
+    if os.path.exists(BASE_DIR + "/visits.lock"):
+        os.remove(BASE_DIR + "/visits.lock")
     app.run(host='0.0.0.0', port=5000,debug=False)

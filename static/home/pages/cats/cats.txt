@@ -1,8 +1,8 @@
 {c#ff00ff}Kitties!{c#ff00ff}
-I currently have 2 black cats, {bEdgar and Alice,edgar-alice/edgar-alice.txt-nano,#ffff00}.
+I currently have 2 black cats, {bEdgar and Alice,edgar-alice/edgar-alice.txt?display_type=nano,#ffff00}.
 
 {iedgar-alice/edgar4.jpg,300,Edgar}      {iedgar-alice/alice2.jpg,300,Alice}
 
-Growing up, I also had 2 cats, {bHenry and Lola,henry-lola/henry-lola.txt-nano,#ffff00}
+Growing up, I also had 2 cats, {bHenry and Lola,henry-lola/henry-lola.txt?display_type=nano,#ffff00}
 
 {ihenry-lola/henry1.jpg,300,Henry}      {ihenry-lola/lola5.jpg,300,Lola}

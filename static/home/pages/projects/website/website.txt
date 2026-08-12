@@ -41,4 +41,4 @@
 
     The entire thing is incredibly dynamic.  If it's a text file, it can be displayed multiple ways simply by changing the ending of the url.  If you find this website vaguely interesting, I recommend you play around with various different urls as there are a lot of combinations that a standard user would not normally see (https://ehrencollins.org/.misc/genesis.txt-nano is one of them).
 
-{bhome,/,#00ff00}  {babout,../../about/about.txt-cat,#00ff00}  {bprojects,../projects.txt-man,#00ff00}  {bcats,../../cats/cats.txt-nano,#00ff00}
+{bhome,/,#00ff00}  {babout,../../about/about.txt?display_type=cat,#00ff00}  {bprojects,../projects.txt?display_type=man,#00ff00}  {bcats,../../cats/cats.txt?display_type=nano,#00ff00}

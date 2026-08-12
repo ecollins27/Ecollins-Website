@@ -1,20 +1,21 @@
 import * as utils from "./utils.js"
 import * as commands from "./commands.js"
 
-function addButton(parentElement, content, path, color){
-    var html = "<button id=\"" + content + "\" type=\"button\" style=\"color:" + color + ";\">" + content + "</button>";
+function addButton(parentElement, content, path, color, num){
+    var html = "<button id=\"" + content + "_" + num + "\" type=\"button\" style=\"color:" + color + ";\">" + content + "</button>";
     parentElement.insertAdjacentHTML("beforeend", html);
-    var buttonElement = document.getElementById(content);
+    var buttonElement = document.getElementById(content + "_" + num);
     if (path.startsWith("http")){
         buttonElement.addEventListener("click", function(event){
             window.open(path, '_blank').focus();
         });
     } else {
-        var displayType = "";
+        var params = utils.getParams(path);
+        var displayType = Object.hasOwn(params, "display_type")? params["display_type"]:"";
+        console.log(path);
+        console.log(params);
         var directoryPath = path;
         if (path != "" && path != "/"){
-            displayType = path.split("/").pop().split("-").pop();
-            path = path.split("-").slice(0,-1).join("-");
             directoryPath = path.split("/").slice(0, -1).join("/");
         }
         buttonElement.addEventListener("click", function(event){
@@ -22,10 +23,10 @@ function addButton(parentElement, content, path, color){
             if (displayType == 'cat' || displayType == 'man' || path == "home" || displayType == "") {
                 text = "cd " + utils.getRelativePath(directoryPath);
             } else {
-                text = "nano " + utils.getRelativePath(path);
+                text = "nano " + utils.getRelativePath(path.split("?")[0]);
             }
             var [delay, char_per_tick] = utils.calculateDelays(text.length);
-            commands.setDefaultDisplayType(displayType);
+            commands.setDefaultFileDisplay(path.split('/').pop());
             fillTextBox(commands.terminal_input, text, delay, char_per_tick, 0);
         });
     }
@@ -42,39 +43,6 @@ function fillTextBox(element, text, delay, char_per_tick, index){
         element.dispatchEvent(new Event("input", {bubbles: true}));
     }
     setTimeout(fillTextBox, delay, element, text, delay, char_per_tick, index);
-}
-
-function parsePath(path){
-    var valid = true;
-    if (path[0] == "/"){
-        path = path.substring(1)
-    } else {
-        path = "/" + filePath + "/" + path;
-    }
-    var pathSplit = path.split("/")
-    var stack = [];
-    for (let i = 0; i < pathSplit.length; i++){
-        if (pathSplit[i] == "." || pathSplit[i] == ""){
-            continue;
-        } else if (pathSplit[i] == ".."){
-            if (stack.length > 0){
-                stack.pop();
-            }
-        } else {
-            stack.push(pathSplit[i]);
-        }
-    }
-    var absolutePath = ""
-    var fileSystem = fileStructure;
-    for (let i = 0; i < stack.length; i++){
-        fileSystem = fileSystem[stack[i]];
-        absolutePath += "/" + stack[i];
-        if (fileSystem == null){
-            valid = false;
-            break;
-        }
-    }
-    return [valid, absolutePath.length == 0? "/":absolutePath];
 }
 
 function onComplete(){
@@ -130,7 +98,7 @@ function type(element, ghost, text, current_color, delay, char_per_tick, index, 
                 var elementType = text[index + 1];
                 index = close;
                 if (elementType == 'b'){
-                    var html = addButton(element, data[0], data[1], data[2]);
+                    var html = addButton(element, data[0], data[1], data[2], num);
                     if (ghost != null){
                         ghost.innerHTML = ghost.innerHTML.replace('{b' + data.join(',') + "}", html);
                     }

@@ -3,11 +3,12 @@ import * as utils from "./utils.js"
 export var terminal_input = document.getElementById("terminal_input_0");
 export const terminal_form = document.getElementById("terminal_form");
 var terminalNum = 0;
-var defaultDisplayType = "";
-var text_extensions = [".txt", ".css", ".html", ".js", ".raw", ".py", ".wsgi"];
+var defaultFileDisplay = "";
+var text_extensions = [".txt", ".css", ".html", ".js", ".raw", ".py", ".wsgi", ".sh"];
+var executable_extensions = [".bin", ".sh"]
 
-export function setDefaultDisplayType(dt){
-    defaultDisplayType = dt;
+export function setDefaultFileDisplay(dt){
+    defaultFileDisplay = dt;
 }
 
 function executeCd(commandSplit){
@@ -17,16 +18,16 @@ function executeCd(commandSplit){
     if (!utils.isValid(absolutePath) || utils.isFile(absolutePath)){
         commandOutput = "Directory /" + absolutePath + " does not exist";
     } else {
-        var displayType = defaultDisplayType;
-        defaultDisplayType = "";
+        var fileDisplay = defaultFileDisplay;
+        defaultFileDisplay = "";
         if (absolutePath == ""){
             window.location = "/";
             return [commandOutput, path, true];
         } else {
-            if (displayType == ""){
+            if (fileDisplay == ""){
                 window.location = '/' + absolutePath;
             } else {
-                window.location = '/' + absolutePath + "/" + absolutePath.split('/').pop() + ".txt-" + displayType;
+                window.location = '/' + absolutePath + "/" + fileDisplay;
             }
             return [commandOutput, path, true];
         }
@@ -108,7 +109,7 @@ function executeNano(commandSplit){
             return ["File /" + absolutePath + " is not a text file", path, false];
         }
         var directory = absolutePath.split('/').pop();
-        window.location = "/" + absolutePath + "-nano";
+        window.location = "/" + absolutePath + "?display_type=nano";
         return [commandOutput, path, true];
     }
     return [commandOutput, path, false];
@@ -207,7 +208,25 @@ export function executeCommand(command){
             commandOutput = "Unable to delete write-protected files";
         }
     } else {
-        commandOutput = commandSplit[0] + ": command not found";
+        var absolutePath = utils.getAbsolutePath(command);
+        console.log(absolutePath);
+        if (utils.isValid(absolutePath) && utils.isFile(absolutePath)){
+            var isExecutable = absolutePath.split("/").pop().indexOf(".") == -1;
+            for (let i = 0; i < executable_extensions.length; i++) {
+                if (absolutePath.endsWith(executable_extensions[i])){
+                    isExecutable = true;
+                    break;
+                }
+            }
+            if (!isExecutable){
+                commandOutput = "File /" + absolutePath + " is not executable";
+            } else {
+                window.location = "/" + absolutePath;
+                return;
+            }
+        } else {
+            commandOutput = commandSplit[0] + ": command not found";
+        }
     }
     terminalNum++;
     terminal_form.insertAdjacentHTML("beforeend", getNextHTML(commandOutput, numLines, path));
