@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="/static/home/.misc/favicon.svg" type="image/x-icon" />
 </head>
 <style>
     #content {
@@ -16,8 +17,9 @@
     }
 </style>
 <body>
-<div id="content" tabindex="0">hello</div>
+<div id="content" tabindex="0"></div>
+<button id="home" type="button" style="color:#00ff00;">Home</button>
 </body>
 <script src="{{ url_for('static', filename='js/utils.js') }}" type="module"></script>
-<script src="{{ url_for('static', filename='js/snake.js') }}"></script>
+<script src="{{ url_for('static', filename='js/' + js_file) }}"></script>
 </html>

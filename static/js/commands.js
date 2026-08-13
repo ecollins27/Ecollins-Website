@@ -5,7 +5,6 @@ export const terminal_form = document.getElementById("terminal_form");
 var terminalNum = 0;
 var defaultFileDisplay = "";
 var text_extensions = [".txt", ".css", ".html", ".js", ".raw", ".py", ".wsgi", ".sh"];
-var executable_extensions = [".bin", ".sh"]
 
 export function setDefaultFileDisplay(dt){
     defaultFileDisplay = dt;
@@ -65,15 +64,18 @@ function executeLs(commandSplit){
             return ["directory " + fileSplit[i] + " does not exist", path, false];
         }
     }
-    console.log(fileSystem);
     commandOutput = "";
     for (const [key, value] of Object.entries(fileSystem)){
         if (!utils.isFile(absolutePath + "/" + key)){
             commandOutput += "{c#0398fc}";
+        } else if (utils.isExecutable(absolutePath + "/" + key)){
+            commandOutput += "{c#00ff00}";
         }
         commandOutput += key + "  ";
         if (!utils.isFile(absolutePath + "/" + key)){
             commandOutput += "{c#0398fc}";
+        } else if (utils.isExecutable(absolutePath + "/" + key)){
+            commandOutput += "{c#00ff00}";
         }
     }
     return [commandOutput, path, false];
@@ -209,16 +211,8 @@ export function executeCommand(command){
         }
     } else {
         var absolutePath = utils.getAbsolutePath(command);
-        console.log(absolutePath);
         if (utils.isValid(absolutePath) && utils.isFile(absolutePath)){
-            var isExecutable = absolutePath.split("/").pop().indexOf(".") == -1;
-            for (let i = 0; i < executable_extensions.length; i++) {
-                if (absolutePath.endsWith(executable_extensions[i])){
-                    isExecutable = true;
-                    break;
-                }
-            }
-            if (!isExecutable){
+            if (!utils.isExecutable(absolutePath)){
                 commandOutput = "File /" + absolutePath + " is not executable";
             } else {
                 window.location = "/" + absolutePath;

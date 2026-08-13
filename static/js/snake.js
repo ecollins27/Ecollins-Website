@@ -74,7 +74,6 @@ element.addEventListener("keydown", function(event) {
         new_dir = [-1, 0];
     }
     if (head[0] + new_dir[0] >= 0 && head[0] + new_dir[0] < size && head[1] + new_dir[1] >= 0 && head[1] + new_dir[1] < size && board[head[0] + new_dir[0]][head[1] + new_dir[1]] <= 1){
-        console.log("here");
         return;
     }
     var startGame = current_dir[0] == 0 && current_dir[1] == 0;
@@ -83,6 +82,9 @@ element.addEventListener("keydown", function(event) {
     if (startGame){
         gameTick();
     }
+});
+document.getElementById("home").addEventListener("click", function(event){
+    window.location = "/";
 });
 element.focus();
 displayBoard();

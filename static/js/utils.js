@@ -2,7 +2,6 @@ const animationLength = 1000;
 export const manifest = await getContents("/static/manifest.json");
 export const fileStructure = JSON.parse(manifest);
 export var filePath = window.location.pathname.substring(1);
-console.log(filePath);
 if (isFile(filePath)){
     filePath = filePath.split('/').slice(0, -1).join('/');
 }
@@ -12,6 +11,8 @@ window.addEventListener("pageshow", (event) => {
         window.location.reload();
     }
 });
+
+var executable_extensions = [".bin", ".sh"]
 
 export function getParams(url){
     var params = {};
@@ -89,6 +90,15 @@ export function isFile(absolutePath){
         }
     }
     return Object.keys(fileSystem).length == 0;
+}
+
+export function isExecutable(absolutePath){
+    for (let i = 0; i < executable_extensions.length; i++) {
+        if (absolutePath.endsWith(executable_extensions[i])){
+            return true;
+        }
+    }
+    return absolutePath.split("/").pop().indexOf(".") == -1;
 }
 
 export function getAbsolutePath(relative){

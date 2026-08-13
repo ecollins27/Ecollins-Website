@@ -53,9 +53,6 @@ def parseFile(filename: str):
     with open(filename, 'r') as f:
         return f.read()
 
-neofetch_str = parseFile("static/home/home.txt")
-neofetch_object = {"output": neofetch_str}
-
 all_pages = {}
 pretty_extensions = ['.txt']
 text_extensions = [".txt", ".css", ".html", ".js", ".raw", ".py", ".wsgi"]
@@ -118,8 +115,7 @@ def render_directory(path):
     return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=path, lines=[]), 200
 
 def render_executable(path):
-    with open(f'{BASE_DIR}/static/home/{path}', 'r') as f:
-        return render_template(f.read())
+    return render_template('executable.html', js_file=f"{path.split('/')[-1]}.js")
 
 @app.route('/<path:path>', methods=['GET'])
 def get_page(path):
@@ -141,13 +137,9 @@ def get_home():
     lines = [TerminalLine(input="neofetch", output=output, num=0, path='/')]
     increment_counter()
     return render_template('terminal.html', visits=get_visits(), path='/', all_pages=all_pages, lines=lines), 200
-# stockholm
 
-
+# Favicon generated with https://text-to-svg.com/
 if __name__ == '__main__':
-    # from waitress import serve
-    # serve(app,host='0.0.0.0',port=8080)
-    # gunicorn -w 4 'web_printer:app' -b '0.0.0.0:8080'
     if not os.path.exists(BASE_DIR + "/visits.txt"):
         with open('visits.txt', 'w') as f:
             f.write("0")

@@ -12,8 +12,6 @@ function addButton(parentElement, content, path, color, num){
     } else {
         var params = utils.getParams(path);
         var displayType = Object.hasOwn(params, "display_type")? params["display_type"]:"";
-        console.log(path);
-        console.log(params);
         var directoryPath = path;
         if (path != "" && path != "/"){
             directoryPath = path.split("/").slice(0, -1).join("/");

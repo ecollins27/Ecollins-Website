@@ -219,6 +219,9 @@ element.addEventListener("keydown", function(event) {
         displayBoard();
     }
 });
+document.getElementById("home").addEventListener("click", function(event){
+    window.location = "/";
+});
 element.focus();
 addBlock(Math.floor(7 * Math.random()) + 1);
 gameTick(500);
