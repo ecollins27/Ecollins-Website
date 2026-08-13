@@ -1,0 +1,18 @@
+        _,met$$$$$gg.          {c#d70a53}ecollins@ken.ehrencollins.org{c#d70a53}
+     ,g$$$$$$$$$$$$$$$P.       ------------
+   ,g$$P""       """Y$$.".     {c#d70a53}OS{c#d70a53}: Debian GNU/Linux 13 (trixie) x86_64
+  ,$$P'              `$$$.     {c#d70a53}Host{c#d70a53}: OptiPlex 9020 (01)
+',$$P       ,ggs.     `$$b:    {c#d70a53}Kernel{c#d70a53}: Linux 6.12.101+deb13-amd64
+`d$$'     ,$P"'   {c#d70a53}.{c#d70a53}    $$$     {c#d70a53}Uptime{c#d70a53}: 15 hours, 14 mins
+ $$P      d$'     {c#d70a53},{c#d70a53}    $$P     {c#d70a53}Packages{c#d70a53}: 383 (dpkg)
+ $$:      $$.   {c#d70a53}-{c#d70a53}    ,d$$'     {c#d70a53}Shell{c#d70a53}: bash 5.2.37
+ $$;      Y$b._   _,d$P'       {c#d70a53}Terminal{c#d70a53}: /dev/pts/0
+ Y$$.    {c#d70a53}`.{c#d70a53}`"Y$$$$P"'          {c#d70a53}CPU{c#d70a53}: Intel(R) Core(TM) i5-4570S (4) @ 3.60 GHz
+ `$$b      {c#d70a53}"-.__{c#d70a53}               {c#d70a53}GPU{c#d70a53}: Intel Xeon E3-1200 v3/4th Gen Core Processor Integrated Graphics Controller @ 1.15 GHz [Integrated]
+   `Y$$.                       {c#d70a53}Memory{c#d70a53}: 497.68 MiB / 7.67 GiB (6%)
+     `$$b.                     {c#d70a53}Swap{c#d70a53}: 0 B / 7.91 GiB (0%)
+       `Y$$b.                  {c#d70a53}Disk{c#d70a53} (/): 1.43 GiB / 225.89 GiB (1%) - ext4
+         `"Y$b._               {c#d70a53}Local IP (eno1){c#d70a53}: 192.168.1.56/24
+             `""""             {c#d70a53}Locale{c#d70a53}: en_US.UTF-8
+
+{bhome,/,#00ff00}  {babout,../about/about.txt?display_type=cat,#00ff00}  {bprojects,../projects/projects.txt?display_type=man,#00ff00}  {bcats,../cats/cats.txt?display_type=nano,#00ff00}  {bprevious hosts,previous-hosts/previous-hosts.txt?display_type=nano,#ffffff}

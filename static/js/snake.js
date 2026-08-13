@@ -79,6 +79,7 @@ element.addEventListener("keydown", function(event) {
     var startGame = current_dir[0] == 0 && current_dir[1] == 0;
     current_dir[0] = new_dir[0];
     current_dir[1] = new_dir[1];
+    displayBoard();
     if (startGame){
         gameTick();
     }

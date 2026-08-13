@@ -88,9 +88,9 @@ def crash():
 @app.route("/pages/hosting/hosting.txt", methods=['GET'])
 def get_hosting():
     text = all_pages['/pages/hosting/hosting.txt']
-    fastfetch = all_pages['/pages/hosting/al-fastfetch.txt']
+    fastfetch = all_pages['/pages/hosting/fastfetch.txt']
     lines = [TerminalLine(input="cat hosting.txt", output=text.value, num=0, path='/pages/hosting')]
-    lines.append(TerminalLine(input="ssh pages@al fastfetch", output=fastfetch.value, num=1, path='/pages/hosting'))
+    lines.append(TerminalLine(input="ssh root@ken fastfetch", output=fastfetch.value, num=1, path='/pages/hosting'))
     return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path='/pages/hosting', lines=lines)
 
 def render_text_file(path, display_type, exit_code=200):
@@ -138,11 +138,6 @@ def get_home():
     increment_counter()
     return render_template('terminal.html', visits=get_visits(), path='/', all_pages=all_pages, lines=lines), 200
 
-# Favicon generated with https://text-to-svg.com/
+# Favicon generated with https://text-to-svg.com/ and https://boxy-svg.com/
 if __name__ == '__main__':
-    if not os.path.exists(BASE_DIR + "/visits.txt"):
-        with open('visits.txt', 'w') as f:
-            f.write("0")
-    if os.path.exists(BASE_DIR + "/visits.lock"):
-        os.remove(BASE_DIR + "/visits.lock")
     app.run(host='0.0.0.0', port=5000,debug=False)

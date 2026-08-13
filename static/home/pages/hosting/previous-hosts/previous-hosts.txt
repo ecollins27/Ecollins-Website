@@ -1,0 +1,6 @@
+{c#ff00ff}Welcome to the graveyard of webservers past!{c#ff00ff}
+
+This is {c#ffff00}al{c#ffff00}, a nearly 20 year old HP Pavilion and the first of the webservers.  Sporting 2 cores and whopping 2GB of DDR2 RAM, al was slightly underpowered yet made up for it in spirit.
+
+Unfortunately, al was prone to kernel panics (which I believe were related to a faulty motherboard) and was simply too unreliable to be a webserver and too cost and time inefficient to repair.
+{ial1.jpg,300,}  {ial2.jpg,300,}

@@ -1,6 +1,6 @@
 
 Ever wonder what this website is hosted on?  Nothing but the greatest of computing technology!
 
-Meet al, an HP Pavilion I bought off my neighbor for $40 along side a 2TB external SSD and some floppy disks.  It originally ran Windows Vista, has a whopping 2 cores running at 2.7 GHz, and 2 glorious gigabytes of DDR2 RAM.  God himself couldn't ask for a better server!
+Meet ken, a small form factor Dell Optiplex 9020 I bought off of Ebay.  Originally designed for Windows 8, ken has a whopping 4 cores running at 3.6 GHz, and 8 glorious gigabytes of DDR3 RAM.  God himself couldn't ask for a better server!
 
-{ial1.jpg,500,}      {ial2.jpg,500,}
+{iken.jpg,500,}
