@@ -25,7 +25,3 @@
     \/___/  \/___/ \/____/\/____/ \/_/\/_/\/_/\/___/      {c#ffff00}Github{c#ffff00}:  https://github.com/ecollins27
 
 {babout,/pages/about/about.txt?display_type=cat,#00ff00}  {bprojects,/pages/projects/projects.txt?display_type=man,#00ff00}  {bcats,/pages/cats/cats.txt?display_type=nano,#00ff00}  {bhosting,/pages/hosting/hosting.txt?display_type=cat,#ffffff}  {bdebian,/pages/debian/debian.txt?display_type=nano,#ffffff}
-
-    {c#ffff00}</erc>{c#ffff00}
-
-I need spacing
