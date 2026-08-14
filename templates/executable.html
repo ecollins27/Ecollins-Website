@@ -20,6 +20,9 @@
 <div id="content" tabindex="0"></div>
 <button id="home" type="button" style="color:#00ff00;">Home</button>
 </body>
+<script>
+    const highScores = {{ high_scores }};
+</script>
 <script src="{{ url_for('static', filename='js/utils.js') }}" type="module"></script>
 <script src="{{ url_for('static', filename='js/' + js_file) }}"></script>
 </html>

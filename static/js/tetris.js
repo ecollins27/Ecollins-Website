@@ -47,7 +47,7 @@ const block_shapes = [
     ]
 
 function displayBoard(){
-    var output = "*" + "--".repeat(10) + "*<br>";
+    var output = "*" + "--".repeat(10) + "*        <span style=\"color:#ffff00;\">HIGH SCORES</span><br>";
     for (let i = 4; i < 24; i++){
         output += "|";
         for (let j = 0; j < 10; j++){
@@ -60,7 +60,11 @@ function displayBoard(){
         if (i == 23){
             output += "|        Level: " + (level + 1) + "<br>";
         } else {
-            output += "|<br>"
+            output += "|";
+            if (i - 4 < highScores.length){
+                output += "        " + highScores[i - 4];
+            }
+            output += "<br>";
         }
     }
     output += "*" + "--".repeat(10) + "*        Score: " + score;
@@ -142,7 +146,9 @@ function finalize(){
         for (let j = 0; j < 10; j++){
             if (board[i][j] < 0){
                 if (i < 4){
-                    window.location = window.location.pathname;
+                    fetch("/api/high-score?game=tetris&score=" + score).then(response => {
+                        window.location.reload();
+                    });
                     return;
                 }
                 board[i][j] *= -1;

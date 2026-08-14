@@ -81,6 +81,30 @@ with open(f"{BASE_DIR}/static/manifest.json", 'w') as f:
     f.write(generateManifest("static/home"))
 get_all_pages("static/home")
 
+@app.route("/api/high-score", methods=['GET'])
+def update_high_score():
+    # try:
+    game = request.args.get("game")
+    score = int(request.args.get("score"))
+    lock = f"{BASE_DIR}/high_scores/{game}.lock"
+    file = f"{BASE_DIR}/high_scores/{game}.txt"
+    while os.path.exists(lock):
+        pass
+    with open(lock, 'w') as f:
+        f.write("lock")
+    with open(file, 'r') as f:
+        top_10 = [int(s) for s in f.read().split('\n')]
+    top_10.append(score)
+    top_10.sort()
+    top_10.reverse()
+    with open(file, 'w') as f:
+        f.write('\n'.join([ str(s) for s in top_10[:10]]))
+    os.remove(lock)
+    return "success", 200
+    # except Exception as e:
+    #     return f"error: {e}", 404
+
+
 @app.route("/crash", methods=['GET'])
 def crash():
     pass
@@ -115,7 +139,13 @@ def render_directory(path):
     return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=path, lines=[]), 200
 
 def render_executable(path):
-    return render_template('executable.html', js_file=f"{path.split('/')[-1]}.js")
+    name = path.split('/')[-1]
+    if os.path.exists(f"{BASE_DIR}/high_scores/{name}.txt"):
+        with open(f"{BASE_DIR}/high_scores/{name}.txt", 'r') as f:
+            high_scores = [int(s) for s in f.read().split('\n')]
+    else:
+        high_scores = []
+    return render_template('executable.html', js_file=f"{name}.js", high_scores=high_scores)
 
 @app.route('/<path:path>', methods=['GET'])
 def get_page(path):

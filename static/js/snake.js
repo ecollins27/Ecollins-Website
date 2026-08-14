@@ -14,7 +14,7 @@ for (let i = 0; i < size; i++){
 board[head[0]][head[1]] = 0;
 
 function displayBoard(){
-    var output = "*" + "--".repeat(size) + "*<br>";
+    var output = "*" + "--".repeat(size) + "*        <span style=\"color:#ffff00;\">HIGH SCORES</span><br>";
     for (let i = 0; i < size; i++){
         output += "|";
         for (let j = 0; j < size; j++){
@@ -28,7 +28,11 @@ function displayBoard(){
                 output += "  ";
             }
         }
-        output += "|<br>";
+        output += "|";
+        if (i < highScores.length){
+            output += "        " + highScores[i];
+        }
+        output += "<br>";
     }
     output += "*" + "--".repeat(size) + "*        Score: " + length;
     element.innerHTML = output;
@@ -45,7 +49,9 @@ function gameTick(){
     head[0] += current_dir[0];
     head[1] += current_dir[1];
     if (head[0] < 0 || head[0] >= size || head[1] < 0 || head[1] >= size){
-        window.location = window.location.pathname;
+        fetch("/api/high-score?game=snake&score=" + length).then(response => {
+            window.location.reload();
+        });
         return;
     }
     for (let i = 0; i < size; i++){
@@ -54,7 +60,9 @@ function gameTick(){
         }
     }
     if (board[head[0]][head[1]] <= length){
-        window.location = window.location.pathname
+        fetch("/api/high-score?game=snake&score=" + length).then(response => {
+            window.location.reload();
+        });
         return;
     }
     board[head[0]][head[1]] = 0;
