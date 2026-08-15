@@ -1,3 +1,4 @@
 static/manifest.json
 visits.txt
 visits.lock
+high_scores/*.txt

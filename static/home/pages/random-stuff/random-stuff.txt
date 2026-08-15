@@ -1,0 +1,12 @@
+{c#00ffff}RANDOM STUFF{c#00ffff}
+
+    This is the home of all things random!
+
+    Curious what this website is hosted on?  Visit my {bhosting,hosting/hosting.txt?display_type=cat,#ffffff} page.
+
+    Want to hear me glaze {bDebian,debian/debian.txt?display_type=nano,#d70a53}?
+
+{c#ffff00}Games{c#ffff00}
+
+    Want to play some mildly janky ASCII browser games?  I've got {bSnake,games/snake,#ffffff} and {bTetris,games/tetris,#ffffff}.
+    See if you can beat the high scores!

@@ -2,7 +2,7 @@ const animationLength = 1000;
 export const manifest = await getContents("/static/manifest.json");
 export const fileStructure = JSON.parse(manifest);
 export var filePath = window.location.pathname.substring(1);
-if (isFile(filePath)){
+if (isValid(filePath) && isFile(filePath)){
     filePath = filePath.split('/').slice(0, -1).join('/');
 }
 

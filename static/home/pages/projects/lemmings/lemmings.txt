@@ -10,9 +10,9 @@
         A recreation of the 1991 game "Lemmings" with some creative liberties.
 
 {c#ffff00}INSPIRATION{c#ffff00}
-        One of my first ever coding projects was an attempted recreating of Lemmings!  Of course, having maybe 3 months of experience in Java, the project was a mess: slow, confusing, and undocumented.  However, I loved the idea and wanted to come back to it, birthing this project 3 years later!
+        One of my first ever coding projects was an attempted recreation of Lemmings!  Of course, having maybe 3 months of experience in Java, the project was a mess: slow, confusing, and undocumented.  However, I loved the idea and wanted to come back to it, birthing this project 3 years later!
 
 {c#ffff00}PICTURES{c#ffff00}
-        {i/static/images/lemmings1.txt,300,}
+        {ilemmings2.png,300,}    {ilemmings1.png,300,}    {ilemmings3.png,300,}
 
 {bhome,/,#00ff00}  {babout,../../about/about.txt?display_type=cat,#00ff00}  {bprojects,../projects.txt?display_type=man,#00ff00}  {bcats,../../cats/cats.txt?display_type=nano,#00ff00}
