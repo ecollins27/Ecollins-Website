@@ -144,7 +144,11 @@ def render_executable(path):
     name = path.split('/')[-1]
     if os.path.exists(f"{BASE_DIR}/high_scores/{name}.txt"):
         with open(f"{BASE_DIR}/high_scores/{name}.txt", 'r') as f:
-            high_scores = [int(s) for s in f.read().split('\n')]
+            split = f.read().split('\n')
+        high_scores = []
+        for s in split:
+            if s:
+                high_scores.append(int(s))
     else:
         high_scores = []
     return render_template('executable.html', js_file=f"{name}.js", high_scores=high_scores)
