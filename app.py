@@ -93,7 +93,13 @@ def update_high_score():
         with open(lock, 'w') as f:
             f.write("lock")
         with open(file, 'r') as f:
-            top_10 = [int(s) for s in f.read().split('\n')]
+            high_scores_str = f.read().split('\n')
+        top_10 = []
+        index = 0
+        while len(top_10) < 10 and index < len(high_scores_str):
+            if high_scores_str[index]:
+                top_10.append(int(high_scores_str[index]))
+            index += 1
         top_10.append(score)
         top_10.sort()
         top_10.reverse()
@@ -112,7 +118,7 @@ def crash():
 @app.route("/pages/random-stuff/hosting/hosting.txt", methods=['GET'])
 def get_hosting():
     if not request.args.get("display_type") == 'cat':
-        return get_page('/pages/random-stuff/hosting/hosting.txt')
+        return get_page('pages/random-stuff/hosting/hosting.txt')
     text = all_pages['/pages/random-stuff/hosting/hosting.txt']
     fastfetch = all_pages['/pages/random-stuff/hosting/fastfetch.txt']
     lines = [TerminalLine(input="cat hosting.txt", output=text.value, num=0, path='/pages/random-stuff/hosting')]
