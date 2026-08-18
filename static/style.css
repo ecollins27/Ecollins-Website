@@ -4,13 +4,6 @@ body {
     font-size: 14pt;
 }
 
-button {
-    font-family: terminus;
-    background-color: #202020;
-    font-size: 14pt;
-    color: #00ff00;
-}
-
 input {
     font-family: terminus;
     background-color: #202020;
@@ -21,6 +14,37 @@ input {
     outline: none;
     autofocus: true;
     visibility: hidden;
+}
+
+.button {
+    font-family: terminus;
+    cursor: pointer;
+    font-size: 14pt;
+    color: #00ff00;
+    width: fit-content;
+    border: 1px solid #dddddd;
+}
+
+.button:hover {
+    border-color: #999999;
+}
+
+.list-header {
+    font-family: terminus;
+    font-size: 14pt;
+    color: #00ff00;
+    width: fit-content;
+    border: 1px solid #dddddd;
+    cursor: default;
+}
+
+.list-option {
+    font-family: terminus;
+    font-size: 14pt;
+    color: #ffffff;
+    width: fit-content;
+    visibility: hidden;
+    position: absolute;
 }
 
 .image_wrapper {

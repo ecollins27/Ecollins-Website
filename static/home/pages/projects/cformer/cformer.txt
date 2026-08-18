@@ -21,4 +21,9 @@
         The project has gone through a number of redesigns.  Today, each neural network is treated as a doubly linked-list that forward and backward propagates to its neighbors.  Originally, the complex gradient calculations required in back-propagation were hard coded into each layer, making larger more complicated layers difficult to implement.
         Today, the project utilizes and auto-differentiation calculator I also wrote myself.  The calculator tracks matrix calculations via a wrapper class called MatrixNode and constructs the sequence of matrix operations required to calculate the gradient from the output to each input.  It was quite task to implement but has been a godsend!
 
-{bhome,/,#00ff00}  {babout,../../about/about.txt?display_type=cat,#00ff00}  {bprojects,../projects.txt?display_type=man,#00ff00}  {bcats,../../cats/cats.txt?display_type=nano,#00ff00}
+{bhome,/,#00ff00}  {habout,about,/pages/about/about.txt?display_type=cat,#00ff00}  {hprojects,projects,/pages/projects/projects.txt?display_type=man,#00ff00}  {bcats!,/pages/cats/cats.txt?display_type=nano,#00ff00}  {hrandom stuff,random-stuff,/pages/random-stuff/random-stuff.txt?display_type=nano,#ffffff}
+{oabout,qualifications,/pages/about/qualifications/qualifications.txt?display_type=cat,#ffffff}  {oprojects,crender,/pages/projects/crender.txt?display_type=man,#ffffff}  {orandom-stuff,hosting,/pages/random-stuff/hosting/hosting.txt?display_type=cat,#ffffff}
+{oabout,hobbies,/pages/about/hobbies/hobbies.txt?display=nano,#ffffff}  {oprojects,cformer,/pages/projects/cformer/cformer.txt?display_type=man,#ffffff}  {orandom-stuff,debian,/pages/random-stuff/debian/debian.txt?display_type=nano,#ffffff}
+{oabout,contact,/pages/about/contact/contact.txt?display=cat,#ffffff}  {oprojects,website,/pages/projects/website/website.txt?display_type=man,#ffffff}  {orandom-stuff,games,/pages/random-stuff/games/games.txt?display_type=nano,#ffffff}
+{oprojects,lemmings,/pages/projects/lemmings/lemmings.txt?display_type=man,#ffffff}
+{oprojects,aljbra,/pages/projects/aljbra/aljbra.txt?display_type=man,#ffffff}

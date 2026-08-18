@@ -5,7 +5,9 @@ from dataclasses import dataclass
 import math
 import random
 
-from flask import Flask, request, redirect, url_for, render_template
+from flask import Flask, request, redirect, url_for, render_template, send_file
+from werkzeug.utils import send_from_directory
+
 app = Flask(__name__)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -81,6 +83,11 @@ with open(f"{BASE_DIR}/static/manifest.json", 'w') as f:
     f.write(generateManifest("static/home"))
 get_all_pages("static/home")
 
+@app.route("/api/download/<path:path>")
+def download_file(path):
+    full_path = f'{BASE_DIR}/static/home/{path}';
+    return send_file(full_path, as_attachment=True)
+
 @app.route("/api/high-score", methods=['GET'])
 def update_high_score():
     try:
@@ -138,6 +145,8 @@ def render_text_file(path, display_type, exit_code=200):
     elif display_type == 'man':
         lines = [TerminalLine(input=f"man {'.'.join(page.split('.')[:-1])}", output=lookup.value, num=0, path=directory_path,pretty_render=lookup.pretty_render)]
         return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=directory_path,lines=lines), exit_code
+    elif display_type == 'tilde':
+        return render_template('tilde.html', visits=get_visits(), file=path, content=lookup), exit_code
     else:
         display_type = random.sample(text_display_types, 1)[0]
         return render_text_file('.misc/404.txt',display_type, exit_code=404)
@@ -182,3 +191,7 @@ def get_home():
 # Favicon generated with https://text-to-svg.com/ and https://boxy-svg.com/
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000,debug=False)
+
+# propagate about pages
+# rewrite debian page
+# swap out man for tilde

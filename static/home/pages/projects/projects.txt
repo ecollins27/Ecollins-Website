@@ -19,4 +19,7 @@ OVERVIEW
 {bALJBRA,aljbra/aljbra.txt?display_type=man,#ffffff}
         A CAS (Computer Algebraic System) written from scratch in Java capable of evaluating and simplifying expressions algebraicly.
 
-{bhome,/,#00ff00}  {babout,../about/about.txt?display_type=cat,#00ff00}  {bcats,../cats/cats.txt?display_type=nano,#00ff00}
+{bhome,/,#00ff00}  {habout,about,/pages/about/about.txt?display_type=cat,#00ff00}  {bcats!,/pages/cats/cats.txt?display_type=nano,#00ff00}  {hrandom stuff,random-stuff,/pages/random-stuff/random-stuff.txt?display_type=nano,#ffffff}
+{oabout,qualifications,/pages/about/qualifications/qualifications.txt?display_type=cat,#ffffff}  {orandom-stuff,hosting,/pages/random-stuff/hosting/hosting.txt?display_type=cat,#ffffff}
+{oabout,hobbies,/pages/about/hobbies/hobbies.txt?display=nano,#ffffff}  {orandom-stuff,debian,/pages/random-stuff/debian/debian.txt?display_type=nano,#ffffff}
+{oabout,contact,/pages/about/contact/contact.txt?display=cat,#ffffff}  {orandom-stuff,games,/pages/random-stuff/games/games.txt?display_type=nano,#ffffff}

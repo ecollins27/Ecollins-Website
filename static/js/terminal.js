@@ -2,7 +2,7 @@ import * as utils from "./utils.js"
 import * as commands from "./commands.js"
 
 function addButton(parentElement, content, path, color, num){
-    var html = "<button id=\"" + content + "_" + num + "\" type=\"button\" style=\"color:" + color + ";\">" + content + "</button>";
+    var html = "<span id=\"" + content + "_" + num + "\" class=\"button\" style=\"color:" + color + ";\">" + content + "</span>";
     parentElement.insertAdjacentHTML("beforeend", html);
     var buttonElement = document.getElementById(content + "_" + num);
     if (path.startsWith("http")){
@@ -18,17 +18,21 @@ function addButton(parentElement, content, path, color, num){
         }
         buttonElement.addEventListener("click", function(event){
             var text;
-            if (displayType == 'cat' || displayType == 'man' || path == "home" || displayType == "") {
-                text = "cd " + utils.getRelativePath(directoryPath);
+            if (utils.isExecutable(path)){
+                text = utils.getRelativePath(path.split("?")[0]);
             } else {
-                text = "nano " + utils.getRelativePath(path.split("?")[0]);
+                if (displayType == 'cat' || displayType == 'man' || path == "home" || displayType == "") {
+                    text = "cd " + utils.getRelativePath(directoryPath);
+                } else {
+                    text = displayType + " " + utils.getRelativePath(path.split("?")[0]);
+                }
             }
             var [delay, char_per_tick] = utils.calculateDelays(text.length);
             commands.setDefaultFileDisplay(path.split('/').pop());
             fillTextBox(commands.terminal_input, text, delay, char_per_tick, 0);
         });
     }
-    return html;
+    return "<span id=\"ghost_" + content + "_" + num + "\" class=\"button\" style=\"color:" + color + ";\">" + content + "</span>";
 }
 
 function fillTextBox(element, text, delay, char_per_tick, index){
@@ -118,6 +122,21 @@ function type(element, ghost, text, current_color, delay, char_per_tick, index, 
                         color = null;
                     } else {
                         color = data[0];
+                    }
+                } else if (elementType == 'h'){
+                    var html;
+                    if (data.length == 3){
+                        html = utils.addListHeader(element, data[0], data[1], data[2], num);
+                    } else {
+                        html = utils.addListHeaderWithButton(element, data[0], data[1], data[2], data[3], num, addButton);
+                    }
+                    if (ghost != null){
+                        ghost.innerHTML = ghost.innerHTML.replace('{h' + data.join(',') + "}", html);
+                    }
+                } else if (elementType == 'o'){
+                    var html = utils.addListOption(element, data[0] + "_" + num, data[1], data[2], data[3], num, addButton);
+                    if (ghost != null){
+                        ghost.innerHTML = ghost.innerHTML.replace('{o' + data.join(',') + "}", html);
                     }
                 }
             } else if (color != null){

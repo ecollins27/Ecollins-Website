@@ -1,0 +1,9 @@
+{c#ff00ff}GAMES{c#ff00ff}
+
+I will occasionally make small ASCII games in Javascript.  Nothing major, just a little 1 day project to test my Javascript skills.
+
+I maintain a leaderboard of high scores for each game.  See if you can beat the top score!
+
+{bSnake,snake,#ff0000}
+
+{bTetris,tetris,#00ffff}

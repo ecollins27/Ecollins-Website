@@ -1,7 +1,7 @@
 import * as utils from "./utils.js"
 
-function addButton(parentElement, content, path, color){
-    var html = "<button id=\"" + content + "\" type=\"button\" style=\"color:" + color + ";\">" + content + "</button>";
+function addButton(parentElement, content, path, color, num){
+    var html = "<span id=\"" + content + "\" class=\"button\" style=\"color:" + color + ";\">" + content + "</span>";
     parentElement.insertAdjacentHTML("beforeend", html);
     var buttonElement = document.getElementById(content);
     if (path.startsWith("http")){
@@ -31,15 +31,25 @@ function fillContent(element, text, current_color, delay, char_per_tick, index, 
                 var elementType = text[index + 1];
                 index = close;
                 if (elementType == 'b'){
-                    addButton(element, data[0], data[1], data[2]);
+                    addButton(element, data[0], data[1], data[2], 0);
                 } else if (elementType == 'i'){
                     utils.addImage(element, data[0], data[1], data.slice(2).join(','));
+                } else if (elementType == 'v'){
+                    utils.addVideo(element, data[0], data[1], data[2]);
                 } else if (elementType == 'c'){
                     if (data[0] == current_color){
                         color = null;
                     } else {
                         color = data[0];
                     }
+                } else if (elementType == 'h'){
+                    if (data.length == 3){
+                        utils.addListHeader(element, data[0], data[1], data[2], 0);
+                    } else {
+                        utils.addListHeaderWithButton(element, data[0], data[1], data[2], data[3], 0, addButton);
+                    }
+                } else if (elementType == 'o'){
+                    utils.addListOption(element, data[0] + "_0", data[1], data[2], data[3], 0, addButton);
                 }
             } else if (color != null){
                 element.insertAdjacentHTML("beforeend", "<span style=\"color:" + color + ";\">" + character + "</span>");
@@ -65,7 +75,7 @@ document.getElementById("home").addEventListener("click", function(event){
 });
 
 document.getElementById("about").addEventListener("click", function(event) {
-    window.location = "/pages/about/about.txt?display_type=cat";
+    window.location = "/pages/about/about.txt?display_type=tilde";
 });
 
 document.getElementById("projects").addEventListener("click", function(event) {
@@ -76,7 +86,7 @@ document.getElementById("cats").addEventListener("click", function(event) {
     window.location = "/pages/cats/cats.txt?display_type=nano";
 });
 
-var element = document.getElementById("nano_content")
+var element = document.getElementById("content")
 var text = content.value;
 var [delay, char_per_tick] = utils.calculateDelays(text.length);
 setTimeout(fillContent, 100, element, text, null, delay, char_per_tick, 0, content.pretty_render)

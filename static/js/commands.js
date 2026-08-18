@@ -117,6 +117,34 @@ function executeNano(commandSplit){
     return [commandOutput, path, false];
 }
 
+function executeTilde(commandSplit){
+    var commandOutput;
+    var path = utils.filePath;
+    if (commandSplit.length != 2){
+        commandOutput = "command tilde requires exactly 1 argument";
+    } else {
+        var absolutePath = utils.getAbsolutePath(commandSplit[1]);
+        if (!utils.isValid(absolutePath)){
+            return ["File /" + absolutePath + " does not exist", path, false];
+        } else if (!utils.isFile(absolutePath)){
+            return [absolutePath + " is not a file", path, false];
+        }
+        var text_file = false;
+        for (let i = 0; i < text_extensions.length; i++){
+            if (absolutePath.endsWith(text_extensions[i])){
+                text_file = true;
+            }
+        }
+        if (!text_file){
+            return ["File /" + absolutePath + " is not a text file", path, false];
+        }
+        var directory = absolutePath.split('/').pop();
+        window.location = "/" + absolutePath + "?display_type=tilde";
+        return [commandOutput, path, true];
+    }
+    return [commandOutput, path, false];
+}
+
 function executeCat(commandSplit){
     var path = utils.filePath;
     if (commandSplit.length > 2){
@@ -174,7 +202,17 @@ export function executeCommand(command){
     } else if (commandSplit[0] == "visitors") {
         commandOutput = "{c#ffff00}" + visits + "{c#ffff00} people have visited this website!";
     } else if (commandSplit[0] == "help") {
-        commandOutput = "This website simulates a Linux kernel.  Basic commands such as cd, ls, cat, nano, and neofetch are all the valid commands and operate as intended.\n\nThe following custom commands are also included:\n\n{c#ffff00}home{c#ffff00} - returns to the home page\n{c#ffff00}visitors{c#ffff00} - displays the number of visits to the site's homepage\n\nNaturally, the kernel contains a number of easter eggs.  How many can you find?";
+        commandOutput = "This website simulates a Linux kernel.  Basic commands such as cd, ls, cat, nano, and neofetch are all the valid commands and operate as intended.\n\nThe following custom commands are also included:\n\n{c#ffff00}home{c#ffff00} - returns to the home page\n{c#ffff00}visitors{c#ffff00} - displays the number of visits to the site's homepage\n{c#ffff00}download{c#ffff00} - downloads the specified file\n\nNaturally, the kernel contains a number of easter eggs.  How many can you find?";
+    } else if (commandSplit[0] == "download"){
+        var absolutePath = utils.getAbsolutePath(commandSplit[1]);
+        if (!utils.isValid(absolutePath)){
+            commandOutput = "File " + absolutePath + " does not exist";
+        } else if (!utils.isFile(absolutePath)){
+            commandOutput = absolutePath + " is not a file";
+        } else {
+            window.open("/api/download/" + absolutePath, '_blank').focus();
+            commandOutput = "File " + absolutePath + " successfully downloaded";
+        }
     } else if (commandSplit[0] == "cat"){
         [commandOutput, path, end] = executeCat(commandSplit);
         if (end){
@@ -185,8 +223,13 @@ export function executeCommand(command){
         if (end){
             return null;
         }
+    } else if (commandSplit[0] == 'tilde'){
+        [commandOutput, path, end] = executeTilde(commandSplit);
+        if (end){
+            return null;
+        }
     } else if (commandSplit[0] == "vim" || commandSplit[0] == "vi"){
-        window.location = "/.misc/no.txt-nano";
+        window.location = "/.misc/no.txt?display_type=nano";
         return;
     } else if (commandSplit[0] == "shutdown"){
         window.location = "/crash";
