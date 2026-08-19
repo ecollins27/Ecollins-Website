@@ -17,9 +17,10 @@ function addButton(parentElement, content, path, color, num){
     return html;
 }
 
-function fillContent(element, text, current_color, delay, char_per_tick, index, pretty){
+function fillContent(element, text, current_color, current_size, delay, char_per_tick, index, pretty){
     if (index < text.length) {
         var color = current_color;
+        var size = current_size;
         for (let i = 0; i < char_per_tick; i++){
             if (index >= text.length){
                 break;
@@ -37,10 +38,17 @@ function fillContent(element, text, current_color, delay, char_per_tick, index, 
                 } else if (elementType == 'v'){
                     utils.addVideo(element, data[0], data[1], data[2]);
                 } else if (elementType == 'c'){
-                    if (data[0] == current_color){
+                    if (data[0] == color){
                         color = null;
                     } else {
                         color = data[0];
+                    }
+                    if (data.length > 1){
+                        if (data[1] == size){
+                            size = null;
+                        } else {
+                            size = data[1];
+                        }
                     }
                 } else if (elementType == 'h'){
                     if (data.length == 3){
@@ -52,13 +60,13 @@ function fillContent(element, text, current_color, delay, char_per_tick, index, 
                     utils.addListOption(element, data[0] + "_0", data[1], data[2], data[3], 0, addButton);
                 }
             } else if (color != null){
-                element.insertAdjacentHTML("beforeend", "<span style=\"color:" + color + ";\">" + character + "</span>");
+                element.insertAdjacentHTML("beforeend", "<span style=\"color:" + color + ";" + (size == null? "":("font-size:" + size + "pt;")) + "\">" + character + "</span>");
             } else {
                 element.insertAdjacentHTML("beforeend", character);
             }
             index++;
         }
-        setTimeout(fillContent, delay, element, text, color, delay, char_per_tick, index, pretty);
+        setTimeout(fillContent, delay, element, text, color, size, delay, char_per_tick, index, pretty);
     }
 }
 
@@ -89,4 +97,4 @@ document.getElementById("cats").addEventListener("click", function(event) {
 var element = document.getElementById("content")
 var text = content.value;
 var [delay, char_per_tick] = utils.calculateDelays(text.length);
-setTimeout(fillContent, 100, element, text, null, delay, char_per_tick, 0, content.pretty_render)
+setTimeout(fillContent, 100, element, text, null, null, delay, char_per_tick, 0, content.pretty_render)

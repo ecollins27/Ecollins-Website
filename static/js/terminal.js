@@ -83,12 +83,14 @@ function nextAnimation(num, input){
         }
     }
     var [delay, char_per_tick] = utils.calculateDelays(text.length);
-    setTimeout(type, 100, element, ghost, text, null, delay, char_per_tick, 0, num, input, pretty);
+    setTimeout(type, 100, element, ghost, text, null, null, delay, char_per_tick, 0, num, input, pretty);
 }
 
-function type(element, ghost, text, current_color, delay, char_per_tick, index, num, input, pretty) {
+function type(element, ghost, text, current_color, current_size, delay, char_per_tick, index, num, input, pretty) {
     if (index < text.length) {
         var color = current_color;
+        var size = current_size;
+        var found = false;
         for (let i = 0; i < char_per_tick; i++){
             if (index >= text.length){
                 break;
@@ -116,12 +118,19 @@ function type(element, ghost, text, current_color, delay, char_per_tick, index, 
                     }
                 } else if (elementType == 'c'){
                     if (ghost != null){
-                        ghost.innerHTML = ghost.innerHTML.replace('c' + data.join(',' + "}", ""));
+                        ghost.innerHTML = ghost.innerHTML.replace('{c' + data.join(',') + "}", "");
                     }
-                    if (data[0] == current_color){
+                    if (data[0] == color){
                         color = null;
                     } else {
                         color = data[0];
+                    }
+                    if (data.length > 1){
+                        if (data[1] == size){
+                            size = null;
+                        } else {
+                            size = data[1];
+                        }
                     }
                 } else if (elementType == 'h'){
                     var html;
@@ -140,13 +149,13 @@ function type(element, ghost, text, current_color, delay, char_per_tick, index, 
                     }
                 }
             } else if (color != null){
-                element.insertAdjacentHTML("beforeend", "<span style=\"color:" + color + ";\">" + character + "</span>");
+                element.insertAdjacentHTML("beforeend", "<span style=\"color:" + color + ";" + (size == null? "":("font-size:" + size + "pt;")) + "\">" + character + "</span>");
             } else {
                 element.insertAdjacentHTML("beforeend", character);
             }
             index++;
         }
-        setTimeout(type, delay, element, ghost, text, color, delay, char_per_tick, index, num, input, pretty);
+        setTimeout(type, delay, element, ghost, text, color, size, delay, char_per_tick, index, num, input, pretty);
     } else {
         if (input){
             nextAnimation(num, !input);

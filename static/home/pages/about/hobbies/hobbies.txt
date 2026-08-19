@@ -1,14 +1,17 @@
-{c#ff0000}HOBBIES{c#ff0000}
+{c#ff0000,24}HOBBIES{c#ff0000,24}
 
-{c#ff00ff}Violin{c#ff00ff}
+{c#ff00ff,18}Violin{c#ff00ff,18}
 I am an amateur violinist and have been playing since childhood.  At one point, I seriously considered going to conservatory and pursuing it professionally.
-{iviolin1.jpg,300,My violin}  {icima.jpg,300,One of the first violin sonatas every published by Giovanni Cima}  {iviolin2.jpg,300,The slightly cursed tuning required for one of Biber's Rosary sonatas}
+{iviolin1.jpg,300,My violin}  {icima.jpg,300,One of the first violin sonatas ever published, by Giovanni Cima}  {iviolin2.jpg,300,The slightly cursed tuning required for Biber Sonata n. 11}
+
 These day's I mostly specialize in Baroque violin, a type of period playing from around 1600-1750.  While similar to modern violin, the Baroque style utilizes a violin of slightly different construction and technique.
 
-{c#ff00ff}Computers and Programming{c#ff00ff}
-As you might expect, I am interested in all things computers, whether that be building computers, messing around with older tech, or programming.  I typically like to code projects that involve a lot math, from renderers, transformers, to symbolic algebra solvers.  If you're interested in what I like to program, check out my {bGithub,https://github.com/ecollins27,#00ff00} or the b{Projects,/pages/projects/projects.txt?display_type=man,#ffffff} pages.
+If you're looking for reccomendations from that period, {bHeinrich Biber's Rosary Sonatas,https://www.youtube.com/watch?v=jd2wYGeGsn4&list=PLvszsPl-ZIE6zfwDQ5RafOT3ObUOQ6CA_,#ffffff} are some of my favorite pieces of all time, especially number 16.
+
+{c#ff00ff,18}Computers and Programming{c#ff00ff,18}
+As you might expect, I am interested in all things computers, whether that be building computers, messing around with older tech, or programming.  I typically like to code projects that involve a lot math, from renderers, transformers, to symbolic algebra solvers.  If you're interested in what I like to program, check out my {bGithub,https://github.com/ecollins27,#00ff00} or the {bProjects,/pages/projects/projects.txt?display_type=man,#ffffff} pages.
 {ipc.jpg,300,My PC}
 
-{c#ff00ff}Video Games{c#ff00ff}
-I am also an avid video game fan!  I typically enjoy souls-borne and souls-like games as well more story driven games like Ghost of Tsushima and God of War
+{c#ff00ff,18}Video Games{c#ff00ff,18}
+I am also an avid video game fan!  I typically enjoy souls-borne and souls-like games as well more story driven games like Ghost of Tsushima and God of War.  I have been trying to get into different video game genres.  I am currently playing through Death Stranding II and Skyrim for the first time.
 {ids3.jpg,300,}  {igot.jpg,300,}  {ieldenring.jpg,300,}

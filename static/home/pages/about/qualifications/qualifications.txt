@@ -1,0 +1,23 @@
+{c#ff0000,24}QUALIFICATIONS{c#ff0000,24}
+
+The pages exists as a brief summary.  For a more official and detailed look at my experience and qualifications, my resume can be downloaded {bhere,/api/download/pages/about/qualifications/Ehren-Collins-Resume.pdf,#00ff00}.
+
+{c#ff00ff,18}Skills{c#ff00ff,18}
+{c#ffff00}Languages{c#ffff00} - C/C++, Java, Python (including NumPy, Pandas, Tensorflow, and PyTorch), Kotlin, Javascript, HTML/CSS, Microsoft Power Automate
+{c#ffff00}Fields{c#ffff00} - Networking, Web Development, App Development, Database Management, Machine Learning, Data Science
+
+{c#ff00ff,18}Education{c#ff00ff,18}
+{c#ffff00}University of Rochester{c#ffff00}        Anticipating May, 2027
+Bachelor of Science, Computer Science
+Bachelor of Science, Mathematics
+
+
+{c#ff00ff,18}Experience{c#ff00ff,18}
+{c#ffff00}Advancement Technology Intern{c#ffff00}       May 2025 - December 2025, May 2026 - August 2026
+I spent 2 summers working as intern in my former high school's advancement office writing automation scripts; gathering, manipulating, and analyzing large amounts of data; performing large scale database imports and exports; and advising on the ramifications and feasibility of AI integration.  Relevant skills include familiarity with Blackbaud systems as Power Automate as well as the ability to problem-solve and work in a larger team.
+
+{c#ffff00}CIF Senior Tech Director/President{c#ffff00}       January 2024 - Present
+The {bComputer Interest Floor (CIF),https://cif.rochester.edu,#ffffff} is a student organization at the University of Rochester dedicated to, among other things, providing free technological resources and education to the University Community.  During my time on the CIF Executive Board I served as System Administrator for the organization's network - maintaining, documenting, modernizing, and constructing CIF's many servers.  Through this experience, I am intimately familiar with the inner workings of a network, including but not limited to IdM, Active Directory, DNS, DHCP, and NFS servers.  The organization also mains a distributed cluster named The Roundtable that provides free computing power to university students.  Through this server, I am familiar with SLURM as well as how to advertise and maintain a public service.
+
+{c#ffff00}Bioinfomatics Intern/Coauthor{c#ffff00}       2022
+Working as an intern for Bioinformatics researcher Ricky Wong at Case Western Reserve University, I participated in research on how various COVID-19 treatments affected the virus on a genetic level.  The trial involved providing various treatments to patients and mapping the roughly 30,000 nucleotide long genome of the COVID-19 and comparing it to the genome of COVID found in patients given a placebo.  I was given the raw data and wrote scripts to analyze the data with goal of determining whether the treatments had any noticeable effects on mutation frequency and location and if such mutations were detrimental to the virus.  The work was eventually published.

@@ -192,6 +192,7 @@ def get_home():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000,debug=False)
 
+# TODO
+# work on mobile support
 # propagate about pages
-# rewrite debian page
-# swap out man for tilde
+# add font-size support

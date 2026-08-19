@@ -228,6 +228,9 @@ export function executeCommand(command){
         if (end){
             return null;
         }
+    } else if (commandSplit[0] == 'clear'){
+        window.location = '/' + utils.filePath;
+        return null;
     } else if (commandSplit[0] == "vim" || commandSplit[0] == "vi"){
         window.location = "/.misc/no.txt?display_type=nano";
         return;
