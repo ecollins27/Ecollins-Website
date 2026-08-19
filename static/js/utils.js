@@ -198,6 +198,9 @@ export function isFile(absolutePath){
 }
 
 export function isExecutable(absolutePath){
+    if (absolutePath == "/"){
+        return false;
+    }
     for (let i = 0; i < executable_extensions.length; i++) {
         if (absolutePath.endsWith(executable_extensions[i])){
             return true;

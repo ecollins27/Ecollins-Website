@@ -21,7 +21,7 @@ function addButton(parentElement, content, path, color, num){
             if (utils.isExecutable(path)){
                 text = utils.getRelativePath(path.split("?")[0]);
             } else {
-                if (displayType == 'cat' || displayType == 'man' || path == "home" || displayType == "") {
+                if (displayType == "" || displayType == 'cat' || displayType == 'man' || path == "home" || displayType == "") {
                     text = "cd " + utils.getRelativePath(directoryPath);
                 } else {
                     text = displayType + " " + utils.getRelativePath(path.split("?")[0]);
