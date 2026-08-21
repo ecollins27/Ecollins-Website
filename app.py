@@ -195,4 +195,3 @@ if __name__ == '__main__':
 # TODO
 # work on mobile support
 # propagate about pages
-# add font-size support

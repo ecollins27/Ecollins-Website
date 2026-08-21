@@ -6,6 +6,7 @@ for (let i = 0; i < 24; i++){
         board[i][j] = 0;
     }
 }
+var next = 0;
 var score = 0;
 var level = 0;
 // O, I, S, Z, L, J, T
@@ -47,7 +48,8 @@ const block_shapes = [
     ]
 
 function displayBoard(){
-    var output = "*" + "--".repeat(10) + "*        <span style=\"color:#ffff00;\">HIGH SCORES</span><br>";
+    var output = "*" + "--".repeat(10) + "*" + "--".repeat(3) + "*<br>";
+    var nextBlock = next == 0? []:block_shapes[next - 1];
     for (let i = 4; i < 24; i++){
         output += "|";
         for (let j = 0; j < 10; j++){
@@ -61,8 +63,25 @@ function displayBoard(){
             output += "|        Level: " + (level + 1) + "<br>";
         } else {
             output += "|";
-            if (i - 4 < highScores.length){
-                output += "        " + highScores[i - 4];
+            if (i - 4 < 4){
+                for (let j = 0; j < 3; j++){
+                    if (i - 4 >= nextBlock.length || j >= nextBlock[i - 4].length){
+                        output += "  ";
+                        continue;
+                    }
+                    if (nextBlock[i - 4][j] == 0){
+                        output += "  ";
+                    } else {
+                        output += "<span style=\"color:" + block_colors[Math.abs(next * nextBlock[i - 4][j]) - 1] + "\";>" + block_symbols[Math.abs(next * nextBlock[i - 4][j]) - 1] + "</span> ";
+                    }
+                }
+                output += "|";
+            } else if (i - 4 == 4){
+                output = output.substring(0, output.length - 1) + "*" + "--".repeat(3) + "*";
+            } else if (i - 4 == 5){
+                output += "  " + "<span style=\"color:#ffff00;\">HIGH SCORES</span>";
+            } else if (i - 10 < highScores.length){
+                output += "  " + highScores[i - 10];
             }
             output += "<br>";
         }
@@ -189,7 +208,8 @@ function finalize(){
             score += 800;
             break;
     }
-    addBlock(Math.floor(7 * Math.random()) + 1);
+    addBlock(next);
+    next = Math.floor((7 * Math.random()) + 1);
 }
 
 function gameTick(delay){
@@ -229,5 +249,6 @@ document.getElementById("home").addEventListener("click", function(event){
     window.location = "/";
 });
 element.focus();
+next = Math.floor(7 * Math.random()) + 1
 addBlock(Math.floor(7 * Math.random()) + 1);
 gameTick(500);
