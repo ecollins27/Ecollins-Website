@@ -1,9 +1,12 @@
-{c#ff00ff}GAMES{c#ff00ff}
+{c#ff00ff,24}GAMES{c#ff00ff,24}
 
 I will occasionally make small ASCII games in Javascript.  Nothing major, just a little 1 day project to test my Javascript skills.
 
 I maintain a leaderboard of high scores for each game.  See if you can beat the top score!
 
-{bSnake,snake,#ff0000}
 
-{bTetris,tetris,#00ffff}
+{bSnake,snake,#ff0000} - Use W,A,S,D to control the snake and eat apples.  Don't run into yourself or the walls!
+
+{bTetris,tetris,#00ffff} - It's Tetris
+
+{bMaze,maze,#00ff00} - Navigate the randomly generated maze from the top left to bottom right in as little time as possible.
