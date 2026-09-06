@@ -72,7 +72,7 @@ function fillContent(element, text, current_color, current_size, delay, char_per
 
 document.getElementById("exit").addEventListener("click", function(event) {
     window.location = document.referrer;
-});
+})
 
 document.getElementById("terminal").addEventListener("click", function(event) {
     window.location = '/' + utils.filePath;
@@ -94,7 +94,36 @@ document.getElementById("cats").addEventListener("click", function(event) {
     window.location = "/pages/cats/cats.txt?display_type=nano";
 });
 
-var element = document.getElementById("content")
+var element = document.getElementById("content");
+element.addEventListener("keydown", function(event){
+    if (event.ctrlKey && (event.key == 'x' || event.key == 'X')){
+        event.preventDefault();
+        window.location = document.referrer;
+        return;
+    } else if (event.ctrlKey && (event.key == 'k' || event.key == 'K')){
+        console.log("here");
+        event.preventDefault();
+        window.location = '/' + utils.filePath;
+        return;
+    } else if (event.ctrlKey && (event.key == 'j' || event.key == 'J')){
+        event.preventDefault();
+        window.location = '/';
+        return;
+    } else if (event.ctrlKey && (event.key == 'a' || event.key == 'A')){
+        event.preventDefault();
+        window.location = "/pages/about/about.txt?display_type=tilde";
+        return;
+    } else if (event.ctrlKey && (event.key == 'p' || event.key == 'P')){
+        event.preventDefault();
+        window.location = "/pages/projects/projects.txt?display_type=man";
+        return;
+    } else if (event.ctrlKey && (event.key == 'c' || event.key == 'C')){
+        event.preventDefault();
+        window.location = "/pages/cats/cats.txt?display_type=nano";
+        return;
+    }
+});
+element.focus();
 var text = content.value;
 var [delay, char_per_tick] = utils.calculateDelays(text.length);
-setTimeout(fillContent, 100, element, text, null, null, delay, char_per_tick, 0, content.pretty_render)
+setTimeout(fillContent, 100, element, text, null, null, delay, char_per_tick, 0, content.pretty_render);

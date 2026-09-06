@@ -1,0 +1,5 @@
+Paddle is controlled with W and A
+
+Unlike standard pong, the scoring is based on the number of successful bounces against a perfect opponent.  After every bounce, the ball speed is increased by 5%
+
+Good luck!

@@ -85,7 +85,7 @@ get_all_pages("static/home")
 
 @app.route("/api/download/<path:path>")
 def download_file(path):
-    full_path = f'{BASE_DIR}/static/home/{path}';
+    full_path = f'{BASE_DIR}/static/home/{path}'
     return send_file(full_path, as_attachment=True)
 
 @app.route("/api/high-score", methods=['GET'])
@@ -166,7 +166,8 @@ def render_executable(path):
                 high_scores.append(int(s))
     else:
         high_scores = []
-    return render_template('executable.html', js_file=f"{name}.js", high_scores=high_scores)
+    with open(f"{BASE_DIR}/static/home/{path}") as f:
+        return render_template('executable.html', js_file=f"{name}.js", high_scores=high_scores, description=f.read())
 
 @app.route('/<path:path>', methods=['GET'])
 def get_page(path):
@@ -193,5 +194,5 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000,debug=False)
 
 # TODO
-# work on mobile support
-# propagate about pages
+# add pong
+# Implement tab autocomplete

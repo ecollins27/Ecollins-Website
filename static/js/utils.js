@@ -197,6 +197,25 @@ export function isFile(absolutePath){
     return Object.keys(fileSystem).length == 0;
 }
 
+export function listObjects(absolutePath){
+    var fileSystem = fileStructure;
+    var directoryName = "";
+    const fileSplit = absolutePath.split('/');
+    for (let i = 0; i < fileSplit.length; i++){
+        if (fileSplit[i] != ""){
+            fileSystem = fileSystem[fileSplit[i]];
+        }
+        if (fileSystem == null){
+            return [];
+        }
+    }
+    var fileList = [];
+    for (const [key, value] of Object.entries(fileSystem)){
+        fileList.push(key);
+    }
+    return fileList;
+}
+
 export function isExecutable(absolutePath){
     if (absolutePath == "/"){
         return false;

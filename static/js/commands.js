@@ -1,6 +1,35 @@
 import * as utils from "./utils.js"
 
 export var terminal_input = document.getElementById("terminal_input_0");
+terminal_input.addEventListener("keydown", function(event) {
+    if (event.key == "Tab"){
+        event.preventDefault();
+        var lastAbsolute = utils.getAbsolutePath(terminal_input.value.split(" ").pop());
+        var partial = lastAbsolute.split("/").pop();
+        lastAbsolute = lastAbsolute.split("/").slice(0, -1).join("/");
+        if (!utils.isValid(lastAbsolute)){
+            return;
+        }
+        var objectList = utils.listObjects(lastAbsolute);
+        var intersection = null;
+        for (let i = objectList.length - 1; i >= 0; i--){
+            if (!objectList[i].startsWith(partial)){
+                objectList.splice(i, 1);
+                continue;
+            }
+            if (intersection == null){
+                intersection = objectList[i];
+            } else {
+                var index = 0;
+                while (index < intersection.length && index < objectList[i].length && intersection[index] == objectList[i][index]){
+                    index++;
+                }
+                intersection = intersection.substring(0, index);
+            }
+        }
+        terminal_input.value += intersection.substring(partial.length);
+    }
+});
 export const terminal_form = document.getElementById("terminal_form");
 var terminalNum = 0;
 var defaultFileDisplay = "";
@@ -271,6 +300,35 @@ export function executeCommand(command){
     terminalNum++;
     terminal_form.insertAdjacentHTML("beforeend", getNextHTML(commandOutput, numLines, path));
     terminal_input = document.getElementById("terminal_input_" + terminalNum);
+    terminal_input.addEventListener("keydown", function(event) {
+        if (event.key == "Tab"){
+            event.preventDefault();
+            var lastAbsolute = utils.getAbsolutePath(terminal_input.value.split(" ").pop());
+            var partial = lastAbsolute.split("/").pop();
+            lastAbsolute = lastAbsolute.split("/").slice(0, -1).join("/");
+            if (!utils.isValid(lastAbsolute)){
+                return;
+            }
+            var objectList = utils.listObjects(lastAbsolute);
+            var intersection = null;
+            for (let i = objectList.length - 1; i >= 0; i--){
+                if (!objectList[i].startsWith(partial)){
+                    objectList.splice(i, 1);
+                    continue;
+                }
+                if (intersection == null){
+                    intersection = objectList[i];
+                } else {
+                    var index = 0;
+                    while (index < intersection.length && index < objectList[i].length && intersection[index] == objectList[i][index]){
+                        index++;
+                    }
+                    intersection = intersection.substring(0, index);
+                }
+            }
+            terminal_input.value += intersection.substring(partial.length);
+        }
+    });
     numLines++;
     return true;
 }

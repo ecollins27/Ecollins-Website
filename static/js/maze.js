@@ -134,7 +134,6 @@ function gameTick(){
 generateMaze();
 initExit();
 element.addEventListener("keydown", function(event) {
-    console.log(event.key);
     if (event.key == 'a' || event.key == 'A'){
         if (move([0, -1])){
             displayBoard(false);

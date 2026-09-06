@@ -10,3 +10,5 @@ I maintain a leaderboard of high scores for each game.  See if you can beat the 
 {bTetris,tetris,#00ffff} - It's Tetris
 
 {bMaze,maze,#00ff00} - Navigate the randomly generated maze from the top left to bottom right in as little time as possible.
+
+{bPong,pong,#ff00ff} - Play pong against a bot.  See how long you can last!
