@@ -17,19 +17,23 @@
 
 {bGITHUB,https://github.com/ecollins27/Ecollins-Website,#ffff00} - https://github.com/ecollins27/Ecollins-Website
 
-{c#ffff00}DESCRIPTION{c#ffff00}
+{c#ffff00,20}DESCRIPTION{c#ffff00,20}
         This website was my first experience with "modern" web development.  I did develop some basic webpages before, but they were so basic that they might as well have been from 1992.  I kid you not, my print server web portal worked on Internet Explorer 5 running in Windows 3.1 on an AST 386 without any modifications.
 
-{c#ffff00}INSPIRATION{c#ffff00}
+{c#ffff00,20}INSPIRATION{c#ffff00,20}
         The idea of a terminal based webpage was actually one that my student organization CIF proposed in the past.  Yet due to time constraints and maintenance, it wasn't pursued.  In the summer of 2026, I finally acquired a second computer that could host a website, an idea I had been entertaining for a while.
 
-{c#ffff00}DEVELOPMENT{c#ffff00}
+{c#ffff00,20}DEVELOPMENT{c#ffff00,20}
         Contrary to my friend's suggestion, I entered this project without a framework.  The entire thing is a conglomeration of HTML, CSS, Javascript, and Python; all written by hand by me.  The project utilizes Flask, a Python library for controlling and rendering HTML using Jinja, and one I have used in the past.
 
-        The Python code maintains a manifest of the simulated file system and parses and handles page logic.  Javascript is responsible for every animation on the website, including generating text and loading images.  It also handles all of the command logic, determining if a command is valid and what it should do in command.js.  The HTML and CSS itself is rather sparse, using the same couple files - one for each major page category.
+        The Python code maintains a manifest of the simulated file system and parses and handles page logic.  Javascript is responsible for every animation on the website, including generating text and loading images.  It also handles all of the command logic, determining if a command is valid and what it should do in command.js.  The HTML and CSS itself is rather sparse.
 
-{c#ffff00}DESIGN{c#ffff00}
-    I could talk forever about this website's design.  However, in short, the project is designed to be as modular and user friendly as possible, especially when it comes to adding new webpages.  Adding a new page is a simple as creating a new text file!  Instead of hardcoding each page as html, the project uses as custom notation that allows one to specify text color and add buttons, images, and videos.  This notation can be viewed in the .raw files scattered throughout the file tree.  You can view this page's raw file {bhere,website.raw?display_type=nano,#00ff00}.
+        While far outside my normal wheelhouse, this website was a blast to build!  There is something immensely satisfying about building such a complex website from the ground up.
+
+{c#ffff00,20}DESIGN{c#ffff00,20}
+    I could talk about this website's design forever.  However, in short, the project is designed to be as modular as possible, especially when it comes to adding new webpages.  While a normal site of this caliber might utilize one HTML file per page, this website only requires 4 files - one for each of the 4 supported display types: nano, cat, man, and tilde.  Instead of writing HTML, adding a new page is a simple as creating a new text file!  Said text file uses as custom typesetting notation that allows one to specify text color and add buttons, images, and videos.  This text file is parsed in real time as the text appears, allowing me to utilize the same couple HTML templates for everything while simultaneously providing the typewriter text animation you might see out of an old serial terminal.
+
+    Nothing in this website is hidden.  Each page has an equivalent .raw file in the file tree viewable from within the website itself.  You can view this page's raw file {bhere,website.raw?display_type=nano,#00ff00}.
 
     The end result is an infinitely expandable system that autonomously handles everything from the file tree, to animations displaying text and images, to the commands run in the terminal.
 

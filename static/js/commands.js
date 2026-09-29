@@ -40,6 +40,10 @@ export function setDefaultFileDisplay(dt){
 }
 
 function executeCd(commandSplit){
+    if (commandSplit.length == 1){
+        window.location = '/';
+        return [commandOutput, path, true];
+    }
     var commandOutput;
     var path = utils.filePath;
     var absolutePath = utils.getAbsolutePath(commandSplit[1]);

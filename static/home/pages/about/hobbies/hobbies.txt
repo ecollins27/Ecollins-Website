@@ -11,6 +11,26 @@ If you're looking for reccomendations from that period, {bHeinrich Biber's Rosar
 {c#ff00ff,18}Computers and Programming{c#ff00ff,18}
 As you might expect, I am interested in all things computers, whether that be building computers, messing around with older tech, or programming.  I typically like to code projects that involve a lot math, from renderers, transformers, to symbolic algebra solvers.  If you're interested in what I like to program, check out my {bGithub,https://github.com/ecollins27,#00ff00} or the {bProjects,/pages/projects/projects.txt?display_type=man,#ffffff} pages.
 {ipc.jpg,300,My PC}
+             ...-:::::-...                 {c#1cdb95}ecollins{c#1cdb95}@{c#1cdb95}ecollins-pc{c#1cdb95}
+          .-MMMMMMMMMMMMMMM-.              --------------------
+      .-MMMM{c#1cdb95}`..-:::::::-..`{c#1cdb95}MMMM-.          {c#1cdb95}OS{c#1cdb95}: Linux Mint 22.3 x86_64
+    .:MMMM{c#1cdb95}.:MMMMMMMMMMMMMMM:.{c#1cdb95}MMMM:.        {c#1cdb95}Host{c#1cdb95}: B850M Steel Legend WiFi
+   -MMM{c#1cdb95}-M---MMMMMMMMMMMMMMMMMMM.{c#1cdb95}MMM-       {c#1cdb95}Kernel{c#1cdb95}: 7.0.0-30-generic
+ `:MMM{c#1cdb95}:MM`  :MMMM:....::-...-MMMM:{c#1cdb95}MMM:`    {c#1cdb95}Uptime{c#1cdb95}: 7 days, 13 hours, 27 mins
+ :MMM{c#1cdb95}:MMM`  :MM:`  ``    ``  `:MMM:{c#1cdb95}MMM:    {c#1cdb95}Packages{c#1cdb95}: 3383 (dpkg), 28 (flatpak)
+.MMM{c#1cdb95}.MMMM`  :MM.  -MM.  .MM-  `MMMM.{c#1cdb95}MMM.   {c#1cdb95}Shell{c#1cdb95}: bash 5.2.21
+:MMM{c#1cdb95}:MMMM`  :MM.  -MM-  .MM:  `MMMM-{c#1cdb95}MMM:   {c#1cdb95}Resolution{c#1cdb95}: 1920x1080, 1920x1080, 1920x1080
+:MMM{c#1cdb95}:MMMM`  :MM.  -MM-  .MM:  `MMMM:{c#1cdb95}MMM:   {c#1cdb95}DE{c#1cdb95}: Plasma 5.27.12
+:MMM{c#1cdb95}:MMMM`  :MM.  -MM-  .MM:  `MMMM-{c#1cdb95}MMM:   {c#1cdb95}WM{c#1cdb95}: KWin
+.MMM{c#1cdb95}.MMMM`  :MM:--:MM:--:MM:  `MMMM.{c#1cdb95}MMM.   {c#1cdb95}Theme{c#1cdb95}: [Plasma], Breeze [GTK2/3]
+ :MMM{c#1cdb95}:MMM-  `-MMMMMMMMMMMM-`  -MMM-{c#1cdb95}MMM:    {c#1cdb95}Icons{c#1cdb95}: [Plasma], breeze-dark [GTK2/3]
+  :MMM{c#1cdb95}:MMM:`                `:MMM:{c#1cdb95}MMM:     {c#1cdb95}Terminal{c#1cdb95}: konsole
+   .MMM{c#1cdb95}.MMMM:--------------:MMMM.{c#1cdb95}MMM.      {c#1cdb95}CPU{c#1cdb95}: AMD Ryzen 5 7600X3D (12) @ 4.760GHz
+     '-MMMM{c#1cdb95}.-MMMMMMMMMMMMMMM-.{c#1cdb95}MMMM-'       {c#1cdb95}GPU{c#1cdb95}: AMD ATI Radeon RX 9070/9070 XT/9070 GRE
+       '.-MMMM{c#1cdb95}``--:::::--``{c#1cdb95}MMMM-.'         {c#1cdb95}GPU{c#1cdb95}: AMD ATI 10:00.0 Raphael
+            '-MMMMMMMMMMMMM-'              {c#1cdb95}Memory{c#1cdb95}: 13037MiB / 31164MiB
+               ``-:::::-``
+
 
 {c#ff00ff,18}Video Games{c#ff00ff,18}
 I am also an avid video game fan!  I typically enjoy souls-borne and souls-like games as well more story driven games like Ghost of Tsushima and God of War.  I have been trying to get into different video game genres.  I am currently playing through Death Stranding II and Skyrim for the first time.

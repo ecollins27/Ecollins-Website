@@ -8,5 +8,5 @@
 
 {c#ffff00}Games{c#ffff00}
 
-    Want to play some mildly janky ASCII browser games?  I've got {bSnake,games/snake,#ffffff} and {bTetris,games/tetris,#ffffff}.
+    Want to play some mildly janky ASCII browser games?  I've got {bSnake,games/snake,#ffffff}, {bTetris,games/tetris,#ffffff}, {bPong,games/pong,#ffffff}, and {ba maze solving game,games/maze,#ffffff}
     See if you can beat the high scores!

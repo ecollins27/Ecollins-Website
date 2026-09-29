@@ -117,9 +117,6 @@ function type(element, ghost, text, current_color, current_size, delay, char_per
                         ghost.innerHTML = ghost.innerHTML.replace('{v' + data.join(',') + "}", html);
                     }
                 } else if (elementType == 'c'){
-                    if (ghost != null){
-                        ghost.innerHTML = ghost.innerHTML.replace('{c' + data.join(',') + "}", "");
-                    }
                     if (data[0] == color){
                         color = null;
                     } else {
@@ -131,6 +128,12 @@ function type(element, ghost, text, current_color, current_size, delay, char_per
                         } else {
                             size = data[1];
                         }
+                        if (size != null){
+                            ghost.innerHTML = ghost.innerHTML.replace('{c' + data.join(',') + "}", "<span style=\"font-size:" + size + "pt\">")
+                            ghost.innerHTML = ghost.innerHTML.replace('{c' + data.join(',') + "}", "</span>")
+                        }
+                    } else if (ghost != null){
+                        ghost.innerHTML = ghost.innerHTML.replace('{c' + data.join(',') + "}", "");
                     }
                 } else if (elementType == 'h'){
                     var html;
