@@ -119,21 +119,23 @@
     <form id="terminal_form" style="margin: 0px;">
       <input type="submit" hidden>
         <div id="content">
-          Contact me at <a href="mailto:ehren.collins@gmail.com" style="color: #ffff00;">ehren.collins@gmail.com</a> or use the form below
-          <form id="form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" class="text_box" size="35">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" class="text_box" size="35">
-            <div style="display: none;">
-              <label for="website">Website:</label>
-              <input type="text" id="website" name="website" class="text_box" autocomplete="off">
-            </div>
-            <label for="message">Message:</label>
-            <textarea name="message" id="message" rows="15" cols="70" class="message"></textarea>
-            <span id="return"></span>
-            <button id="send">Send</button>
-          </form>
+    Email: <a href="mailto:ehren.collins@gmail.com" style="color: #ffff00;">ehren.collins@gmail.com</a><br>
+    Discord: lolamess<br>
+    Feel free to reach out or fill out the form below to contact me.
+    <form id="form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" class="text_box" size="35">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" class="text_box" size="35">
+    <div style="display: none;">
+      <label for="website">Website:</label>
+      <input type="text" id="website" name="website" class="text_box" autocomplete="off">
+    </div>
+    <label for="message">Message:</label>
+    <textarea name="message" id="message" rows="15" cols="70" class="message"></textarea>
+    <span id="return"></span>
+    <button id="send">Send</button>
+    </form>
         </div>
       </form>
 
@@ -168,4 +170,5 @@
   });
 </script>
 <script src="{{ url_for('static', filename='js/utils.js') }}" type="module"></script>
+<script src="{{ url_for('static', filename='js/nano.js') }}" type="module"></script>
 </html>

@@ -97,6 +97,10 @@ def send_email(subject, message, sender="ehren.collins@gmail.com", recipients=["
             smtp_server.login(sender, f.read())
         smtp_server.sendmail(sender, recipients, msg.as_string())
 
+@app.route("/test")
+def test():
+    return render_template("test.html")
+
 @app.route("/api/contact")
 def contact():
     global last_message
@@ -233,5 +237,6 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000,debug=False)
 
 # TODO
-# Add command history
-# Allow cd with no parameter
+# allow file and directory tree editing
+# integrate a project demo?
+# run Lemmings in a browser with cheerpj?  https://cheerpj.com/
