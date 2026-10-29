@@ -3,9 +3,12 @@ import logging
 import os
 from dataclasses import dataclass
 import math
+from datetime import datetime
 import random
+import smtplib
+from email.mime.text import MIMEText
 
-from flask import Flask, request, redirect, url_for, render_template, send_file
+from flask import Flask, request, redirect, url_for, render_template, send_file, jsonify
 from werkzeug.utils import send_from_directory
 
 app = Flask(__name__)
@@ -56,6 +59,7 @@ def parseFile(filename: str):
         return f.read()
 
 all_pages = {}
+last_message = {}
 pretty_extensions = ['.txt']
 text_extensions = [".txt", ".css", ".html", ".js", ".raw", ".py", ".wsgi"]
 text_display_types = ["cat", "nano", "man"]
@@ -82,6 +86,35 @@ def generateManifest(dir_path) -> str:
 with open(f"{BASE_DIR}/static/manifest.json", 'w') as f:
     f.write(generateManifest("static/home"))
 get_all_pages("static/home")
+
+def send_email(subject, message, sender="ehren.collins@gmail.com", recipients=["ehren.collins@gmail.com"]):
+    msg = MIMEText(message)
+    msg['Subject'] = subject
+    msg['From'] = sender
+    msg['To'] = ', '.join(recipients)
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
+        with open(f"{BASE_DIR}/app_pass.secret", 'r') as f:
+            smtp_server.login(sender, f.read())
+        smtp_server.sendmail(sender, recipients, msg.as_string())
+
+@app.route("/api/contact")
+def contact():
+    global last_message
+    name = request.args.get('name')
+    email = request.args.get('email')
+    website = request.args.get('website')
+    message = request.args.get('message')
+    start_time = datetime.fromisoformat(request.args.get('start_time'))
+    if not name or not email or not message or not start_time:
+        return jsonify({"error": "Missing required field"}), 400
+    now = datetime.now()
+    if website or (now - start_time).total_seconds() <= 1:
+        return jsonify({"error": "You are a bot"}), 404
+    if request.remote_addr in last_message and (now - last_message[request.remote_addr]).total_seconds() < 24 * 60 * 60:
+        return jsonify({"error": "Contact form has recently been submitted from this ip.  Please try again later"}), 401
+    last_message[request.remote_addr] = now
+    send_email(f"Message from {name} - {email}", message)
+    return "OK", 200
 
 @app.route("/api/download/<path:path>")
 def download_file(path):
@@ -131,6 +164,12 @@ def get_hosting():
     lines = [TerminalLine(input="cat hosting.txt", output=text.value, num=0, path='/pages/random-stuff/hosting')]
     lines.append(TerminalLine(input="ssh root@ken fastfetch", output=fastfetch.value, num=1, path='/pages/random-stuff/hosting'))
     return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path='/pages/random-stuff/hosting', lines=lines)
+
+@app.route("/pages/about/contact/contact.txt", methods=['GET'])
+def get_contact_page():
+    path = '/pages/about/contact/contact.txt'
+    lookup = all_pages[path]
+    return render_template('contact.html', visits=get_visits(), file=path, content=lookup, start_time=str(datetime.now())), 200
 
 def render_text_file(path, display_type, exit_code=200):
     path = '/' + path

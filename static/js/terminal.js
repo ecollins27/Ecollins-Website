@@ -1,6 +1,5 @@
 import * as utils from "./utils.js"
 import * as commands from "./commands.js"
-
 function addButton(parentElement, content, path, color, num){
     var html = "<span id=\"" + content + "_" + num + "\" class=\"button\" style=\"color:" + color + ";\">" + content + "</span>";
     parentElement.insertAdjacentHTML("beforeend", html);

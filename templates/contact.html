@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="/static/home/.misc/favicon.svg" type="image/x-icon" />
+</head>
+<style>
+    @font-face {
+        font-family: terminus;
+        src: url(/static/fonts/IBM-VGA.ttf);
+    }
+
+  .tilde_header {
+    background-color: #aaaaaa;
+    color: #202020;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 30px;
+    margin-top: 0px;
+  }
+
+  .tilde_footer {
+    background-color: #aaaaaa;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    color: #dddddd;
+    margin-left: 0px;
+    width: 100%;
+    height: 24px;
+    color: #000000;
+    margin-top: 0px;
+  }
+
+  .tilde_button {
+    color: #000000;
+    border-color: #000000;
+    margin-left: 20px;
+    padding: 2px;
+    line-height: 30px;
+    font-size: 18pt;
+    border-width: 0px;
+  }
+
+  .tilde_button:hover {
+    border-color: #ff0000;
+    color: #770000;
+  }
+
+  .highlighted {
+    color: #ff0000;
+  }
+
+  #content {
+    position: fixed;
+    top: 30px;
+    bottom: 24px;
+    color: #ffffff;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    width: 100%;
+    margin: 0px;
+  }
+
+  body {
+    background-color: #0000aa;
+  }
+
+  .text_box {
+    visibility: visible;
+    background-color: #0000aa;
+    font-size: 14pt;
+    color: #ffffff;
+    box-shadow: none;
+    outline: 1px solid #ffffff;
+    autofocus: true;
+    margin-bottom: 1rem;
+  }
+  .message {
+    visibility: visible;
+    background-color: #0000aa;
+    font-size: 14pt;
+    color: #ffffff;
+    box-shadow: none;
+    border: none;
+    outline: 1px solid #ffffff;
+    autofocus: true;
+    font-family: terminus;
+    margin-bottom: 1rem;
+  }
+  #send {
+    visibility: visible;
+    cursor: pointer;
+    background-color: #0000aa;
+    font-size: 14pt;
+    font-family: terminus;
+    color: #ffffff;
+    box-shadow: none;
+    border: 1px solid #ffffff;
+    outline: none;
+  }
+  #send:hover {
+    border-color: #999999;
+}
+
+</style>
+<body>
+{% import "components.html" as components %}
+    <div class="tilde_header">
+      <span id="home" class="button tilde_button"><b><span class="highlighted">H</span>ome</b></span>
+      <span id="about" class="button tilde_button"><b><span class="highlighted">A</span>bout</b></span>
+      <span id="projects" class="button tilde_button"><b><span class="highlighted">P</span>rojects</b></span>
+      <span id="cats" class="button tilde_button"><b><span class="highlighted">C</span>ats</b></span>
+      <span id="exit" class="button tilde_button"><b>E<span class="highlighted">x</span>it</b></span>
+      <span id="terminal" class="button tilde_button"><b>Exit to <span class="highlighted">T</span>erminal</b></span>
+    </div>
+    <form id="terminal_form" style="margin: 0px;">
+      <input type="submit" hidden>
+        <div id="content">
+          Contact me at <a href="mailto:ehren.collins@gmail.com" style="color: #ffff00;">ehren.collins@gmail.com</a> or use the form below
+          <form id="form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" class="text_box" size="35">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="text_box" size="35">
+            <div style="display: none;">
+              <label for="website">Website:</label>
+              <input type="text" id="website" name="website" class="text_box" autocomplete="off">
+            </div>
+            <label for="message">Message:</label>
+            <textarea name="message" id="message" rows="15" cols="70" class="message"></textarea>
+            <span id="return"></span>
+            <button id="send">Send</button>
+          </form>
+        </div>
+      </form>
+
+    <div class="tilde_footer">
+      {{file}}
+    </div>
+</body>
+<script>
+  const content = {{ content | tojson }};
+  const send_button = document.getElementById("send");
+  const name = document.getElementById("name");
+  const email = document.getElementById("email");
+  const website = document.getElementById("website");
+  const message = document.getElementById("message");
+  const return_message = document.getElementById("return");
+  send_button.addEventListener('click', function(event){
+    event.preventDefault();
+    const params = { name: name.value, email: email.value, website: website.value, message: message.value, start_time: "{{ start_time }}" };
+    const query = new URLSearchParams(params).toString();
+    fetch("/api/contact?" + query).then( response => {
+      if (response.status == 200) {
+        return_message.style.color = "#00ff00";
+        return_message.textContent = "Message successfully sent";
+      } else {
+        return_message.style.color = "#ff0000";
+        response.json().then(data => {
+          console.log(data);
+          return_message.textContent = data["error"];
+        });
+      }
+    });
+  });
+</script>
+<script src="{{ url_for('static', filename='js/utils.js') }}" type="module"></script>
+</html>

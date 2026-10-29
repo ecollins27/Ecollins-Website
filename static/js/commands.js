@@ -1,6 +1,9 @@
 import * as utils from "./utils.js"
 
 export var terminal_input = document.getElementById("terminal_input_0");
+var commandHistory = []
+var commandHistoryIndex = []
+
 terminal_input.addEventListener("keydown", function(event) {
     if (event.key == "Tab"){
         event.preventDefault();
@@ -28,7 +31,19 @@ terminal_input.addEventListener("keydown", function(event) {
             }
         }
         terminal_input.value += intersection.substring(partial.length);
-    }
+    } else if (event.key == "ArrowUp"){
+            event.preventDefault();
+            if (commandHistoryIndex > 0){
+                commandHistoryIndex--;
+                terminal_input.value = commandHistory[commandHistoryIndex];
+            }
+        } else if (event.key == "ArrowDown"){
+            event.preventDefault();
+            if (commandHistoryIndex < commandHistory.length){
+                commandHistoryIndex++;
+                terminal_input.value = commandHistoryIndex == commandHistory.length? "":commandHistory[commandHistoryIndex];
+            }
+        }
 });
 export const terminal_form = document.getElementById("terminal_form");
 var terminalNum = 0;
@@ -203,6 +218,8 @@ function executeCat(commandSplit){
 }
 
 export function executeCommand(command){
+    commandHistory.push(command);
+    commandHistoryIndex = commandHistory.length;
     var commandSplit = command.split(" ");
     terminal_input.readOnly = true;
     terminal_input.disabled = true;
@@ -237,14 +254,18 @@ export function executeCommand(command){
     } else if (commandSplit[0] == "help") {
         commandOutput = "This website simulates a Linux kernel.  Basic commands such as cd, ls, cat, nano, and neofetch are all the valid commands and operate as intended.\n\nThe following custom commands are also included:\n\n{c#ffff00}home{c#ffff00} - returns to the home page\n{c#ffff00}visitors{c#ffff00} - displays the number of visits to the site's homepage\n{c#ffff00}download{c#ffff00} - downloads the specified file\n\nNaturally, the kernel contains a number of easter eggs.  How many can you find?";
     } else if (commandSplit[0] == "download"){
-        var absolutePath = utils.getAbsolutePath(commandSplit[1]);
-        if (!utils.isValid(absolutePath)){
-            commandOutput = "File " + absolutePath + " does not exist";
-        } else if (!utils.isFile(absolutePath)){
-            commandOutput = absolutePath + " is not a file";
+        if (commandSplit.length == 1){
+            commandOutput = "command download requires exactly 1 argument"
         } else {
-            window.open("/api/download/" + absolutePath, '_blank').focus();
-            commandOutput = "File " + absolutePath + " successfully downloaded";
+            var absolutePath = utils.getAbsolutePath(commandSplit[1]);
+            if (!utils.isValid(absolutePath)){
+                commandOutput = "File " + absolutePath + " does not exist";
+            } else if (!utils.isFile(absolutePath)){
+                commandOutput = "/" + absolutePath + " is not a file";
+            } else {
+                window.open("/api/download/" + absolutePath, '_blank').focus();
+                commandOutput = "File /" + absolutePath + " successfully downloaded";
+            }
         }
     } else if (commandSplit[0] == "cat"){
         [commandOutput, path, end] = executeCat(commandSplit);
@@ -264,6 +285,13 @@ export function executeCommand(command){
     } else if (commandSplit[0] == 'clear'){
         window.location = '/' + utils.filePath;
         return null;
+    } else if (commandSplit[0] == 'echo'){
+        end = false;
+        if (commandSplit.length > 1){
+            commandOutput = commandSplit.slice(1, commandSplit.length).join(" ").replaceAll("\"", "").replace("\'", "");
+        } else {
+            commandOutput = "";
+        }
     } else if (commandSplit[0] == "vim" || commandSplit[0] == "vi"){
         window.location = "/.misc/no.txt?display_type=nano";
         return;
@@ -331,6 +359,18 @@ export function executeCommand(command){
                 }
             }
             terminal_input.value += intersection.substring(partial.length);
+        } else if (event.key == "ArrowUp"){
+            event.preventDefault();
+            if (commandHistoryIndex > 0){
+                commandHistoryIndex--;
+                terminal_input.value = commandHistory[commandHistoryIndex];
+            }
+        } else if (event.key == "ArrowDown"){
+            event.preventDefault();
+            if (commandHistoryIndex < commandHistory.length){
+                commandHistoryIndex++;
+                terminal_input.value = commandHistoryIndex == commandHistory.length? "":commandHistory[commandHistoryIndex];
+            }
         }
     });
     numLines++;
