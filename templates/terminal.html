@@ -26,6 +26,7 @@
 </body>
 <script>
     const lines = {{ lines | tojson }};
+    console.log("{{ request.path }}");
     var numLines = lines.length;
     const all_pages = {{ all_pages | tojson }};
     const visits = {{visits}}

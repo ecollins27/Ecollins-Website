@@ -149,6 +149,11 @@ function type(element, ghost, text, current_color, current_size, delay, char_per
                     if (ghost != null){
                         ghost.innerHTML = ghost.innerHTML.replace('{o' + data.join(',') + "}", html);
                     }
+                } else if (elementType == 'f'){
+                    console.log(utils.filePath + "/" + data[0]);
+                    var html = all_pages[utils.filePath + "/" + data[0]].value;
+                    element.insertAdjacentHTML("beforeend", html);
+                    ghost.innerHTML += html;
                 }
             } else if (color != null){
                 element.insertAdjacentHTML("beforeend", "<span style=\"color:" + color + ";" + (size == null? "":("font-size:" + size + "pt;")) + "\">" + character + "</span>");

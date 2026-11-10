@@ -24,6 +24,7 @@
    \ \____/\ \____//\____\/\____\\ \_\ \_\ \_\/\____/     {c#ffff00}Email{c#ffff00}:  ehren.collins@gmail.com
     \/___/  \/___/ \/____/\/____/ \/_/\/_/\/_/\/___/      {bGithub,https://github.com/ecollins27,#ffff00}:  https://github.com/ecollins27
 
+{fcentos-webring.html}
 {habout,about,/pages/about/about.txt?display_type=tilde,#00ff00}  {hprojects,projects,/pages/projects/projects.txt?display_type=man,#00ff00}  {bcats!,/pages/cats/cats.txt?display_type=nano,#00ff00}  {hrandom stuff,random-stuff,#ffffff}
 {oabout,qualifications,/pages/about/qualifications/qualifications.txt?display_type=tilde,#ffffff}  {oprojects,crender,/pages/projects/crender/crender.txt?display_type=man,#ffffff}  {orandom-stuff,hosting,/pages/random-stuff/hosting/hosting.txt?display_type=cat,#ffffff}
 {oabout,hobbies,/pages/about/hobbies/hobbies.txt?display_type=tilde,#ffffff}  {oprojects,cformer,/pages/projects/cformer/cformer.txt?display_type=man,#ffffff}  {orandom-stuff,debian,/pages/random-stuff/debian/debian.txt?display_type=nano,#ffffff}
