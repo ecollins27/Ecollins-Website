@@ -6,6 +6,8 @@
 
     Want to hear me glaze {bDebian,debian/debian.txt?display_type=nano,#d70a53}?
 
+    Finally, I am part of a webring!  Check out my friends at {bCentOS Fan Club,centos-fanclub/centos-fanclub.txt?display_type=nano,#efa724}.
+
 {c#ffff00}Games{c#ffff00}
 
     Want to play some mildly janky ASCII browser games?  I've got {bSnake,games/snake,#ffffff}, {bTetris,games/tetris,#ffffff}, {bPong,games/pong,#ffffff}, and {ba maze solving game,games/maze,#ffffff}

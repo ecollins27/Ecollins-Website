@@ -1,0 +1,14 @@
+
+{icentos.png,250,}
+Welcome the {bCentOS Fanclub!,https://centos.jglotr.org/,#ffffff}  We love it, we hate it, and everything in between.
+
+{bhttps://jglotr.org,https://jglotr.org,#d6acff} - Haver of things
+
+{bhttps://ehrencollins.org,https://ehrencollins.org,#ffff00} - Me!
+
+{bhttps://superwaffle64.com,https://superwaffle64.com,#52b82a} - John Halo himself
+
+{bhttps://sdebend.neocities.org,https://sdebend.neocities.org,#fff5bf} - Certified systemd hater
+
+
+{b<- Prev,https://centos.jglotr.org/previous?current=ehrencollins.org,#ffffff}  {bRandom,https://centos.jglotr.org/random,#00ff00}  {bNext ->,https://centos.jglotr.org/next?current=ehrencollins.org,#ffffff}
