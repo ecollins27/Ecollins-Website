@@ -217,7 +217,7 @@ function gameTick(delay){
         finalize();
     }
     displayBoard();
-    if (score >= 10000 * (level + 1)){
+    if (score >= 1000 * (level + 1)){
         level++;
         delay = 500 * Math.exp(-level / 5);
     }
