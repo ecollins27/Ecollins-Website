@@ -3,10 +3,13 @@ import logging
 import os
 from dataclasses import dataclass
 import math
+import stat
 from datetime import datetime
 import random
 import smtplib
 from email.mime.text import MIMEText
+import json
+import filetype
 
 from flask import Flask, request, redirect, url_for, render_template, send_file, jsonify
 from werkzeug.utils import send_from_directory
@@ -58,34 +61,50 @@ def parseFile(filename: str):
     with open(filename, 'r') as f:
         return f.read()
 
-all_pages = {}
 last_message = {}
 pretty_extensions = ['.txt']
 text_extensions = [".txt", ".css", ".html", ".js", ".raw", ".py", ".wsgi"]
 text_display_types = ["cat", "nano", "man"]
 executable_extensions = [".bin", ".sh"]
-def get_all_pages(dir_path):
-    for file in os.listdir(f"{BASE_DIR}/{dir_path}"):
-        if (os.path.isdir(f"{BASE_DIR}/{dir_path}/{file}")):
-            get_all_pages(f"{dir_path}/{file}")
-        elif not all([not file.endswith(extension) for extension in text_extensions]):
-            value = parseFile(f"{dir_path}/{file}")
-            all_pages[f"{dir_path[11:]}/{file}"] = NanoContent(value=value, pretty_render=any([file.endswith(extension) for extension in pretty_extensions]))
-    return all_pages
 
-def generateManifest(dir_path) -> str:
-    string = "{"
-    for file in os.listdir(f"{BASE_DIR}/{dir_path}"):
-        if os.path.isdir(f"{BASE_DIR}/{dir_path}/{file}"):
-            string += "\"" + file + "\": " + generateManifest(f"{dir_path}/{file}")
+def getManifest(dir_path):
+    manifest = {}
+    manifest['name'] = dir_path.split('/')[-1]
+    manifest['is_dir'] = os.path.isdir(f"{BASE_DIR}/{dir_path}")
+    permissions = stat.S_IRWXO & (os.lstat(f"{BASE_DIR}/{dir_path}").st_mode)
+    manifest['read'] = permissions >= 4
+    manifest['write'] = (permissions % 4) >= 2
+    manifest['execute'] = (permissions % 2) >= 1
+    if manifest['is_dir']:
+        content = {}
+        for file in os.listdir(f"{BASE_DIR}/{dir_path}"):
+            content[file] = getManifest(f"{dir_path}/{file}")
+    else:
+        type = filetype.guess(f"{BASE_DIR}/{dir_path}")
+        if type is None:
+            manifest['type'] = 'text'
         else:
-            string += "\"" + file + "\": {}"
-        string += ","
-    return string[:-1] + "}"
+            manifest['type'] = type.mime.split('/')[0]
+        if manifest['type'] == 'text':
+            with open(f"{BASE_DIR}/{dir_path}", 'r') as f:
+                content = f.read()
+        else:
+            content = ''
+    manifest['content'] = content
+    return manifest
+
+manifest = getManifest("static/home")
+
+def get_from_manifest(path):
+    m = manifest
+    for p in path.split('/'):
+        if p:
+            m = manifest['content'][p]
+    return m
+
 
 with open(f"{BASE_DIR}/static/manifest.json", 'w') as f:
-    f.write(generateManifest("static/home"))
-get_all_pages("static/home")
+    f.write(json.dumps(manifest))
 
 def send_email(subject, message, sender="ehren.collins@gmail.com", recipients=["ehren.collins@gmail.com"]):
     msg = MIMEText(message)
@@ -159,31 +178,30 @@ def crash():
 def get_hosting():
     if not request.args.get("display_type") == 'cat':
         return get_page('pages/random-stuff/hosting/hosting.txt')
-    text = all_pages['/pages/random-stuff/hosting/hosting.txt']
-    fastfetch = all_pages['/pages/random-stuff/hosting/fastfetch.txt']
+    text = get_from_manifest('/pages/random-stuff/hosting/hosting.txt')['content']
+    fastfetch = get_from_manifest('/pages/random-stuff/hosting/fastfetch.txt')['content']
     lines = [TerminalLine(input="cat hosting.txt", output=text.value, num=0, path='/pages/random-stuff/hosting')]
     lines.append(TerminalLine(input="ssh root@ken fastfetch", output=fastfetch.value, num=1, path='/pages/random-stuff/hosting'))
-    return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path='/pages/random-stuff/hosting', lines=lines)
+    return render_template('terminal.html', visits=get_visits(), path='/pages/random-stuff/hosting', lines=lines)
 
 @app.route("/pages/about/contact/contact.txt", methods=['GET'])
 def get_contact_page():
     path = '/pages/about/contact/contact.txt'
-    lookup = all_pages[path]
-    return render_template('contact.html', visits=get_visits(), file=path, content=lookup, start_time=str(datetime.now())), 200
+    return render_template('contact.html', visits=get_visits(), file=path, content=get_from_manifest(path)['content'], start_time=str(datetime.now())), 200
 
 def render_text_file(path, display_type, exit_code=200):
     path = '/' + path
     directory_path = '/'.join(path.split('/')[:-1])
     page = path.split("/")[-1]
-    lookup = all_pages[path]
+    lookup = get_from_manifest(path)['content']
     if display_type == 'cat':
         lines = [TerminalLine(input=f"cat {page}", output=lookup.value, num=0, path=directory_path, pretty_render=lookup.pretty_render)]
-        return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=directory_path,lines=lines), exit_code
+        return render_template('terminal.html', visits=get_visits(), path=directory_path,lines=lines), exit_code
     elif display_type == 'nano':
         return render_template('nano.html', visits=get_visits(), file=path, content=lookup), exit_code
     elif display_type == 'man':
         lines = [TerminalLine(input=f"man {'.'.join(page.split('.')[:-1])}", output=lookup.value, num=0, path=directory_path,pretty_render=lookup.pretty_render)]
-        return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=directory_path,lines=lines), exit_code
+        return render_template('terminal.html', visits=get_visits(), path=directory_path,lines=lines), exit_code
     elif display_type == 'tilde':
         return render_template('tilde.html', visits=get_visits(), file=path, content=lookup), exit_code
     else:
@@ -192,7 +210,7 @@ def render_text_file(path, display_type, exit_code=200):
 
 def render_directory(path):
     path = '/' + path
-    return render_template('terminal.html', visits=get_visits(), all_pages=all_pages, path=path, lines=[]), 200
+    return render_template('terminal.html', visits=get_visits(), path=path, lines=[]), 200
 
 def render_executable(path):
     name = path.split('/')[-1]
@@ -226,7 +244,7 @@ def get_home():
     output = parseFile(f"static/home/home.txt")
     lines = [TerminalLine(input="neofetch", output=output, num=0, path='/')]
     increment_counter()
-    return render_template('terminal.html', visits=get_visits(), path='/', all_pages=all_pages, lines=lines), 200
+    return render_template('terminal.html', visits=get_visits(), path='/', lines=lines), 200
 
 # Favicon generated with https://text-to-svg.com/ and https://boxy-svg.com/
 if __name__ == '__main__':
